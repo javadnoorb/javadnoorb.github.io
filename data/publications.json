@@ -1,1 +1,394 @@
-[]
+[
+  {
+    "title": "Longitudinal molecular trajectories of diffuse glioma in adults",
+    "authors": "Floris P Barthel and Kevin C Johnson and Frederick S Varn and Anzhela D Moskalik and Georgette Tanner and Emre Kocakavuk and Kevin J Anderson and Olajide Abiola and Kenneth Aldape and Kristin D Alfaro and Donat Alpar and Samirkumar B Amin and David M Ashley and Pratiti Bandopadhayay and Jill S Barnholtz-Sloan and Rameen Beroukhim and Christoph Bock and Priscilla K Brastianos and Daniel J Brat and Andrew R Brodbelt and Alexander F Bruns and Ketan R Bulsara and Aruna Chakrabarty and Arnab Chakravarti and Jeffrey H Chuang and Elizabeth B Claus and Elizabeth J Cochran and Jennifer Connelly and Joseph F Costello and Gaetano Finocchiaro and Michael N Fletcher and Pim J French and Hui K Gan and Mark R Gilbert and Peter V Gould and Matthew R Grimmer and Antonio Iavarone and Azzam Ismail and Michael D Jenkinson and Mustafa Khasraw and Hoon Kim and Mathilde CM Kouwenhoven and Peter S LaViolette and Meihong Li and Peter Lichter and Keith L Ligon and Allison K Lowman and Tathiane M Malta and Tali Mazor and Kerrie L McDonald and Annette M Molinaro and Do-Hyun Nam and Naema Nayyar and Ho Keung Ng and Chew Yee Ngan and Simone P Niclou and Johanna M Niers and Houtan Noushmehr and Javad Noorbakhsh and D Ryan Ormond and Chul-Kee Park and Laila M Poisson and Raul Rabadan and Bernhard Radlwimmer and Ganesh Rao and Guido Reifenberger and Jason K Sa and Michael Schuster and Brian L Shaw and Susan C Short and Peter A Sillevis Smitt and Andrew E Sloan and Marion Smits and Hiromichi Suzuki and Ghazaleh Tabatabai and Erwin G Van Meir and Colin Watts and Michael Weller and Pieter Wesseling and Bart A Westerman and Georg Widhalm and Adelheid Woehrer and WK Alfred Yung and Gelareh Zadeh and Jason T Huse and John F De Groot and Lucy F Stead and Roel GW Verhaak",
+    "venue": "Nature",
+    "year": 2019,
+    "citations": 649,
+    "link": "https://www.nature.com/articles/s41586-019-1775-1"
+  },
+  {
+    "title": "Deep learning-based cross-classifications reveal conserved spatial behaviors within tumor histological images",
+    "authors": "Javad Noorbakhsh and Saman Farahmand and Sandeep Namburi and Dennis Caruana and David Rimm and Mohammad Soltanieh-ha and Kourosh Zarringhalam and Jeffrey H Chuang",
+    "venue": "Nature communications",
+    "year": 2020,
+    "citations": 243,
+    "link": "https://www.nature.com/articles/s41467-020-20030-5"
+  },
+  {
+    "title": "Repeat expansions confer WRN dependence in microsatellite-unstable cancers",
+    "authors": "Niek van Wietmarschen and Sriram Sridharan and William J Nathan and Anthony Tubbs and Edmond M Chan and Elsa Callen and Wei Wu and Frida Belinky and Veenu Tripathi and Nancy Wong and Kyla Foster and Javad Noorbakhsh and Kiran Garimella and Abimael Cruz-Migoni and Joshua A Sommers and Yongqing Huang and Ashir A Borah and Jonathan T Smith and Jeremie Kalfon and Nikolas Kesten and Kasper Fugger and Robert L Walker and Egor Dolzhenko and Michael A Eberle and Bruce E Hayward and Karen Usdin and Catherine H Freudenreich and Robert M Brosh Jr and Stephen C West and Peter J McHugh and Paul S Meltzer and Adam J Bass and Andr\u00e9 Nussenzweig",
+    "venue": "Nature",
+    "year": 2020,
+    "citations": 229,
+    "link": "https://www.nature.com/articles/s41586-020-2769-8"
+  },
+  {
+    "title": "From intracellular signaling to population oscillations: bridging size\u2010and time\u2010scales in collective behavior",
+    "authors": "Allyson E Sgro and David J Schwab and Javad Noorbakhsh and Troy Mestler and Pankaj Mehta and Thomas Gregor",
+    "venue": "Molecular systems biology",
+    "year": 2015,
+    "citations": 104,
+    "link": "https://link.springer.com/article/10.15252/msb.20145352"
+  },
+  {
+    "title": "CCNE1 amplification is associated with poor prognosis in patients with triple negative breast cancer",
+    "authors": "Zi-Ming Zhao and Susan E Yost and Katherine E Hutchinson and Sierra Min Li and Yate-Ching Yuan and Javad Noorbakhsh and Zheng Liu and Charles Warden and Radia M Johnson and Xiwei Wu and Jeffrey H Chuang and Yuan Yuan",
+    "venue": "BMC cancer",
+    "year": 2019,
+    "citations": 103,
+    "link": "https://link.springer.com/article/10.1186/s12885-019-5290-4"
+  },
+  {
+    "title": "Modeling oscillations and spiral waves in Dictyostelium populations",
+    "authors": "Javad Noorbakhsh and David J Schwab and Allyson E Sgro and Thomas Gregor and Pankaj Mehta",
+    "venue": "Physical Review E",
+    "year": 2015,
+    "citations": 60,
+    "link": "https://journals.aps.org/pre/abstract/10.1103/PhysRevE.91.062711"
+  },
+  {
+    "title": "Two-dimensionality of yeast colony expansion accompanied by pattern formation",
+    "authors": "Lin Chen and Javad Noorbakhsh and Rhys M Adams and Joseph Samaniego-Evans and Germaine Agollah and Dmitry Nevozhay and Jennie Kuzdzal-Fick and Pankaj Mehta and G\u00e1bor Bal\u00e1zsi",
+    "venue": "PLoS computational biology",
+    "year": 2014,
+    "citations": 59,
+    "link": "https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003979"
+  },
+  {
+    "title": "High-throughput deconvolution of 3D organoid dynamics at cellular resolution for cancer pharmacology with Cellos",
+    "authors": "Patience Mukashyaka and Pooja Kumar and David J Mellert and Shadae Nicholas and Javad Noorbakhsh and Mattia Brugiolo and Elise T Courtois and Olga Anczukow and Edison T Liu and Jeffrey H Chuang",
+    "venue": "Nature Communications",
+    "year": 2023,
+    "citations": 48,
+    "link": "https://www.nature.com/articles/s41467-023-44162-6"
+  },
+  {
+    "title": "Computational estimation of quality and clinical relevance of cancer cell lines",
+    "authors": "Lucia Trastulla and Javad Noorbakhsh and Francisca Vazquez and James McFarland and Francesco Iorio",
+    "venue": null,
+    "year": 2022,
+    "citations": 44,
+    "link": "https://link.springer.com/article/10.15252/msb.202211017"
+  },
+  {
+    "title": "Intrinsic noise of microRNA-regulated genes and the ceRNA hypothesis",
+    "authors": "Javad Noorbakhsh and Alex H Lang and Pankaj Mehta",
+    "venue": "PLoS One",
+    "year": 2013,
+    "citations": 43,
+    "link": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0072676"
+  },
+  {
+    "title": "Uncertainties in tumor allele frequencies limit power to infer evolutionary pressures",
+    "authors": "Javad Noorbakhsh and Jeffrey H Chuang",
+    "venue": "Nature genetics",
+    "year": 2017,
+    "citations": 33,
+    "link": "https://www.nature.com/articles/ng.3876"
+  },
+  {
+    "title": "Distribution-based measures of tumor heterogeneity are sensitive to mutation calling and lack strong clinical predictive power",
+    "authors": "Javad Noorbakhsh and Hyunsoo Kim and Sandeep Namburi and Jeffrey H Chuang",
+    "venue": "Scientific Reports",
+    "year": 2018,
+    "citations": 31,
+    "link": "https://www.nature.com/articles/s41598-018-29154-7"
+  },
+  {
+    "title": "Machine learning in biology and medicine",
+    "authors": "PhD Javad Noorbakhsh and MS Harshpreet Chandok and PhD R Krishna Murthy Karuturi and PhD Joshy George",
+    "venue": null,
+    "year": 2019,
+    "citations": 29,
+    "link": "https://www.sciencedirect.com/science/article/pii/S2589408019300110"
+  },
+  {
+    "title": "Emerging AI approaches for cancer spatial omics",
+    "authors": "Javad Noorbakhsh and Ali Foroughi Pour and Jeffrey Chuang",
+    "venue": null,
+    "year": 2025,
+    "citations": 19,
+    "link": "https://academic.oup.com/gigascience/article-abstract/doi/10.1093/gigascience/giaf128/8287720"
+  },
+  {
+    "title": "Bridging the gap between cancer cell line models and tumours using gene expression data",
+    "authors": "Javad Noorbakhsh and Francisca Vazquez and James M McFarland",
+    "venue": "British Journal of Cancer",
+    "year": 2021,
+    "citations": 19,
+    "link": "https://www.nature.com/articles/s41416-021-01359-0"
+  },
+  {
+    "title": "High-resolution deconstruction of evolution induced by chemotherapy treatments in breast cancer xenografts",
+    "authors": "Hyunsoo Kim and Pooja Kumar and Francesca Menghi and Javad Noorbakhsh and Eliza Cerveira and Mallory Ryan and Qihui Zhu and Guruprasad Ananda and Joshy George and Henry C Chen and Susan Mockus and Chengsheng Zhang and Yan Yang and James Keck and R Krishna Murthy Karuturi and Carol J Bult and Charles Lee and Edison T Liu and Jeffrey H Chuang",
+    "venue": "Scientific reports",
+    "year": 2018,
+    "citations": 18,
+    "link": "https://www.nature.com/articles/s41598-018-36184-8"
+  },
+  {
+    "title": "Germline variation contributes to false negatives in CRISPR-based experiments with varying burden across ancestries",
+    "authors": "Sean A Misek and Aaron Fultineer and Jeremie Kalfon and Javad Noorbakhsh and Isabella Boyle and Priyanka Roy and Joshua Dempster and Lia Petronio and Katherine Huang and Alham Saadat and Thomas Green and Adam Brown and John G Doench and David E Root and James M McFarland and Rameen Beroukhim and Jesse S Boehm",
+    "venue": "Nature communications",
+    "year": 2024,
+    "citations": 16,
+    "link": "https://www.nature.com/articles/s41467-024-48957-z"
+  },
+  {
+    "title": "Treating cancer as an invasive species",
+    "authors": "Javad Noorbakhsh and Zi-Ming Zhao and James C Russell and Jeffrey H Chuang",
+    "venue": null,
+    "year": 2020,
+    "citations": 13,
+    "link": "https://aacrjournals.org/mcr/article-abstract/18/1/20/89992"
+  },
+  {
+    "title": "Foroughi pour A, Namburi S, Caruana D, Rimm D, et al",
+    "authors": "Javad Noorbakhsh and Saman Farahmand",
+    "venue": "Deep learning-based cross-classifications reveal conserved spatial behaviors within tumor histological images. Nat Commun",
+    "year": 2020,
+    "citations": 7,
+    "link": "https://scholar.google.com/scholar?cluster=3702952284078783118&hl=en&oi=scholarr"
+  },
+  {
+    "title": "Ali Foroughi pour, Sandeep Namburi, Dennis Caruana, David Rimm, Mohammad Soltanieh-ha, Kourosh Zarringhalam, and Jeffrey H",
+    "authors": "Javad Noorbakhsh and Saman Farahmand",
+    "venue": "Chuang. Deep learning-based cross-classifications reveal conserved spatial behaviors within tumor histological images. nature communications",
+    "year": 2020,
+    "citations": 6,
+    "link": "https://scholar.google.com/scholar?cluster=15004618010648020488&hl=en&oi=scholarr"
+  },
+  {
+    "title": "The enzyme glutamate-cysteine ligase (GCL) is a target for ferroptosis induction in cancer",
+    "authors": "John K Eaton and Priya Chatterji and Laura Furst and Sneha Basak and Ayesha M Patel and Yan Y Sweat and Luke L Cai and Krishna Dave and Rachelle A Victorio and Elizabeth Pizzi and Javad Noorbakhsh and Gaochao Tian and Jennifer A Roth and John Hynes Jr and Gang Xing and Mathias J Wawer and Vasanthi S Viswanathan",
+    "venue": "BioRxiv",
+    "year": 2024,
+    "citations": 4,
+    "link": "https://www.biorxiv.org/content/10.1101/2024.04.28.591552.abstract"
+  },
+  {
+    "title": "Integrative deep learning for PanCancer molecular subtype classification using histopathological images and RNAseq data",
+    "authors": "Fatima Zare and Javad Noorbakhsh and Tianyu Wang and Jeffrey H Chuang and Sheida Nabavi",
+    "venue": null,
+    "year": 2020,
+    "citations": 4,
+    "link": "https://dl.acm.org/doi/abs/10.1145/3388440.3412414"
+  },
+  {
+    "title": "Prediction of outcome from spatial Protein profiling of triple-negative breast cancers",
+    "authors": "Ali Foroughi Pour and Te-Chia Wu and Javad Noorbakhsh and Jan Martinek and Santhosh Sivajothi and Paul Robson and Karolina Palucka and Jeffrey H Chuang",
+    "venue": "Communications Medicine",
+    "year": 2026,
+    "citations": 3,
+    "link": "https://www.nature.com/articles/s43856-026-01400-4"
+  },
+  {
+    "title": "Cellos: High-throughput deconvolution of 3D organoid dynamics at cellular resolution for cancer pharmacology",
+    "authors": "Patience Mukashyaka and Pooja Kumar and David J Mellert and Shadae Nicholas and Javad Noorbakhsh and Mattia Brugiolo and Olga Anczukow and Edison T Liu and Jeffrey H Chuang",
+    "venue": "bioRxiv",
+    "year": 2023,
+    "citations": 3,
+    "link": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10028797/"
+  },
+  {
+    "title": "Abstract A032: Cellos: High-throughput deconvolution of 3D organoid dynamics at cellular resolution for cancer pharmacology",
+    "authors": "Patience Mukashyaka and Pooja Kumar and David J Mellert and Shadae Nicholas and Javad Noorbakhsh and Mattia Brugiolo and Olga Anczukow and Edison T Liu and Jeffrey H Chuang",
+    "venue": "Cancer Research",
+    "year": 2024,
+    "citations": 1,
+    "link": "https://aacrjournals.org/cancerres/article/84/3_Supplement_2/A032/733476"
+  },
+  {
+    "title": "Associations between structural variant signatures and drug sensitivity in cell lines",
+    "authors": "Simona Dalin and Frank Dubois and Shu Zhang and Alexander Crane and Jeremie Kalfon and Javad Noorbakhsh and Rameen Beroukhim",
+    "venue": "Cancer Research",
+    "year": 2022,
+    "citations": 1,
+    "link": "https://aacrjournals.org/cancerres/article/82/12_Supplement/2710/703992"
+  },
+  {
+    "title": "Abstract PO-003: Deep learning identifies conserved pan-cancer tumor features",
+    "authors": "Javad Noorbakhsh and Saman Farahmand and Ali Foroughi pour and Sandeep Namburi and Dennis Caruana and David Rimm and Mohammad Soltanieh-Ha and Kourosh Zarringhalam and Jeffrey H Chuang",
+    "venue": "Clinical Cancer Research",
+    "year": 2021,
+    "citations": 1,
+    "link": "https://aacrjournals.org/clincancerres/article/27/5_Supplement/PO-003/32749"
+  },
+  {
+    "title": "The PDX Data Commons and Coordinating Center (PDCCC) for PDXNet",
+    "authors": "Anurag Sethi and Anuj Srivastava and Xingyi Woo and Vishal Sarsani and Ziming Zhao and Javad Noorbakhsh and Christian French and Jack DiGiovanna and Ogan D Abaan and Steve Neuhauser and Peter Robinson and Yvonne A Evrard and Carol J Bult and Jeffrey A Moscow and Brandi Davis-Dusenbery and Jeffrey H Chuang",
+    "venue": "Cancer Research",
+    "year": 2018,
+    "citations": 1,
+    "link": "https://aacrjournals.org/cancerres/article-abstract/78/13_Supplement/1029/625222"
+  },
+  {
+    "title": "RANKL inhibition spatially rewires the microenvironment of luminal breast cancer",
+    "authors": "Mario Rodriguez-del Collado and Andrea Vethencourt and Alexandra Barranco and Jaime Martinez de Villarreal and David Valc\u00e1rcel-Linares and Eva Maria Trinidad and Eduard Dorca and Gonzalo Soria-Alcaide and Maria Jimenez and Eduardo J Caleiras and Maria Gomez and Carlos Garrido and Orlando Dominguez and Gema Perez-Chacon and Marina Ciscar and Elvira Purqueras and Gonzalo Gomez and Elena Pi\u00f1eiro-Ya\u00f1ez and Ander Urruticoechea and Isaac Subirana and Javad Noorbakhsh and Jeffrey H Chuang and Anna Petit and Maria Teresa Soler-Monso and Anna Gum\u00e0 and Sonia Pernas and Catalina Falo and Eva Gonzalez-Suarez",
+    "venue": "medRxiv",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://www.medrxiv.org/content/10.64898/2026.07.08.26355790.abstract"
+  },
+  {
+    "title": "DIANNE: Segmentation-Free Localization of Histology Differential Attributes",
+    "authors": "Sergii Domanskyi and Jill C Rubinstein and Todd B Sheridan and Adam Thiesen and Javad Noorbakhsh and Juliana Alcoforado Diniz and Ramalakshmi Ramasamy and Dylan S Baker and Riley Sheldon and Qian Wu and George Kuchel and Nicolas Musi and Sara E Espinoza and Francisco G Cigarroa and Paul Robson and Jeffrey H Chuang",
+    "venue": "bioRxiv",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://www.biorxiv.org/content/10.64898/2026.04.28.721103.abstract"
+  },
+  {
+    "title": "Spatial multiomic characterization of spontaneous lung tumors in aged mice.",
+    "authors": "Adam Thiesen and Sema Akkurt and Javad Noorbakhsh and Te-Chia Wu and Andrew Salner and Peter Yu and Susan Airhart and Olga Anczukow and Ron Korstanje and Karolina Palucka and Jeffrey H Chuang",
+    "venue": "Cancer Research",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article/86/7_Supplement/1204/777053"
+  },
+  {
+    "title": "Phone-based portable slide digitization system for AI-enabled histopathology",
+    "authors": "Sergii Domanskyi and Todd Sheridan and Javad Noorbakhsh and Jeffrey H Chuang and Jill Carol Rubinstein",
+    "venue": "Cancer Research",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article/86/7_Supplement/4151/778947"
+  },
+  {
+    "title": "Convolutional neural networks for classification of cancer histological images",
+    "authors": "Jeffrey Hsu-Min Chuang and Javad Noorbakhsh and Kourosh Zarringhalam and Saman Farahmand and Mohammad Soltanieh-ha",
+    "venue": null,
+    "year": 2025,
+    "citations": 0,
+    "link": "https://patents.google.com/patent/US20250378559A1/en"
+  },
+  {
+    "title": "Convolutional neural networks for classification of cancer histological images",
+    "authors": "Jeffrey Hsu-Min Chuang and Javad Noorbakhsh and Kourosh Zarringhalam and Saman Farahmand and Mohammad Soltanieh-ha",
+    "venue": null,
+    "year": 2025,
+    "citations": 0,
+    "link": "https://patents.google.com/patent/US12380555B2/en"
+  },
+  {
+    "title": "Simulating the phase behavior of the Kuramoto tree",
+    "authors": "Mohammad Javad Nouhi and Javad Noorbakhsh",
+    "venue": "arXiv preprint arXiv:2306.14928",
+    "year": 2023,
+    "citations": 0,
+    "link": "https://arxiv.org/abs/2306.14928"
+  },
+  {
+    "title": "Defining the landscape of cancer vulnerabilities that are engendered by germline genetic variation",
+    "authors": "Sean Misek and Aaron Fultineer and Jeremie Kalfon and Javad Noorbakhsh and Isabella Boyle and Joshua Dempster and Lia Petronio and Katherine Huang and Thomas Green and Adam Brown and John Doench and David Root and James McFarland and Rameen Beroukhim and Jesse Boehm",
+    "venue": "The Journal of Pharmacology and Experimental Therapeutics",
+    "year": 2023,
+    "citations": 0,
+    "link": "https://www.sciencedirect.com/science/article/pii/S0022356524166876"
+  },
+  {
+    "title": "Ancestry bias in CRISPR guide design impedes discovery of genetic dependencies",
+    "authors": "Sean Alexander Misek and Aaron Fultineer and Jeremie Kalfon and Javad Noorbakhsh and Isabella Boyle and Joshua Dempster and Lia Petronio and Katherine Huang and James McFarland and Rameen Beroukhim and Jesse Boehm",
+    "venue": "Cancer Research",
+    "year": 2022,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article/82/12_Supplement/2173/703368"
+  },
+  {
+    "title": "Intratumor heterogeneity quantification using 3D segmentation of organoids co-culture systems",
+    "authors": "Patience Mukashyaka and Javad Noorbakhsh and Pooja Kumar and Elise Courtois and Olga Anczukow and Paul Robson and Edson Liu and Jeffrey Chuang",
+    "venue": "Cancer Research",
+    "year": 2021,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article/81/13_Supplement/3144/669053"
+  },
+  {
+    "title": "AzinNet: A wavelet convolutional neural network for pathology image analysis",
+    "authors": "Ali Foroughi Pour and Javad Noorbakhsh and Jeffrey Chuang",
+    "venue": "Cancer Research",
+    "year": 2020,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article-abstract/80/16_Supplement/2098/641873"
+  },
+  {
+    "title": "The PDX Data Commons and Coordinating Center (PDCCC) for PDXNet in support of preclinical research",
+    "authors": "Jacqueline Rosains and Anuj Srivastava and Wingyi Woo and Vishal Sarsani and ZiMing Zhao and Javad Noorbakhsh and Ogan D Abaan and Christian Frech and Jack DiGiovanna and Ryan Jeon and Steve Neuhauser and Peter Robinson and Yvonne A Evrard and Carol Bult and Jeffrey A Moscow and Brandi Davis-Dusenbery and Jeffrey H Chuang",
+    "venue": "Cancer Research",
+    "year": 2019,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article-abstract/79/13_Supplement/1074/633277"
+  },
+  {
+    "title": "Deep learning functional associations using histopathology images",
+    "authors": "Javad Noorbakhsh and Saman Farahmand and Mohammad Soltanieh Ha and Sandeep Namburi and Kourosh Zarringhalam and Jeff Chuang",
+    "venue": "Cancer Research",
+    "year": 2019,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article-abstract/79/13_Supplement/1632/633700"
+  },
+  {
+    "title": "Evolution of an intratumoral ecology susceptible to successive treatment in breast cancer xenografts",
+    "authors": "Hyunsoo Kim and Pooja Kumar and Francesca Menghi and Javad Noorbakhsh and Eliza Cerveira and Mallory Ryan and Qihui Zhu and Guruprasad Ananda and Joshy George and Henry Chen and Susan Mockus and Chengsheng Zhang and Yan Yang and James Keck and R Krishna Murthy Karuturi and Carol J Bult and Charles Lee and Edison T Liu and Jeffrey H Chuang",
+    "venue": "bioRxiv",
+    "year": 2018,
+    "citations": 0,
+    "link": "https://www.biorxiv.org/content/10.1101/249797.abstract"
+  },
+  {
+    "title": "Stochasticity and universal dynamics in communicating cellular populations",
+    "authors": "Javad Noorbakhsh and Pankaj Mehta and Allyson Sgro Collaboration and David Schwab Collaboration and Troy Mestler Collaboration and Thomas Gregor Collaboration",
+    "venue": "APS March Meeting Abstracts",
+    "year": 2014,
+    "citations": 0,
+    "link": "https://ui.adsabs.harvard.edu/abs/2014APS..MARJ15002N/abstract"
+  },
+  {
+    "title": "Quantitative Analysis of How RET Receptor Activation is Coupled to ERK and Akt Signaling: 638",
+    "authors": "Simin Li and Javad Noorbakhsh and Thomas V Riera and Pankaj Mehta and Adrian Whitty",
+    "venue": "Protein Science",
+    "year": 2013,
+    "citations": 0,
+    "link": "https://scholar.google.com/scholar?cluster=10185112164442828417&hl=en&oi=scholarr"
+  },
+  {
+    "title": "Modeling Excitable Systems Coupled Through External Medium",
+    "authors": "Javad Noorbakhsh and Pankaj Mehta",
+    "venue": "APS March Meeting Abstracts",
+    "year": 2013,
+    "citations": 0,
+    "link": "https://ui.adsabs.harvard.edu/abs/2013APS..MARG44006N/abstract"
+  },
+  {
+    "title": "Quantitative Model of microRNA-mRNA interaction",
+    "authors": "Javad Noorbakhsh and Alex Lang and Pankaj Mehta",
+    "venue": "APS March Meeting Abstracts",
+    "year": 2012,
+    "citations": 0,
+    "link": "https://ui.adsabs.harvard.edu/abs/2012APS..MARL40008N/abstract"
+  },
+  {
+    "title": "The Mouseion at the JAXlibrary",
+    "authors": "Javad Noorbakhsh and Saman Farahmand and Ali Foroughi Pour and Sandeep Namburi and Dennis Caruana",
+    "venue": null,
+    "year": null,
+    "citations": 0,
+    "link": "https://www.academia.edu/download/91098158/385974811.pdf"
+  },
+  {
+    "title": "CCNE1 Amplification Is Associated with Poor Prognosis in Patients with Triple Negative",
+    "authors": "Zi-Ming Zhao and Susan Yost and Katherine Hutchinson and Sierra Li and Yate-Ching Yuan and Javad Noorbakhsh and Zheng Liu and Charles Warden and Radia Johnson and Xiwei Wu and Jeffrey Chuang and Yuan Yuan",
+    "venue": null,
+    "year": null,
+    "citations": 0,
+    "link": "https://scholar.google.com/scholar?cluster=11416928366466997264&hl=en&oi=scholarr"
+  },
+  {
+    "title": "A comparison of gene regulation by eukaryotic microRNAs and prokaroytic sRNAs",
+    "authors": "J Noorbakhsh and A Lang and P Mehta",
+    "venue": null,
+    "year": null,
+    "citations": 0,
+    "link": "http://q-bio.org/w/images/a/a0/NoorbakhshJavad-Poster.pdf"
+  }
+]

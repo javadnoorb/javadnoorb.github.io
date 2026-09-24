@@ -1,5 +1,5 @@
-name: "Your Name"
-title: "Your Title / Role"
+name: "Javad Noorbakhsh"
+title: "Scientist, Jackson Laboratory"
 email: "you@example.com"
 location: "City, Country"
 bio: >
@@ -9,7 +9,7 @@ bio: >
 
 # Google Scholar user ID, found in the URL of your profile:
 # https://scholar.google.com/citations?user=THIS_PART
-scholar_id: "XXXXXXXXXXXX"
+scholar_id: "xfENK6oAAAAJ"
 
 social:
   github: "https://github.com/yourusername"
