@@ -1,7 +1,7 @@
 [
   {
     "title": "Longitudinal molecular trajectories of diffuse glioma in adults",
-    "authors": "Floris P Barthel and Kevin C Johnson and Frederick S Varn and Anzhela D Moskalik and Georgette Tanner and Emre Kocakavuk and Kevin J Anderson and Olajide Abiola and Kenneth Aldape and Kristin D Alfaro and Donat Alpar and Samirkumar B Amin and David M Ashley and Pratiti Bandopadhayay and Jill S Barnholtz-Sloan and Rameen Beroukhim and Christoph Bock and Priscilla K Brastianos and Daniel J Brat and Andrew R Brodbelt and Alexander F Bruns and Ketan R Bulsara and Aruna Chakrabarty and Arnab Chakravarti and Jeffrey H Chuang and Elizabeth B Claus and Elizabeth J Cochran and Jennifer Connelly and Joseph F Costello and Gaetano Finocchiaro and Michael N Fletcher and Pim J French and Hui K Gan and Mark R Gilbert and Peter V Gould and Matthew R Grimmer and Antonio Iavarone and Azzam Ismail and Michael D Jenkinson and Mustafa Khasraw and Hoon Kim and Mathilde CM Kouwenhoven and Peter S LaViolette and Meihong Li and Peter Lichter and Keith L Ligon and Allison K Lowman and Tathiane M Malta and Tali Mazor and Kerrie L McDonald and Annette M Molinaro and Do-Hyun Nam and Naema Nayyar and Ho Keung Ng and Chew Yee Ngan and Simone P Niclou and Johanna M Niers and Houtan Noushmehr and Javad Noorbakhsh and D Ryan Ormond and Chul-Kee Park and Laila M Poisson and Raul Rabadan and Bernhard Radlwimmer and Ganesh Rao and Guido Reifenberger and Jason K Sa and Michael Schuster and Brian L Shaw and Susan C Short and Peter A Sillevis Smitt and Andrew E Sloan and Marion Smits and Hiromichi Suzuki and Ghazaleh Tabatabai and Erwin G Van Meir and Colin Watts and Michael Weller and Pieter Wesseling and Bart A Westerman and Georg Widhalm and Adelheid Woehrer and WK Alfred Yung and Gelareh Zadeh and Jason T Huse and John F De Groot and Lucy F Stead and Roel GW Verhaak",
+    "authors": "Floris P Barthel, Kevin C Johnson, Frederick S Varn, Anzhela D Moskalik, Georgette Tanner, et al.",
     "venue": "Nature",
     "year": 2019,
     "citations": 649,
@@ -9,7 +9,7 @@
   },
   {
     "title": "Deep learning-based cross-classifications reveal conserved spatial behaviors within tumor histological images",
-    "authors": "Javad Noorbakhsh and Saman Farahmand and Sandeep Namburi and Dennis Caruana and David Rimm and Mohammad Soltanieh-ha and Kourosh Zarringhalam and Jeffrey H Chuang",
+    "authors": "Javad Noorbakhsh, Saman Farahmand, Sandeep Namburi, Dennis Caruana, David Rimm, et al.",
     "venue": "Nature communications",
     "year": 2020,
     "citations": 243,
@@ -17,7 +17,7 @@
   },
   {
     "title": "Repeat expansions confer WRN dependence in microsatellite-unstable cancers",
-    "authors": "Niek van Wietmarschen and Sriram Sridharan and William J Nathan and Anthony Tubbs and Edmond M Chan and Elsa Callen and Wei Wu and Frida Belinky and Veenu Tripathi and Nancy Wong and Kyla Foster and Javad Noorbakhsh and Kiran Garimella and Abimael Cruz-Migoni and Joshua A Sommers and Yongqing Huang and Ashir A Borah and Jonathan T Smith and Jeremie Kalfon and Nikolas Kesten and Kasper Fugger and Robert L Walker and Egor Dolzhenko and Michael A Eberle and Bruce E Hayward and Karen Usdin and Catherine H Freudenreich and Robert M Brosh Jr and Stephen C West and Peter J McHugh and Paul S Meltzer and Adam J Bass and Andr\u00e9 Nussenzweig",
+    "authors": "Niek van Wietmarschen, Sriram Sridharan, William J Nathan, Anthony Tubbs, Edmond M Chan, et al.",
     "venue": "Nature",
     "year": 2020,
     "citations": 229,
@@ -25,7 +25,7 @@
   },
   {
     "title": "From intracellular signaling to population oscillations: bridging size\u2010and time\u2010scales in collective behavior",
-    "authors": "Allyson E Sgro and David J Schwab and Javad Noorbakhsh and Troy Mestler and Pankaj Mehta and Thomas Gregor",
+    "authors": "Allyson E Sgro, David J Schwab, Javad Noorbakhsh, Troy Mestler, Pankaj Mehta, et al.",
     "venue": "Molecular systems biology",
     "year": 2015,
     "citations": 104,
@@ -33,7 +33,7 @@
   },
   {
     "title": "CCNE1 amplification is associated with poor prognosis in patients with triple negative breast cancer",
-    "authors": "Zi-Ming Zhao and Susan E Yost and Katherine E Hutchinson and Sierra Min Li and Yate-Ching Yuan and Javad Noorbakhsh and Zheng Liu and Charles Warden and Radia M Johnson and Xiwei Wu and Jeffrey H Chuang and Yuan Yuan",
+    "authors": "Zi-Ming Zhao, Susan E Yost, Katherine E Hutchinson, Sierra Min Li, Yate-Ching Yuan, et al.",
     "venue": "BMC cancer",
     "year": 2019,
     "citations": 103,
@@ -49,7 +49,7 @@
   },
   {
     "title": "Two-dimensionality of yeast colony expansion accompanied by pattern formation",
-    "authors": "Lin Chen and Javad Noorbakhsh and Rhys M Adams and Joseph Samaniego-Evans and Germaine Agollah and Dmitry Nevozhay and Jennie Kuzdzal-Fick and Pankaj Mehta and G\u00e1bor Bal\u00e1zsi",
+    "authors": "Lin Chen, Javad Noorbakhsh, Rhys M Adams, Joseph Samaniego-Evans, Germaine Agollah, et al.",
     "venue": "PLoS computational biology",
     "year": 2014,
     "citations": 59,
@@ -57,7 +57,7 @@
   },
   {
     "title": "High-throughput deconvolution of 3D organoid dynamics at cellular resolution for cancer pharmacology with Cellos",
-    "authors": "Patience Mukashyaka and Pooja Kumar and David J Mellert and Shadae Nicholas and Javad Noorbakhsh and Mattia Brugiolo and Elise T Courtois and Olga Anczukow and Edison T Liu and Jeffrey H Chuang",
+    "authors": "Patience Mukashyaka, Pooja Kumar, David J Mellert, Shadae Nicholas, Javad Noorbakhsh, et al.",
     "venue": "Nature Communications",
     "year": 2023,
     "citations": 48,
@@ -121,7 +121,7 @@
   },
   {
     "title": "High-resolution deconstruction of evolution induced by chemotherapy treatments in breast cancer xenografts",
-    "authors": "Hyunsoo Kim and Pooja Kumar and Francesca Menghi and Javad Noorbakhsh and Eliza Cerveira and Mallory Ryan and Qihui Zhu and Guruprasad Ananda and Joshy George and Henry C Chen and Susan Mockus and Chengsheng Zhang and Yan Yang and James Keck and R Krishna Murthy Karuturi and Carol J Bult and Charles Lee and Edison T Liu and Jeffrey H Chuang",
+    "authors": "Hyunsoo Kim, Pooja Kumar, Francesca Menghi, Javad Noorbakhsh, Eliza Cerveira, et al.",
     "venue": "Scientific reports",
     "year": 2018,
     "citations": 18,
@@ -129,7 +129,7 @@
   },
   {
     "title": "Germline variation contributes to false negatives in CRISPR-based experiments with varying burden across ancestries",
-    "authors": "Sean A Misek and Aaron Fultineer and Jeremie Kalfon and Javad Noorbakhsh and Isabella Boyle and Priyanka Roy and Joshua Dempster and Lia Petronio and Katherine Huang and Alham Saadat and Thomas Green and Adam Brown and John G Doench and David E Root and James M McFarland and Rameen Beroukhim and Jesse S Boehm",
+    "authors": "Sean A Misek, Aaron Fultineer, Jeremie Kalfon, Javad Noorbakhsh, Isabella Boyle, et al.",
     "venue": "Nature communications",
     "year": 2024,
     "citations": 16,
@@ -161,7 +161,7 @@
   },
   {
     "title": "The enzyme glutamate-cysteine ligase (GCL) is a target for ferroptosis induction in cancer",
-    "authors": "John K Eaton and Priya Chatterji and Laura Furst and Sneha Basak and Ayesha M Patel and Yan Y Sweat and Luke L Cai and Krishna Dave and Rachelle A Victorio and Elizabeth Pizzi and Javad Noorbakhsh and Gaochao Tian and Jennifer A Roth and John Hynes Jr and Gang Xing and Mathias J Wawer and Vasanthi S Viswanathan",
+    "authors": "John K Eaton, Priya Chatterji, Laura Furst, Sneha Basak, Ayesha M Patel, et al.",
     "venue": "BioRxiv",
     "year": 2024,
     "citations": 4,
@@ -177,7 +177,7 @@
   },
   {
     "title": "Prediction of outcome from spatial Protein profiling of triple-negative breast cancers",
-    "authors": "Ali Foroughi Pour and Te-Chia Wu and Javad Noorbakhsh and Jan Martinek and Santhosh Sivajothi and Paul Robson and Karolina Palucka and Jeffrey H Chuang",
+    "authors": "Ali Foroughi Pour, Te-Chia Wu, Javad Noorbakhsh, Jan Martinek, Santhosh Sivajothi, et al.",
     "venue": "Communications Medicine",
     "year": 2026,
     "citations": 3,
@@ -185,7 +185,7 @@
   },
   {
     "title": "Cellos: High-throughput deconvolution of 3D organoid dynamics at cellular resolution for cancer pharmacology",
-    "authors": "Patience Mukashyaka and Pooja Kumar and David J Mellert and Shadae Nicholas and Javad Noorbakhsh and Mattia Brugiolo and Olga Anczukow and Edison T Liu and Jeffrey H Chuang",
+    "authors": "Patience Mukashyaka, Pooja Kumar, David J Mellert, Shadae Nicholas, Javad Noorbakhsh, et al.",
     "venue": "bioRxiv",
     "year": 2023,
     "citations": 3,
@@ -193,7 +193,7 @@
   },
   {
     "title": "Abstract A032: Cellos: High-throughput deconvolution of 3D organoid dynamics at cellular resolution for cancer pharmacology",
-    "authors": "Patience Mukashyaka and Pooja Kumar and David J Mellert and Shadae Nicholas and Javad Noorbakhsh and Mattia Brugiolo and Olga Anczukow and Edison T Liu and Jeffrey H Chuang",
+    "authors": "Patience Mukashyaka, Pooja Kumar, David J Mellert, Shadae Nicholas, Javad Noorbakhsh, et al.",
     "venue": "Cancer Research",
     "year": 2024,
     "citations": 1,
@@ -201,7 +201,7 @@
   },
   {
     "title": "Associations between structural variant signatures and drug sensitivity in cell lines",
-    "authors": "Simona Dalin and Frank Dubois and Shu Zhang and Alexander Crane and Jeremie Kalfon and Javad Noorbakhsh and Rameen Beroukhim",
+    "authors": "Simona Dalin, Frank Dubois, Shu Zhang, Alexander Crane, Jeremie Kalfon, et al.",
     "venue": "Cancer Research",
     "year": 2022,
     "citations": 1,
@@ -209,7 +209,7 @@
   },
   {
     "title": "Abstract PO-003: Deep learning identifies conserved pan-cancer tumor features",
-    "authors": "Javad Noorbakhsh and Saman Farahmand and Ali Foroughi pour and Sandeep Namburi and Dennis Caruana and David Rimm and Mohammad Soltanieh-Ha and Kourosh Zarringhalam and Jeffrey H Chuang",
+    "authors": "Javad Noorbakhsh, Saman Farahmand, Ali Foroughi pour, Sandeep Namburi, Dennis Caruana, et al.",
     "venue": "Clinical Cancer Research",
     "year": 2021,
     "citations": 1,
@@ -217,7 +217,7 @@
   },
   {
     "title": "The PDX Data Commons and Coordinating Center (PDCCC) for PDXNet",
-    "authors": "Anurag Sethi and Anuj Srivastava and Xingyi Woo and Vishal Sarsani and Ziming Zhao and Javad Noorbakhsh and Christian French and Jack DiGiovanna and Ogan D Abaan and Steve Neuhauser and Peter Robinson and Yvonne A Evrard and Carol J Bult and Jeffrey A Moscow and Brandi Davis-Dusenbery and Jeffrey H Chuang",
+    "authors": "Anurag Sethi, Anuj Srivastava, Xingyi Woo, Vishal Sarsani, Ziming Zhao, et al.",
     "venue": "Cancer Research",
     "year": 2018,
     "citations": 1,
@@ -225,7 +225,7 @@
   },
   {
     "title": "RANKL inhibition spatially rewires the microenvironment of luminal breast cancer",
-    "authors": "Mario Rodriguez-del Collado and Andrea Vethencourt and Alexandra Barranco and Jaime Martinez de Villarreal and David Valc\u00e1rcel-Linares and Eva Maria Trinidad and Eduard Dorca and Gonzalo Soria-Alcaide and Maria Jimenez and Eduardo J Caleiras and Maria Gomez and Carlos Garrido and Orlando Dominguez and Gema Perez-Chacon and Marina Ciscar and Elvira Purqueras and Gonzalo Gomez and Elena Pi\u00f1eiro-Ya\u00f1ez and Ander Urruticoechea and Isaac Subirana and Javad Noorbakhsh and Jeffrey H Chuang and Anna Petit and Maria Teresa Soler-Monso and Anna Gum\u00e0 and Sonia Pernas and Catalina Falo and Eva Gonzalez-Suarez",
+    "authors": "Mario Rodriguez-del Collado, Andrea Vethencourt, Alexandra Barranco, Jaime Martinez de Villarreal, David Valc\u00e1rcel-Linares, et al.",
     "venue": "medRxiv",
     "year": 2026,
     "citations": 0,
@@ -233,7 +233,7 @@
   },
   {
     "title": "DIANNE: Segmentation-Free Localization of Histology Differential Attributes",
-    "authors": "Sergii Domanskyi and Jill C Rubinstein and Todd B Sheridan and Adam Thiesen and Javad Noorbakhsh and Juliana Alcoforado Diniz and Ramalakshmi Ramasamy and Dylan S Baker and Riley Sheldon and Qian Wu and George Kuchel and Nicolas Musi and Sara E Espinoza and Francisco G Cigarroa and Paul Robson and Jeffrey H Chuang",
+    "authors": "Sergii Domanskyi, Jill C Rubinstein, Todd B Sheridan, Adam Thiesen, Javad Noorbakhsh, et al.",
     "venue": "bioRxiv",
     "year": 2026,
     "citations": 0,
@@ -241,7 +241,7 @@
   },
   {
     "title": "Spatial multiomic characterization of spontaneous lung tumors in aged mice.",
-    "authors": "Adam Thiesen and Sema Akkurt and Javad Noorbakhsh and Te-Chia Wu and Andrew Salner and Peter Yu and Susan Airhart and Olga Anczukow and Ron Korstanje and Karolina Palucka and Jeffrey H Chuang",
+    "authors": "Adam Thiesen, Sema Akkurt, Javad Noorbakhsh, Te-Chia Wu, Andrew Salner, et al.",
     "venue": "Cancer Research",
     "year": 2026,
     "citations": 0,
@@ -281,7 +281,7 @@
   },
   {
     "title": "Defining the landscape of cancer vulnerabilities that are engendered by germline genetic variation",
-    "authors": "Sean Misek and Aaron Fultineer and Jeremie Kalfon and Javad Noorbakhsh and Isabella Boyle and Joshua Dempster and Lia Petronio and Katherine Huang and Thomas Green and Adam Brown and John Doench and David Root and James McFarland and Rameen Beroukhim and Jesse Boehm",
+    "authors": "Sean Misek, Aaron Fultineer, Jeremie Kalfon, Javad Noorbakhsh, Isabella Boyle, et al.",
     "venue": "The Journal of Pharmacology and Experimental Therapeutics",
     "year": 2023,
     "citations": 0,
@@ -289,7 +289,7 @@
   },
   {
     "title": "Ancestry bias in CRISPR guide design impedes discovery of genetic dependencies",
-    "authors": "Sean Alexander Misek and Aaron Fultineer and Jeremie Kalfon and Javad Noorbakhsh and Isabella Boyle and Joshua Dempster and Lia Petronio and Katherine Huang and James McFarland and Rameen Beroukhim and Jesse Boehm",
+    "authors": "Sean Alexander Misek, Aaron Fultineer, Jeremie Kalfon, Javad Noorbakhsh, Isabella Boyle, et al.",
     "venue": "Cancer Research",
     "year": 2022,
     "citations": 0,
@@ -297,7 +297,7 @@
   },
   {
     "title": "Intratumor heterogeneity quantification using 3D segmentation of organoids co-culture systems",
-    "authors": "Patience Mukashyaka and Javad Noorbakhsh and Pooja Kumar and Elise Courtois and Olga Anczukow and Paul Robson and Edson Liu and Jeffrey Chuang",
+    "authors": "Patience Mukashyaka, Javad Noorbakhsh, Pooja Kumar, Elise Courtois, Olga Anczukow, et al.",
     "venue": "Cancer Research",
     "year": 2021,
     "citations": 0,
@@ -313,7 +313,7 @@
   },
   {
     "title": "The PDX Data Commons and Coordinating Center (PDCCC) for PDXNet in support of preclinical research",
-    "authors": "Jacqueline Rosains and Anuj Srivastava and Wingyi Woo and Vishal Sarsani and ZiMing Zhao and Javad Noorbakhsh and Ogan D Abaan and Christian Frech and Jack DiGiovanna and Ryan Jeon and Steve Neuhauser and Peter Robinson and Yvonne A Evrard and Carol Bult and Jeffrey A Moscow and Brandi Davis-Dusenbery and Jeffrey H Chuang",
+    "authors": "Jacqueline Rosains, Anuj Srivastava, Wingyi Woo, Vishal Sarsani, ZiMing Zhao, et al.",
     "venue": "Cancer Research",
     "year": 2019,
     "citations": 0,
@@ -321,7 +321,7 @@
   },
   {
     "title": "Deep learning functional associations using histopathology images",
-    "authors": "Javad Noorbakhsh and Saman Farahmand and Mohammad Soltanieh Ha and Sandeep Namburi and Kourosh Zarringhalam and Jeff Chuang",
+    "authors": "Javad Noorbakhsh, Saman Farahmand, Mohammad Soltanieh Ha, Sandeep Namburi, Kourosh Zarringhalam, et al.",
     "venue": "Cancer Research",
     "year": 2019,
     "citations": 0,
@@ -329,7 +329,7 @@
   },
   {
     "title": "Evolution of an intratumoral ecology susceptible to successive treatment in breast cancer xenografts",
-    "authors": "Hyunsoo Kim and Pooja Kumar and Francesca Menghi and Javad Noorbakhsh and Eliza Cerveira and Mallory Ryan and Qihui Zhu and Guruprasad Ananda and Joshy George and Henry Chen and Susan Mockus and Chengsheng Zhang and Yan Yang and James Keck and R Krishna Murthy Karuturi and Carol J Bult and Charles Lee and Edison T Liu and Jeffrey H Chuang",
+    "authors": "Hyunsoo Kim, Pooja Kumar, Francesca Menghi, Javad Noorbakhsh, Eliza Cerveira, et al.",
     "venue": "bioRxiv",
     "year": 2018,
     "citations": 0,
@@ -337,7 +337,7 @@
   },
   {
     "title": "Stochasticity and universal dynamics in communicating cellular populations",
-    "authors": "Javad Noorbakhsh and Pankaj Mehta and Allyson Sgro Collaboration and David Schwab Collaboration and Troy Mestler Collaboration and Thomas Gregor Collaboration",
+    "authors": "Javad Noorbakhsh, Pankaj Mehta, Allyson Sgro Collaboration, David Schwab Collaboration, Troy Mestler Collaboration, et al.",
     "venue": "APS March Meeting Abstracts",
     "year": 2014,
     "citations": 0,
@@ -377,7 +377,7 @@
   },
   {
     "title": "CCNE1 Amplification Is Associated with Poor Prognosis in Patients with Triple Negative",
-    "authors": "Zi-Ming Zhao and Susan Yost and Katherine Hutchinson and Sierra Li and Yate-Ching Yuan and Javad Noorbakhsh and Zheng Liu and Charles Warden and Radia Johnson and Xiwei Wu and Jeffrey Chuang and Yuan Yuan",
+    "authors": "Zi-Ming Zhao, Susan Yost, Katherine Hutchinson, Sierra Li, Yate-Ching Yuan, et al.",
     "venue": null,
     "year": null,
     "citations": 0,

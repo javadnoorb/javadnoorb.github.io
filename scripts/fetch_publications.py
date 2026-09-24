@@ -22,6 +22,18 @@ import yaml
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
+MAX_AUTHORS = 5
+
+
+def truncate_authors(authors):
+    if not authors:
+        return authors
+    separator = " and " if " and " in authors else ", "
+    names = [n.strip() for n in authors.split(separator)]
+    if len(names) <= MAX_AUTHORS:
+        return authors
+    return ", ".join(names[:MAX_AUTHORS]) + ", et al."
+
 
 def load_scholar_id():
     profile = yaml.safe_load((DATA / "profile.yaml").read_text())
@@ -47,7 +59,7 @@ def fetch_via_serpapi(scholar_id, api_key):
         year = a.get("year")
         publications.append({
             "title": a.get("title"),
-            "authors": a.get("authors"),
+            "authors": truncate_authors(a.get("authors")),
             "venue": a.get("publication"),
             "year": int(year) if str(year).isdigit() else None,
             "citations": (a.get("cited_by") or {}).get("value"),
@@ -71,7 +83,7 @@ def fetch_via_scholarly(scholar_id):
         year = bib.get("pub_year")
         publications.append({
             "title": bib.get("title"),
-            "authors": bib.get("author"),
+            "authors": truncate_authors(bib.get("author")),
             "venue": bib.get("venue") or bib.get("journal"),
             "year": int(year) if str(year).isdigit() else None,
             "citations": filled.get("num_citations"),
