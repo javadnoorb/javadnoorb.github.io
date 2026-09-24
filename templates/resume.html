@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Resume — {{ profile.name }}{% endblock %}
+{% block content %}
+<h1>Resume</h1>
+<p><a class="download-link" href="resume.pdf">Download PDF version</a></p>
+
+<section>
+  <h2>Education</h2>
+  <ul class="timeline">
+    {% for edu in profile.education %}
+    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.year }})</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h2>Experience</h2>
+  <ul class="timeline">
+    {% for exp in profile.experience %}
+    <li>
+      <strong>{{ exp.title }}</strong>, {{ exp.organization }} <span class="pub-meta">{{ exp.period }}</span>
+      <p>{{ exp.description }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <ul class="skills">
+    {% for skill in profile.skills %}
+    <li>{{ skill }}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% if publications %}
+<section>
+  <h2>Selected Publications</h2>
+  <ul class="pub-list">
+    {% for pub in publications[:10] %}
+    <li>
+      <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+      <span class="pub-meta">{{ pub.authors }} &middot; {{ pub.venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+{% endblock %}

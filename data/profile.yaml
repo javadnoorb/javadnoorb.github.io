@@ -1,0 +1,41 @@
+name: "Your Name"
+title: "Your Title / Role"
+email: "you@example.com"
+location: "City, Country"
+bio: >
+  A short bio about yourself: what you work on, your research interests,
+  and what you're looking for. Replace this placeholder text in
+  data/profile.yaml.
+
+# Google Scholar user ID, found in the URL of your profile:
+# https://scholar.google.com/citations?user=THIS_PART
+scholar_id: "XXXXXXXXXXXX"
+
+social:
+  github: "https://github.com/yourusername"
+  linkedin: "https://linkedin.com/in/yourusername"
+  twitter: ""
+  orcid: ""
+
+education:
+  - degree: "Ph.D. in Your Field"
+    institution: "University Name"
+    year: "2020"
+  - degree: "B.Sc. in Your Field"
+    institution: "University Name"
+    year: "2014"
+
+experience:
+  - title: "Job Title"
+    organization: "Company / Institution"
+    period: "2021 - Present"
+    description: "What you do there."
+  - title: "Previous Job Title"
+    organization: "Previous Company / Institution"
+    period: "2018 - 2021"
+    description: "What you did there."
+
+skills:
+  - "Skill 1"
+  - "Skill 2"
+  - "Skill 3"

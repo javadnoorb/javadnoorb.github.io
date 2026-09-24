@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ profile.name }}{% endblock %}</title>
+<link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="site-title" href="index.html">{{ profile.name }}</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="publications.html">Publications</a>
+    <a href="resume.html">Resume</a>
+    <a href="resume.pdf">Download CV</a>
+  </nav>
+</header>
+<main>
+{% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <p>&copy; {{ profile.name }}. Publications updated automatically from Google Scholar.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>{{ profile.name }} — CV</title>
+<style>
+  @page { size: A4; margin: 2cm; }
+  body { font-family: "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; font-size: 11pt; line-height: 1.4; }
+  h1 { font-size: 20pt; margin-bottom: 0; }
+  .subtitle { color: #555; margin-top: 2px; }
+  .contact { font-size: 9.5pt; color: #555; margin-bottom: 1em; }
+  h2 { font-size: 13pt; border-bottom: 1px solid #ccc; padding-bottom: 2px; margin-top: 1.2em; }
+  ul { margin: 0.3em 0; padding-left: 1.2em; }
+  li { margin-bottom: 0.4em; }
+  .pub-meta { display: block; font-size: 9.5pt; color: #555; }
+</style>
+</head>
+<body>
+  <h1>{{ profile.name }}</h1>
+  <p class="subtitle">{{ profile.title }}</p>
+  <p class="contact">
+    {{ profile.email }} &middot; {{ profile.location }}
+    {%- for platform, url in profile.social.items() if url %} &middot; {{ url }}{% endfor %}
+  </p>
+
+  <h2>Education</h2>
+  <ul>
+    {% for edu in profile.education %}
+    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.year }})</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Experience</h2>
+  <ul>
+    {% for exp in profile.experience %}
+    <li><strong>{{ exp.title }}</strong>, {{ exp.organization }} ({{ exp.period }})<br>{{ exp.description }}</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Skills</h2>
+  <p>{{ profile.skills | join(", ") }}</p>
+
+  {% if publications %}
+  <h2>Publications</h2>
+  <ul>
+    {% for pub in publications %}
+    <li>{{ pub.title }}<span class="pub-meta">{{ pub.authors }} — {{ pub.venue }}{% if pub.year %}, {{ pub.year }}{% endif %}</span></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</body>
+</html>

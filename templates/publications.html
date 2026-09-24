@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Publications — {{ profile.name }}{% endblock %}
+{% block content %}
+<h1>Publications</h1>
+{% if publications %}
+<ul class="pub-list full">
+  {% for pub in publications %}
+  <li>
+    <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+    <span class="pub-meta">
+      {{ pub.authors }} &middot; {{ pub.venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}
+      {%- if pub.citations %} &middot; {{ pub.citations }} citations{% endif %}
+    </span>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No publications yet. Set a real <code>scholar_id</code> in <code>data/profile.yaml</code> and run the fetch script.</p>
+{% endif %}
+{% endblock %}

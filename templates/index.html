@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>{{ profile.name }}</h1>
+  <p class="subtitle">{{ profile.title }}</p>
+  <p class="location">{{ profile.location }}</p>
+  <p class="bio">{{ profile.bio }}</p>
+  <ul class="social-links">
+    {% for platform, url in profile.social.items() if url %}
+    <li><a href="{{ url }}" target="_blank" rel="noopener">{{ platform | capitalize }}</a></li>
+    {% endfor %}
+    <li><a href="mailto:{{ profile.email }}">Email</a></li>
+  </ul>
+</section>
+
+{% if publications %}
+<section class="recent-publications">
+  <h2>Recent Publications</h2>
+  <ul class="pub-list">
+    {% for pub in publications[:5] %}
+    <li>
+      <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+      <span class="pub-meta">{{ pub.authors }} &middot; {{ pub.venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  <a class="see-all" href="publications.html">See all publications &rarr;</a>
+</section>
+{% endif %}
+{% endblock %}
