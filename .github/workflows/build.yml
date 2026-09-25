@@ -33,6 +33,8 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Fetch publications
+        timeout-minutes: 4
+        continue-on-error: true
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: python scripts/fetch_publications.py
