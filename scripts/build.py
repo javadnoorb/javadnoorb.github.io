@@ -4,6 +4,7 @@ generates a PDF version of the resume with WeasyPrint.
 """
 import json
 import shutil
+import time
 from pathlib import Path
 
 import yaml
@@ -46,11 +47,18 @@ def render_site(env, profile, publications):
     OUTPUT.mkdir(exist_ok=True)
     initials = get_initials(profile.get("name"))
     highlighted = get_highlighted(publications)
+    # Cache-busting query string appended to static asset URLs in templates
+    # (?v=...). GitHub Pages doesn't allow custom cache headers, and mobile
+    # Chrome in particular has been observed caching images well past what
+    # the 10-minute max-age would suggest - a version bump forces a fresh
+    # URL on every rebuild regardless of how a browser/CDN behaves.
+    build_version = str(int(time.time()))
     pages = ["index.html", "research.html", "publications.html", "resume.html"]
     for name in pages:
         template = env.get_template(name)
         html = template.render(profile=profile, publications=publications,
-                                highlighted=highlighted, initials=initials)
+                                highlighted=highlighted, initials=initials,
+                                v=build_version)
         (OUTPUT / name).write_text(html)
 
 

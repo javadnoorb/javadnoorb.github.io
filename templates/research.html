@@ -7,7 +7,7 @@
 <div class="highlight-grid">
   {% for item in profile.research_highlights %}
   <a class="highlight-card" href="{{ item.link }}" target="_blank" rel="noopener">
-    <img src="{{ item.figure }}" alt="Figure from {{ item.title }}">
+    <img src="{{ item.figure }}?v={{ v }}" alt="Figure from {{ item.title }}">
     <div class="highlight-body">
       <h3>{{ item.title }}</h3>
       <p class="pub-meta">{{ item.venue }}</p>
