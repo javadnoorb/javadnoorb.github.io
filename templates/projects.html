@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Projects — {{ profile.name }}{% endblock %}
+{% block content %}
+<h1>Projects</h1>
+<p class="page-intro">Random stuff I've built for fun, unrelated to work. A couple of the newer ones are mostly vibe-coded - built fast with a lot of AI help, not carefully engineered.</p>
+
+{% if profile.projects %}
+<div class="project-grid">
+  {% for p in profile.projects %}
+  <a class="project-card" href="{{ p.link }}" target="_blank" rel="noopener">
+    {% if p.image %}
+    <img src="{{ p.image }}?v={{ asset_version(p.image) }}" alt="Screenshot of {{ p.title }}">
+    {% endif %}
+    <div class="project-body">
+      <h3>{{ p.title }}</h3>
+      <p class="project-description">{{ p.description }}</p>
+      <ul class="tag-list">
+        {% for tag in p.tags %}
+        <li>{{ tag }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p>No projects added yet.</p>
+{% endif %}
+{% endblock %}

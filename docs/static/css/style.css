@@ -278,6 +278,71 @@ h2 {
   opacity: 0.85;
 }
 
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.project-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--accent-soft);
+}
+
+.project-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.project-body h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.05rem;
+  margin: 0 0 0.4rem;
+  line-height: 1.35;
+}
+
+.project-description {
+  margin: 0;
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.7rem 0 0;
+}
+
+.tag-list li {
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 0.22rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
 .year-heading {
   font-size: 1.1rem;
   color: var(--muted);

@@ -13,6 +13,31 @@ bio: >
 # https://scholar.google.com/citations?user=THIS_PART
 scholar_id: "xfENK6oAAAAJ"
 
+# Shown on the new "Projects" page (projects.html) - side/personal
+# Shown on the "Projects" page (projects.html) - casual/personal side
+# projects, deliberately kept light in tone (not a second resume section).
+projects:
+  - title: "Lean 4 Autoformalizer"
+    description: "A weekend project, mostly vibe-coded: a web app that tries to translate plain-English math statements into Lean 4 and prove them automatically, leaning on an LLM plus Lean's own compiler feedback."
+    tags: ["Lean 4", "LLMs", "Vibe-coded"]
+    link: "https://github.com/javadnoorb/lean-autoformalizer"
+    image: ""
+  - title: "Distance City Finder"
+    description: "Built this in an evening (also mostly vibe-coded) to answer a very specific real-life question: which cities are roughly N miles from here? Turned it into a small interactive map."
+    tags: ["JavaScript", "Vibe-coded"]
+    link: "https://github.com/javadnoorb/distance-city-finder"
+    image: ""
+  - title: "Iran Map"
+    description: "An older personal project mapping provincial statistics - starting with population - onto a map of Iran, mostly out of wanting to see data about home represented visually. Open to contributions."
+    tags: ["Python", "Data Visualization"]
+    link: "https://github.com/javadnoorb/iranmap"
+    image: "static/images/projects/iranmap.webp"
+  - title: "Mandelbrot Audio"
+    description: "A little exploration of the Mandelbrot set paired with audio - sonifying a fractal, just for fun, no grand purpose."
+    tags: ["Python", "Generative Art"]
+    link: "https://github.com/javadnoorb/mandel-audio"
+    image: ""
+
 # Shown on the homepage as a "Research Focus" section. Derived from the
 # actual publication record (see data/publications.json) rather than
 # generic buzzwords - update this if your work shifts focus.

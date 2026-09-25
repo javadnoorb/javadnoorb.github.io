@@ -68,7 +68,7 @@ def render_site(env, profile, publications):
     OUTPUT.mkdir(exist_ok=True)
     initials = get_initials(profile.get("name"))
     highlighted = get_highlighted(publications)
-    pages = ["index.html", "research.html", "publications.html", "resume.html"]
+    pages = ["index.html", "research.html", "projects.html", "publications.html", "resume.html"]
     for name in pages:
         template = env.get_template(name)
         html = template.render(profile=profile, publications=publications,
