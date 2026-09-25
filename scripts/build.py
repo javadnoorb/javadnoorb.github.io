@@ -57,6 +57,7 @@ def main():
     render_site(env, profile, publications)
     copy_static()
     render_pdf(env, profile, publications)
+    (OUTPUT / ".nojekyll").touch()
     print(f"Built site with {len(publications)} publications -> {OUTPUT}")
 
 
