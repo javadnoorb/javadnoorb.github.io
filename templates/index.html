@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
-  <img class="avatar" src="static/images/profile.webp?v={{ v }}" alt="{{ profile.name }}">
+  <img class="avatar" src="static/images/profile.webp?v={{ asset_version('static/images/profile.webp') }}" alt="{{ profile.name }}">
   <p class="kicker">Hi, I'm</p>
   <h1>{{ profile.name }}</h1>
   <p class="subtitle">{{ profile.title }}</p>

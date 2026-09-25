@@ -2,9 +2,9 @@
 Renders the Jinja2 templates + data into the static site in docs/, and
 generates a PDF version of the resume with WeasyPrint.
 """
+import hashlib
 import json
 import shutil
-import time
 from pathlib import Path
 
 import yaml
@@ -34,6 +34,27 @@ def get_initials(name):
     return (parts[0][0] + parts[-1][0]).upper()
 
 
+def asset_version(rel_path):
+    """Content hash for a static asset, used as a `?v=` cache-busting query
+    string. Keyed to content rather than build time, so an unchanged file
+    keeps the same URL forever (and stays cacheable) while a changed file
+    always gets a fresh one - the browser never has to be trusted to
+    revalidate on its own, which mobile Chrome in particular has proven
+    unreliable about even within GitHub Pages' 10-minute max-age."""
+    if rel_path == "resume.pdf":
+        # The generated PDF's bytes aren't deterministic (WeasyPrint embeds
+        # a creation timestamp), so hash the inputs that actually determine
+        # its visible content instead of the output file.
+        sources = [DATA / "profile.yaml", DATA / "publications.json", TEMPLATES / "resume_pdf.html"]
+    else:
+        sources = [ROOT / rel_path]
+    h = hashlib.md5()
+    for src in sources:
+        if src.exists():
+            h.update(src.read_bytes())
+    return h.hexdigest()[:8]
+
+
 def get_highlighted(publications, count=5):
     """Favors impact over recency: most-cited papers, shown newest-first
     among themselves so the selection doesn't read as a fixed leaderboard."""
@@ -47,18 +68,11 @@ def render_site(env, profile, publications):
     OUTPUT.mkdir(exist_ok=True)
     initials = get_initials(profile.get("name"))
     highlighted = get_highlighted(publications)
-    # Cache-busting query string appended to static asset URLs in templates
-    # (?v=...). GitHub Pages doesn't allow custom cache headers, and mobile
-    # Chrome in particular has been observed caching images well past what
-    # the 10-minute max-age would suggest - a version bump forces a fresh
-    # URL on every rebuild regardless of how a browser/CDN behaves.
-    build_version = str(int(time.time()))
     pages = ["index.html", "research.html", "publications.html", "resume.html"]
     for name in pages:
         template = env.get_template(name)
         html = template.render(profile=profile, publications=publications,
-                                highlighted=highlighted, initials=initials,
-                                v=build_version)
+                                highlighted=highlighted, initials=initials)
         (OUTPUT / name).write_text(html)
 
 
@@ -82,6 +96,7 @@ def render_pdf(env, profile, publications):
 
 def main():
     env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
+    env.globals["asset_version"] = asset_version
     profile, publications = load_data()
     render_site(env, profile, publications)
     copy_static()
