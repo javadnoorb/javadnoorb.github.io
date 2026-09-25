@@ -14,6 +14,7 @@ site never regresses to empty data because of a transient block.
 """
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -24,6 +25,15 @@ DATA = ROOT / "data"
 
 MAX_AUTHORS = 5
 
+# Google Scholar's scraped bib data occasionally mangles a citation string
+# into a fake "publication" whose title is actually a truncated author list
+# (e.g. "Foroughi pour A, Namburi S, Caruana D, Rimm D, et al" or "... and
+# Jeffrey H"). These patterns catch that shape and let us drop the entry.
+GARBLED_TITLE_PATTERNS = [
+    re.compile(r",\s*et al\.?$", re.IGNORECASE),
+    re.compile(r"\band [A-Z][a-zA-Z\-]+ [A-Z]$"),
+]
+
 
 def truncate_authors(authors):
     if not authors:
@@ -33,6 +43,42 @@ def truncate_authors(authors):
     if len(names) <= MAX_AUTHORS:
         return authors
     return ", ".join(names[:MAX_AUTHORS]) + ", et al."
+
+
+def is_garbled_title(title):
+    if not title:
+        return False
+    return any(p.search(title) for p in GARBLED_TITLE_PATTERNS)
+
+
+def _title_words(title):
+    if not title:
+        return set()
+    t = re.sub(r"^abstract\s+\S+:\s*", "", title.lower())
+    return {w for w in re.findall(r"[a-z0-9]+", t) if len(w) > 2}
+
+
+def _same_paper(title_a, title_b):
+    words_a, words_b = _title_words(title_a), _title_words(title_b)
+    if not words_a or not words_b:
+        return False
+    overlap = len(words_a & words_b) / len(words_a | words_b)
+    return overlap >= 0.7
+
+
+def dedupe_publications(publications):
+    """Merges different scraped versions of the same paper (e.g. a journal
+    article, its preprint, and a conference abstract of it) into one entry,
+    keeping the most-cited version."""
+    groups = []
+    for pub in publications:
+        for group in groups:
+            if _same_paper(pub.get("title"), group[0].get("title")):
+                group.append(pub)
+                break
+        else:
+            groups.append([pub])
+    return [max(group, key=lambda p: p.get("citations") or 0) for group in groups]
 
 
 def load_scholar_id():
@@ -111,6 +157,13 @@ def main():
     if not publications:
         print("Fetch returned zero publications; leaving existing file untouched.")
         sys.exit(0)
+
+    before = len(publications)
+    publications = [p for p in publications if not is_garbled_title(p.get("title"))]
+    publications = dedupe_publications(publications)
+    publications = [p for p in publications if p.get("citations")]
+    print(f"Cleaned {before} raw entries down to {len(publications)} "
+          f"(dropped garbled/duplicate/uncited entries)")
 
     out_path = DATA / "publications.json"
     out_path.write_text(json.dumps(publications, indent=2))
