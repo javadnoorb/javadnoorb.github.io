@@ -24,12 +24,22 @@ def load_data():
     return profile, publications
 
 
+def get_initials(name):
+    parts = [p for p in (name or "").split() if p]
+    if not parts:
+        return ""
+    if len(parts) == 1:
+        return parts[0][0].upper()
+    return (parts[0][0] + parts[-1][0]).upper()
+
+
 def render_site(env, profile, publications):
     OUTPUT.mkdir(exist_ok=True)
+    initials = get_initials(profile.get("name"))
     pages = ["index.html", "publications.html", "resume.html"]
     for name in pages:
         template = env.get_template(name)
-        html = template.render(profile=profile, publications=publications)
+        html = template.render(profile=profile, publications=publications, initials=initials)
         (OUTPUT / name).write_text(html)
 
 

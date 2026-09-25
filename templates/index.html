@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="hero">
+  <div class="avatar" aria-hidden="true">{{ initials }}</div>
+  <p class="kicker">Hi, I'm</p>
   <h1>{{ profile.name }}</h1>
   <p class="subtitle">{{ profile.title }}</p>
   <p class="location">{{ profile.location }}</p>
@@ -20,7 +22,10 @@
     {% for pub in publications[:5] %}
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
-      <span class="pub-meta">{{ pub.authors }} &middot; {{ pub.venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
+      <span class="pub-meta">
+        {{ pub.authors }} &middot; {{ pub.venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}
+        {%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif %}
+      </span>
     </li>
     {% endfor %}
   </ul>
