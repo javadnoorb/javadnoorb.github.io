@@ -5,9 +5,9 @@ phone_note: "Phone number available upon request"
 location: "Boston, MA"
 bio: >
   Computational biologist and scientific leader with expertise in machine
-  learning, bioinformatics, and quantitative analysis. Proven success
-  driving cross-functional research, mentoring technical teams, and
-  deploying AI-driven solutions for complex biological systems.
+  learning, bioinformatics, and quantitative analysis. Drives cross-functional
+  research, mentors technical teams, and deploys AI-driven solutions for
+  complex biological systems.
 
 # Google Scholar user ID, found in the URL of your profile:
 # https://scholar.google.com/citations?user=THIS_PART
@@ -46,8 +46,8 @@ experience:
     organization: "Kojin Therapeutics, Boston, MA"
     period: "April 2022 - February 2024"
     bullets:
-      - "Spearheaded AI-driven multi-omics analysis, directly enabling successful fundraising and a key strategic pharmaceutical partnership."
-      - "Established high-throughput assay screening pipelines, successfully identifying novel small-molecule hits for drug development."
+      - "Spearheaded AI-driven multi-omics analysis, directly enabling fundraising and a pharmaceutical partnership."
+      - "Established high-throughput assay screening pipelines, identifying novel small-molecule hits for drug development."
       - "Deployed graph neural networks (GNNs) for molecular design, accelerating target discovery and experimental drug candidate validation."
       - "Architected attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
   - title: "Lead Scientist"
@@ -55,16 +55,16 @@ experience:
     period: "January 2020 - April 2022"
     bullets:
       - "Orchestrated the Cancer Dependency Map omics team, managing end-to-end RNAseq, WES, and WGS pipelines to deliver quarterly releases across public, institutional, and commercial portals."
-      - "Standardized and automated production pipelines across major projects, achieving highly reproducible and timely data distribution."
-      - "Directed ML initiatives aligning patient tumor NGS data with cell lines, substantially boosting alignment accuracy and tool reliability."
+      - "Standardized and automated production pipelines across major projects, achieving reproducible, timely data distribution."
+      - "Directed ML initiatives aligning patient tumor NGS data with cell lines, boosting alignment accuracy and tool reliability."
   - title: "Research Scientist"
-    organization: "The Jackson Laboratory for Genomic Medicine, Farmington, CT"
+    organization: "Jackson Laboratory for Genomic Medicine, Farmington, CT"
     period: "October 2017 - December 2019"
     bullets:
       - "Pioneered a cloud-based deep learning framework for tumor state classification across histopathology images, attaining AUCs > 0.9 across 19 cancer types."
       - "Guided the development and deployment of an image processing framework for 3D organoid segmentation, producing an open-source software package."
   - title: "Postdoctoral Fellow"
-    organization: "The Jackson Laboratory for Genomic Medicine, Farmington, CT"
+    organization: "Jackson Laboratory for Genomic Medicine, Farmington, CT"
     period: "February 2015 - October 2017"
     bullets:
       - "Investigated copy number variations and mutation calling dynamics in cancer, identifying key biomarker correlations with patient survival."
@@ -76,4 +76,4 @@ skills:
   - category: "Programming"
     skills: ["Python", "TensorFlow/PyTorch", "Scikit-learn", "R", "Bash", "HPC", "Cloud Computing", "Containerization", "Kubernetes", "Version Control", "C++", "MATLAB"]
   - category: "Leadership"
-    skills: ["Formal management", "Leadership", "Mentorship", "Team Collaboration"]
+    skills: ["People Management", "Mentorship", "Team Collaboration"]
