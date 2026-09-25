@@ -18,12 +18,14 @@
   <ul class="timeline">
     {% for exp in profile.experience %}
     <li>
-      <strong>{{ exp.title }}</strong>, {{ exp.organization }} <span class="pub-meta">{{ exp.period }}</span>
-      <ul class="bullets">
-        {% for bullet in exp.bullets %}
-        <li>{{ bullet }}</li>
-        {% endfor %}
-      </ul>
+      <details{% if loop.first %} open{% endif %}>
+        <summary><strong>{{ exp.title }}</strong>, {{ exp.organization }} <span class="pub-meta">{{ exp.period }}</span></summary>
+        <ul class="bullets">
+          {% for bullet in exp.bullets %}
+          <li>{{ bullet }}</li>
+          {% endfor %}
+        </ul>
+      </details>
     </li>
     {% endfor %}
   </ul>

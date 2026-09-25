@@ -299,6 +299,26 @@ h2 {
 
 .timeline li:last-child { padding-bottom: 0; }
 
+.timeline summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.timeline summary::-webkit-details-marker { display: none; }
+
+.timeline summary::before {
+  content: "\25B8";
+  display: inline-block;
+  width: 1em;
+  margin-right: 0.3rem;
+  color: var(--accent);
+  transition: transform 0.15s ease;
+}
+
+.timeline details[open] summary::before {
+  transform: rotate(90deg);
+}
+
 .bullets {
   margin: 0.6rem 0 0;
   padding-left: 1.1rem;
