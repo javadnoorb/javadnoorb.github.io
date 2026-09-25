@@ -31,7 +31,7 @@ projects:
     description: "An older personal project mapping provincial statistics - starting with population - onto a map of Iran, mostly out of wanting to see data about home represented visually. Open to contributions."
     tags: ["Python", "Data Visualization"]
     link: "https://github.com/javadnoorb/iranmap"
-    image: "static/images/projects/iranmap.webp"
+    image: ""
   - title: "Mandelbrot Audio"
     description: "A little exploration of the Mandelbrot set paired with audio - sonifying a fractal, just for fun, no grand purpose."
     tags: ["Python", "Generative Art"]
