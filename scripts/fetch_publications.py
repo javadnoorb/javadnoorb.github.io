@@ -12,6 +12,7 @@ Two backends are supported:
 On any failure, the existing publications.json is left untouched so the
 site never regresses to empty data because of a transient block.
 """
+import datetime
 import json
 import os
 import re
@@ -24,6 +25,46 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 
 MAX_AUTHORS = 5
+
+# A zero-citation entry is kept only if it's recent enough that it plausibly
+# just hasn't accrued citations yet, rather than being a long-settled poster
+# nobody ever cited.
+RECENT_YEARS_WINDOW = 2
+
+# Conference-abstract venues and poster-board-number title suffixes are
+# dropped regardless of recency - these are never going to become "real"
+# publications no matter how new they are.
+POSTER_VENUE_PATTERN = re.compile(r"abstracts?\b", re.IGNORECASE)
+POSTER_TITLE_PATTERN = re.compile(r":\s*\d{2,4}$")
+
+
+def is_poster(pub):
+    venue = pub.get("venue") or ""
+    title = pub.get("title") or ""
+    return bool(POSTER_VENUE_PATTERN.search(venue) or POSTER_TITLE_PATTERN.search(title))
+
+# Google Scholar's scrape sometimes drops the venue entirely. These are
+# known gaps, cross-checked against the owner's own CV, filled in by
+# matching on a distinctive substring of the title.
+VENUE_OVERRIDES = [
+    ("computational estimation of quality and clinical relevance of cancer cell lines", "Molecular Systems Biology"),
+    ("machine learning in biology and medicine", "Advances in Molecular Pathology"),
+    ("emerging ai approaches for cancer spatial omics", "GigaScience"),
+    ("treating cancer as an invasive species", "Molecular Cancer Research"),
+    ("integrative deep learning for pancancer molecular subtype classification", "ACM-BCB 2020"),
+]
+
+
+def apply_venue_overrides(publications):
+    for pub in publications:
+        if pub.get("venue"):
+            continue
+        title = (pub.get("title") or "").lower()
+        for needle, venue in VENUE_OVERRIDES:
+            if needle in title:
+                pub["venue"] = venue
+                break
+    return publications
 
 # Google Scholar's scraped bib data occasionally mangles a citation string
 # into a fake "publication" whose title is actually a truncated author list
@@ -167,9 +208,18 @@ def main():
     before = len(publications)
     publications = [p for p in publications if not is_garbled_title(p.get("title"))]
     publications = dedupe_publications(publications)
-    publications = [p for p in publications if p.get("citations")]
-    print(f"Cleaned {before} raw entries down to {len(publications)} "
-          f"(dropped garbled/duplicate/uncited entries)")
+    publications = apply_venue_overrides(publications)
+    publications = [p for p in publications if not is_poster(p)]
+
+    current_year = datetime.date.today().year
+    def keep_uncited(p):
+        return p.get("citations") or (
+            p.get("year") and p["year"] >= current_year - RECENT_YEARS_WINDOW
+        )
+    publications = [p for p in publications if keep_uncited(p)]
+
+    print(f"Cleaned {before} raw entries down to {len(publications)} (dropped "
+          f"garbled/duplicate/poster entries and stale zero-citation ones)")
 
     out_path = DATA / "publications.json"
     out_path.write_text(json.dumps(publications, indent=2))

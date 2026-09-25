@@ -33,13 +33,24 @@ def get_initials(name):
     return (parts[0][0] + parts[-1][0]).upper()
 
 
+def get_highlighted(publications, count=5):
+    """Favors impact over recency: most-cited papers, shown newest-first
+    among themselves so the selection doesn't read as a fixed leaderboard."""
+    ranked = sorted(publications, key=lambda p: p.get("citations") or 0, reverse=True)
+    highlighted = ranked[:count]
+    highlighted.sort(key=lambda p: p.get("year") or 0, reverse=True)
+    return highlighted
+
+
 def render_site(env, profile, publications):
     OUTPUT.mkdir(exist_ok=True)
     initials = get_initials(profile.get("name"))
-    pages = ["index.html", "publications.html", "resume.html"]
+    highlighted = get_highlighted(publications)
+    pages = ["index.html", "research.html", "publications.html", "resume.html"]
     for name in pages:
         template = env.get_template(name)
-        html = template.render(profile=profile, publications=publications, initials=initials)
+        html = template.render(profile=profile, publications=publications,
+                                highlighted=highlighted, initials=initials)
         (OUTPUT / name).write_text(html)
 
 

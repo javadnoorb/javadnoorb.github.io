@@ -66,7 +66,7 @@
   {
     "title": "Computational estimation of quality and clinical relevance of cancer cell lines",
     "authors": "Lucia Trastulla and Javad Noorbakhsh and Francisca Vazquez and James McFarland and Francesco Iorio",
-    "venue": null,
+    "venue": "Molecular Systems Biology",
     "year": 2022,
     "citations": 44,
     "link": "https://link.springer.com/article/10.15252/msb.202211017"
@@ -98,7 +98,7 @@
   {
     "title": "Machine learning in biology and medicine",
     "authors": "PhD Javad Noorbakhsh and MS Harshpreet Chandok and PhD R Krishna Murthy Karuturi and PhD Joshy George",
-    "venue": null,
+    "venue": "Advances in Molecular Pathology",
     "year": 2019,
     "citations": 29,
     "link": "https://www.sciencedirect.com/science/article/pii/S2589408019300110"
@@ -106,7 +106,7 @@
   {
     "title": "Emerging AI approaches for cancer spatial omics",
     "authors": "Javad Noorbakhsh and Ali Foroughi Pour and Jeffrey Chuang",
-    "venue": null,
+    "venue": "GigaScience",
     "year": 2025,
     "citations": 19,
     "link": "https://academic.oup.com/gigascience/article-abstract/doi/10.1093/gigascience/giaf128/8287720"
@@ -138,7 +138,7 @@
   {
     "title": "Treating cancer as an invasive species",
     "authors": "Javad Noorbakhsh and Zi-Ming Zhao and James C Russell and Jeffrey H Chuang",
-    "venue": null,
+    "venue": "Molecular Cancer Research",
     "year": 2020,
     "citations": 13,
     "link": "https://aacrjournals.org/mcr/article-abstract/18/1/20/89992"
@@ -154,7 +154,7 @@
   {
     "title": "Integrative deep learning for PanCancer molecular subtype classification using histopathological images and RNAseq data",
     "authors": "Fatima Zare and Javad Noorbakhsh and Tianyu Wang and Jeffrey H Chuang and Sheida Nabavi",
-    "venue": null,
+    "venue": "ACM-BCB 2020",
     "year": 2020,
     "citations": 4,
     "link": "https://dl.acm.org/doi/abs/10.1145/3388440.3412414"
@@ -190,5 +190,45 @@
     "year": 2018,
     "citations": 1,
     "link": "https://aacrjournals.org/cancerres/article-abstract/78/13_Supplement/1029/625222"
+  },
+  {
+    "title": "RANKL inhibition spatially rewires the microenvironment of luminal breast cancer",
+    "authors": "Mario Rodriguez-del Collado, Andrea Vethencourt, Alexandra Barranco, Jaime Martinez de Villarreal, Javad Noorbakhsh, et al.",
+    "venue": "medRxiv",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://www.medrxiv.org/content/10.64898/2026.07.08.26355790.abstract"
+  },
+  {
+    "title": "DIANNE: Segmentation-Free Localization of Histology Differential Attributes",
+    "authors": "Sergii Domanskyi, Jill C Rubinstein, Todd B Sheridan, Adam Thiesen, Javad Noorbakhsh, et al.",
+    "venue": "bioRxiv",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://www.biorxiv.org/content/10.64898/2026.04.28.721103.abstract"
+  },
+  {
+    "title": "Spatial multiomic characterization of spontaneous lung tumors in aged mice.",
+    "authors": "Adam Thiesen, Sema Akkurt, Javad Noorbakhsh, Te-Chia Wu, Andrew Salner, et al.",
+    "venue": "Cancer Research",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article/86/7_Supplement/1204/777053"
+  },
+  {
+    "title": "Phone-based portable slide digitization system for AI-enabled histopathology",
+    "authors": "Sergii Domanskyi and Todd Sheridan and Javad Noorbakhsh and Jeffrey H Chuang and Jill Carol Rubinstein",
+    "venue": "Cancer Research",
+    "year": 2026,
+    "citations": 0,
+    "link": "https://aacrjournals.org/cancerres/article/86/7_Supplement/4151/778947"
+  },
+  {
+    "title": "Convolutional neural networks for classification of cancer histological images",
+    "authors": "Jeffrey Hsu-Min Chuang and Javad Noorbakhsh and Kourosh Zarringhalam and Saman Farahmand and Mohammad Soltanieh-ha",
+    "venue": null,
+    "year": 2025,
+    "citations": 0,
+    "link": "https://patents.google.com/patent/US20250378559A1/en"
   }
 ]

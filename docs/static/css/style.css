@@ -199,6 +199,85 @@ h2 {
   border-bottom: 1px solid var(--border);
 }
 
+.focus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.9rem;
+}
+
+.focus-card {
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.focus-card h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1rem;
+  margin: 0 0 0.4rem;
+  color: var(--accent);
+}
+
+.focus-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.page-intro {
+  color: var(--muted);
+  margin-top: -0.5rem;
+}
+
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+  margin-top: 1.5rem;
+}
+
+.highlight-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.highlight-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.highlight-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--accent-soft);
+}
+
+.highlight-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.highlight-body h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 1.05rem;
+  margin: 0 0 0.3rem;
+  line-height: 1.35;
+}
+
+.highlight-summary {
+  margin: 0.6rem 0 0;
+  font-size: 0.88rem;
+  opacity: 0.85;
+}
+
 .year-heading {
   font-size: 1.1rem;
   color: var(--muted);

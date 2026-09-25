@@ -16,11 +16,25 @@
   {% if profile.phone_note %}<p class="phone-note">{{ profile.phone_note }}</p>{% endif %}
 </section>
 
-{% if publications %}
+{% if profile.research_focus %}
+<section class="research-focus">
+  <h2>Research Focus</h2>
+  <div class="focus-grid">
+    {% for area in profile.research_focus %}
+    <div class="focus-card">
+      <h3>{{ area.title }}</h3>
+      <p>{{ area.description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if highlighted %}
 <section class="recent-publications">
-  <h2>Recent Publications</h2>
+  <h2>Highlighted Publications</h2>
   <ul class="pub-list">
-    {% for pub in publications[:5] %}
+    {% for pub in highlighted %}
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">

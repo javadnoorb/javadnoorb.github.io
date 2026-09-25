@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 300">
+  <rect width="480" height="300" fill="#e3efea"/>
+  <g fill="none" stroke="#1f6f5c" stroke-width="2" opacity="0.6">
+    <rect x="40" y="40" width="400" height="220" rx="8"/>
+    <path d="M40 200 L160 110 L230 170 L300 90 L440 190"/>
+    <circle cx="160" cy="110" r="5" fill="#1f6f5c" stroke="none"/>
+    <circle cx="230" cy="170" r="5" fill="#1f6f5c" stroke="none"/>
+    <circle cx="300" cy="90" r="5" fill="#1f6f5c" stroke="none"/>
+  </g>
+  <text x="240" y="285" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="#1f6f5c">Replace with a real figure</text>
+</svg>
