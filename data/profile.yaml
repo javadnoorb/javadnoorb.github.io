@@ -1,11 +1,12 @@
 name: "Javad Noorbakhsh"
-title: "Scientist, Jackson Laboratory"
+title: "Bioinformatics & Machine Learning Scientist"
 email: "you@example.com"
-location: "City, Country"
+location: "Boston, MA"
 bio: >
-  A short bio about yourself: what you work on, your research interests,
-  and what you're looking for. Replace this placeholder text in
-  data/profile.yaml.
+  Computational biologist and scientific leader with expertise in machine
+  learning, bioinformatics, and quantitative analysis. Proven success
+  driving cross-functional research, mentoring technical teams, and
+  deploying AI-driven solutions for complex biological systems.
 
 # Google Scholar user ID, found in the URL of your profile:
 # https://scholar.google.com/citations?user=THIS_PART
@@ -18,24 +19,59 @@ social:
   orcid: ""
 
 education:
-  - degree: "Ph.D. in Your Field"
-    institution: "University Name"
-    year: "2020"
-  - degree: "B.Sc. in Your Field"
-    institution: "University Name"
-    year: "2014"
+  - degree: "Ph.D., Physics"
+    institution: "Boston University, Boston, MA"
+    period: "September 2009 - December 2014"
+  - degree: "M.Sc., Physics"
+    institution: "Sharif University of Technology, Tehran, Iran"
+    period: "September 2006 - December 2008"
+  - degree: "B.Sc., Electrical Engineering"
+    institution: "Amirkabir University of Technology, Tehran, Iran"
+    period: "September 2001 - December 2005"
 
 experience:
-  - title: "Job Title"
-    organization: "Company / Institution"
-    period: "2021 - Present"
-    description: "What you do there."
-  - title: "Previous Job Title"
-    organization: "Previous Company / Institution"
-    period: "2018 - 2021"
-    description: "What you did there."
+  - title: "Bioinformatics & Machine Learning Scientist"
+    organization: "Jackson Laboratory for Genomic Medicine, Farmington, CT"
+    period: "July 2024 - Present"
+    bullets:
+      - "Applied pathology foundation models to accurately identify and classify blood cell types within Giemsa-stained tissue slides."
+      - "Engineered ML algorithms to cross-evaluate and compare spatial omics profiles between human and mouse models."
+      - "Benchmarked the impact of H&E staining variations to optimize foundation model diagnostic performance."
+      - "Evaluated spatial transcriptomics data from cancer patient cohorts to quantify therapeutic effects on microenvironment composition."
+      - "Formulated mathematical models of tumor evolution and subclonal dynamics, enhancing precision in treatment strategy selection."
+      - "Co-authored peer-reviewed reviews and competitive grant proposals advancing AI applications in spatial omics."
+  - title: "Principal Scientist"
+    organization: "Kojin Therapeutics, Boston, MA"
+    period: "April 2022 - February 2024"
+    bullets:
+      - "Spearheaded AI-driven multi-omics analysis, directly enabling successful fundraising and a key strategic pharmaceutical partnership."
+      - "Established high-throughput assay screening pipelines, successfully identifying novel small-molecule hits for drug development."
+      - "Deployed graph neural networks (GNNs) for molecular design, accelerating target discovery and experimental drug candidate validation."
+      - "Architected attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
+  - title: "Lead Scientist"
+    organization: "Broad Institute of MIT and Harvard, Cambridge, MA"
+    period: "January 2020 - April 2022"
+    bullets:
+      - "Orchestrated the Cancer Dependency Map omics team, managing end-to-end RNAseq, WES, and WGS pipelines to deliver quarterly releases across public, institutional, and commercial portals."
+      - "Standardized and automated production pipelines across major projects, achieving highly reproducible and timely data distribution."
+      - "Directed ML initiatives aligning patient tumor NGS data with cell lines, substantially boosting alignment accuracy and tool reliability."
+  - title: "Research Scientist"
+    organization: "The Jackson Laboratory for Genomic Medicine, Farmington, CT"
+    period: "October 2017 - December 2019"
+    bullets:
+      - "Pioneered a cloud-based deep learning framework for tumor state classification across histopathology images, attaining AUCs > 0.9 across 19 cancer types."
+      - "Guided the development and deployment of an image processing framework for 3D organoid segmentation, producing an open-source software package."
+  - title: "Postdoctoral Fellow"
+    organization: "The Jackson Laboratory for Genomic Medicine, Farmington, CT"
+    period: "February 2015 - October 2017"
+    bullets:
+      - "Investigated copy number variations and mutation calling dynamics in cancer, identifying key biomarker correlations with patient survival."
+      - "Constructed mathematical models of clonal evolution, improving quantitative assessment of genetic heterogeneity across diverse tumor types."
 
 skills:
-  - "Skill 1"
-  - "Skill 2"
-  - "Skill 3"
+  - category: "Quantitative Analysis"
+    skills: ["Machine Learning", "Deep Learning", "Bioinformatics", "Statistics", "Image Processing", "Mathematical Modeling", "Cheminformatics"]
+  - category: "Programming"
+    skills: ["Python", "TensorFlow/PyTorch", "Scikit-learn", "R", "Bash", "HPC", "Cloud Computing", "Containerization", "Kubernetes", "Version Control", "C++", "MATLAB"]
+  - category: "Leadership"
+    skills: ["Formal management", "Leadership", "Mentorship", "Team Collaboration"]

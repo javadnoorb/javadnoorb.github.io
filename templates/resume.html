@@ -8,7 +8,7 @@
   <h2>Education</h2>
   <ul class="timeline">
     {% for edu in profile.education %}
-    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.year }})</li>
+    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} <span class="pub-meta">{{ edu.period }}</span></li>
     {% endfor %}
   </ul>
 </section>
@@ -19,7 +19,11 @@
     {% for exp in profile.experience %}
     <li>
       <strong>{{ exp.title }}</strong>, {{ exp.organization }} <span class="pub-meta">{{ exp.period }}</span>
-      <p>{{ exp.description }}</p>
+      <ul class="bullets">
+        {% for bullet in exp.bullets %}
+        <li>{{ bullet }}</li>
+        {% endfor %}
+      </ul>
     </li>
     {% endfor %}
   </ul>
@@ -27,11 +31,14 @@
 
 <section>
   <h2>Skills</h2>
+  {% for group in profile.skills %}
+  <p class="skill-group-label">{{ group.category }}</p>
   <ul class="skills">
-    {% for skill in profile.skills %}
-    <li>{{ skill }}</li>
+    {% for item in group.skills %}
+    <li>{{ item }}</li>
     {% endfor %}
   </ul>
+  {% endfor %}
 </section>
 
 {% if publications %}

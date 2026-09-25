@@ -13,6 +13,9 @@
   ul { margin: 0.3em 0; padding-left: 1.2em; }
   li { margin-bottom: 0.4em; }
   .pub-meta { display: block; font-size: 9.5pt; color: #555; }
+  .exp-heading { margin: 0.8em 0 0.2em; }
+  .exp-heading .pub-meta { display: inline; }
+  .exp-bullets { margin-top: 0; }
 </style>
 </head>
 <body>
@@ -26,19 +29,24 @@
   <h2>Education</h2>
   <ul>
     {% for edu in profile.education %}
-    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.year }})</li>
+    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.period }})</li>
     {% endfor %}
   </ul>
 
   <h2>Experience</h2>
-  <ul>
-    {% for exp in profile.experience %}
-    <li><strong>{{ exp.title }}</strong>, {{ exp.organization }} ({{ exp.period }})<br>{{ exp.description }}</li>
+  {% for exp in profile.experience %}
+  <p class="exp-heading"><strong>{{ exp.title }}</strong>, {{ exp.organization }} <span class="pub-meta">{{ exp.period }}</span></p>
+  <ul class="exp-bullets">
+    {% for bullet in exp.bullets %}
+    <li>{{ bullet }}</li>
     {% endfor %}
   </ul>
+  {% endfor %}
 
   <h2>Skills</h2>
-  <p>{{ profile.skills | join(", ") }}</p>
+  {% for group in profile.skills %}
+  <p><strong>{{ group.category }}:</strong> {{ group.skills | join(", ") }}</p>
+  {% endfor %}
 
   {% if publications %}
   <h2>Publications</h2>
