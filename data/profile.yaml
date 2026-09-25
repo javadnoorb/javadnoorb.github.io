@@ -1,6 +1,7 @@
 name: "Javad Noorbakhsh"
 title: "Bioinformatics & Machine Learning Scientist"
-email: "you@example.com"
+email: "javad.noorbakhsh@gmail.com"
+phone_note: "Phone number available upon request"
 location: "Boston, MA"
 bio: >
   Computational biologist and scientific leader with expertise in machine
@@ -13,10 +14,11 @@ bio: >
 scholar_id: "xfENK6oAAAAJ"
 
 social:
-  github: ""
-  linkedin: ""
+  github: "https://github.com/javadnoorb"
+  linkedin: "https://www.linkedin.com/in/javadnoorbakhsh/"
+  scholar: "https://scholar.google.com/citations?user=xfENK6oAAAAJ"
+  orcid: "https://orcid.org/0000-0002-6196-8061"
   twitter: ""
-  orcid: ""
 
 education:
   - degree: "Ph.D., Physics"

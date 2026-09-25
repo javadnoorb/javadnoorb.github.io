@@ -35,14 +35,20 @@ GARBLED_TITLE_PATTERNS = [
 ]
 
 
-def truncate_authors(authors):
+def truncate_authors(authors, owner_name=None):
     if not authors:
         return authors
     separator = " and " if " and " in authors else ", "
     names = [n.strip() for n in authors.split(separator)]
     if len(names) <= MAX_AUTHORS:
         return authors
-    return ", ".join(names[:MAX_AUTHORS]) + ", et al."
+    shown = names[:MAX_AUTHORS]
+    # If the site owner is a co-author but got cut by the truncation (e.g. a
+    # 90-author consortium paper), swap them into the last visible slot so
+    # their own name doesn't disappear from their own showcased publication.
+    if owner_name and owner_name not in shown and owner_name in names:
+        shown = shown[:-1] + [owner_name]
+    return ", ".join(shown) + ", et al."
 
 
 def is_garbled_title(title):
@@ -81,16 +87,16 @@ def dedupe_publications(publications):
     return [max(group, key=lambda p: p.get("citations") or 0) for group in groups]
 
 
-def load_scholar_id():
+def load_profile():
     profile = yaml.safe_load((DATA / "profile.yaml").read_text())
     scholar_id = profile.get("scholar_id", "")
     if not scholar_id or scholar_id.startswith("XXXX"):
         print("No real scholar_id set in data/profile.yaml yet; skipping fetch.")
         sys.exit(0)
-    return scholar_id
+    return scholar_id, profile.get("name")
 
 
-def fetch_via_serpapi(scholar_id, api_key):
+def fetch_via_serpapi(scholar_id, api_key, owner_name):
     from serpapi import GoogleSearch
 
     params = {
@@ -105,7 +111,7 @@ def fetch_via_serpapi(scholar_id, api_key):
         year = a.get("year")
         publications.append({
             "title": a.get("title"),
-            "authors": truncate_authors(a.get("authors")),
+            "authors": truncate_authors(a.get("authors"), owner_name),
             "venue": a.get("publication"),
             "year": int(year) if str(year).isdigit() else None,
             "citations": (a.get("cited_by") or {}).get("value"),
@@ -114,7 +120,7 @@ def fetch_via_serpapi(scholar_id, api_key):
     return publications
 
 
-def fetch_via_scholarly(scholar_id):
+def fetch_via_scholarly(scholar_id, owner_name):
     from scholarly import scholarly
 
     author = scholarly.search_author_id(scholar_id)
@@ -129,7 +135,7 @@ def fetch_via_scholarly(scholar_id):
         year = bib.get("pub_year")
         publications.append({
             "title": bib.get("title"),
-            "authors": truncate_authors(bib.get("author")),
+            "authors": truncate_authors(bib.get("author"), owner_name),
             "venue": bib.get("venue") or bib.get("journal"),
             "year": int(year) if str(year).isdigit() else None,
             "citations": filled.get("num_citations"),
@@ -139,16 +145,16 @@ def fetch_via_scholarly(scholar_id):
 
 
 def main():
-    scholar_id = load_scholar_id()
+    scholar_id, owner_name = load_profile()
     api_key = os.environ.get("SERPAPI_KEY")
 
     try:
         if api_key:
             print("Fetching publications via SerpApi...")
-            publications = fetch_via_serpapi(scholar_id, api_key)
+            publications = fetch_via_serpapi(scholar_id, api_key, owner_name)
         else:
             print("Fetching publications via scholarly (may be blocked in CI)...")
-            publications = fetch_via_scholarly(scholar_id)
+            publications = fetch_via_scholarly(scholar_id, owner_name)
     except Exception as e:
         print(f"Failed to fetch publications: {e}")
         print("Leaving existing publications.json untouched.")

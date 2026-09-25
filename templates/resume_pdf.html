@@ -23,6 +23,7 @@
   <p class="subtitle">{{ profile.title }}</p>
   <p class="contact">
     {{ profile.email }} &middot; {{ profile.location }}
+    {%- if profile.phone_note %} &middot; {{ profile.phone_note }}{% endif %}
     {%- for platform, url in profile.social.items() if url %} &middot; {{ url }}{% endfor %}
   </p>
 
