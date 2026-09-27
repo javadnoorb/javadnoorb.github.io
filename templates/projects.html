@@ -7,20 +7,25 @@
 {% if profile.projects %}
 <div class="project-grid">
   {% for p in profile.projects %}
-  <a class="project-card" href="{{ p.link }}" target="_blank" rel="noopener">
-    {% if p.image %}
-    <img src="{{ p.image }}?v={{ asset_version(p.image) }}" alt="Screenshot of {{ p.title }}">
+  <div class="project-card">
+    <a class="project-link-block" href="{{ p.demo_link or p.link }}" target="_blank" rel="noopener">
+      {% if p.image %}
+      <img src="{{ p.image }}?v={{ asset_version(p.image) }}" alt="Screenshot of {{ p.title }}">
+      {% endif %}
+      <div class="project-body">
+        <h3>{{ p.title }}</h3>
+        <p class="project-description">{{ p.description }}</p>
+        <ul class="tag-list">
+          {% for tag in p.tags %}
+          <li>{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </a>
+    {% if p.demo_link %}
+    <a class="project-source-link" href="{{ p.link }}" target="_blank" rel="noopener">View source &#8599;</a>
     {% endif %}
-    <div class="project-body">
-      <h3>{{ p.title }}</h3>
-      <p class="project-description">{{ p.description }}</p>
-      <ul class="tag-list">
-        {% for tag in p.tags %}
-        <li>{{ tag }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  </a>
+  </div>
   {% endfor %}
 </div>
 {% else %}
