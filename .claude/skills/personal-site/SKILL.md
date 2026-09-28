@@ -162,8 +162,14 @@ A gallery of ~13 flagship papers, each with a figure actually extracted
 from the source PDF (via `pdftoppm -r 300` + PIL crop, never a stock/
 placeholder image) and a plain-English summary grounded in actually
 reading the paper - never written from the title/metadata alone. Ordered
-by publication year, newest first. Full methodology, per-paper key
-findings, and exact crop coordinates are logged in
+in two tiers, each tier newest-first internally: first-author papers
+come first, then papers where the user is 2nd/3rd/4th author, and within
+that second tier it's sub-grouped by author position (all 2nd-author
+papers before all 3rd-author, before all 4th-author). Re-derive author
+position from `data/publications.json`'s `authors` field (comma-separated,
+truncated-with-"et al." list) when reordering - don't guess from memory.
+Full methodology, per-paper key findings, and exact crop coordinates are
+logged in
 `~/research-papers/notes.md` (outside this repo, alongside the downloaded
 source PDFs) - see the `research-theme-sync` skill for the general method
 and check that notes file before re-reading a paper from scratch.
