@@ -38,7 +38,7 @@
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
-        {{ pub.authors }} &middot; {{ pub.venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}
+        {{ pub.authors | format_authors(profile.name) }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}
         {%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif %}
       </span>
     </li>
