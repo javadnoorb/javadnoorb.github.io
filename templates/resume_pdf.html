@@ -56,6 +56,8 @@
   .pub-authors { color: #333; }
   .pub-authors strong { color: #1f2328; }
   .pub-venue { font-style: italic; color: #444; }
+  ul.patents { list-style: none; margin: 0; padding-left: 0; font-size: 9.3pt; }
+  ul.patents .pub-title { font-weight: normal; }
 </style>
 </head>
 <body>
@@ -126,6 +128,20 @@
     </li>
     {% endfor %}
   </ol>
+  {% endif %}
+
+  {% if patents %}
+  <h2>{{ "Patents" if patents | length > 1 else "Patent" }}</h2>
+  <ul class="patents">
+    {% for pat in patents %}
+    <li>
+      {% if pat.link %}<a class="pub-title" href="{{ pat.link }}">{{ pat.title | trim(".") }}</a>{% else %}<span class="pub-title">{{ pat.title | trim(".") }}</span>{% endif %}.
+      <span class="pub-authors">{{ pat.authors | format_authors(profile.name) }}</span>
+      {%- if not pat.authors or not pat.authors.endswith(".") %}.{% endif %}
+      <span class="pub-venue">U.S. Patent Application {{ pat.link | patent_number }}</span>{% if pat.year %}, {{ pat.year }}{% endif %}.
+    </li>
+    {% endfor %}
+  </ul>
   {% endif %}
 </body>
 </html>

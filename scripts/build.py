@@ -142,6 +142,26 @@ def copy_static():
     shutil.copytree(STATIC, dest)
 
 
+PATENT_LINK = re.compile(r"patents\.google\.com/patent/([A-Z]{2})(\d{4})(\d+)([A-Z]\d)?")
+
+
+def patent_number(link):
+    """'.../patent/US20250378559A1/en' -> 'US 2025/0378559 A1'."""
+    m = PATENT_LINK.search(link or "")
+    if not m:
+        return ""
+    country, year, serial, kind = m.groups()
+    return f"{country} {year}/{serial}" + (f" {kind}" if kind else "")
+
+
+def split_patents(publications):
+    """Scholar lists patents alongside papers; the PDF shows them apart."""
+    papers, patents = [], []
+    for pub in publications:
+        (patents if patent_number(pub.get("link")) else papers).append(pub)
+    return papers, patents
+
+
 def render_pdf(env, profile, publications):
     try:
         from weasyprint import HTML
@@ -149,7 +169,8 @@ def render_pdf(env, profile, publications):
         print("weasyprint not installed, skipping PDF generation")
         return
     template = env.get_template("resume_pdf.html")
-    html_str = template.render(profile=profile, publications=publications)
+    papers, patents = split_patents(publications)
+    html_str = template.render(profile=profile, publications=papers, patents=patents)
     HTML(string=html_str, base_url=str(ROOT)).write_pdf(OUTPUT / "resume.pdf")
 
 
@@ -160,6 +181,7 @@ def main():
     env.filters["format_authors"] = format_authors
     env.filters["format_venue"] = format_venue
     env.filters["display_url"] = display_url
+    env.filters["patent_number"] = patent_number
     profile, publications = load_data()
     render_site(env, profile, publications)
     copy_static()
