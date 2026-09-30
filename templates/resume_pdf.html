@@ -67,13 +67,9 @@
     <p class="contact">
       <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
       {#- #}<span class="sep">|</span>{{ profile.location }}
-      {%- if profile.phone_note %}<span class="sep">|</span>{{ profile.phone_note }}{% endif %}
-      <br>
-      <a href="https://javadnoorb.github.io/">javadnoorb.github.io</a>
+      {#- #}<span class="sep">|</span><a href="https://javadnoorb.github.io/">javadnoorb.github.io</a>
       {%- if profile.social.linkedin %}<span class="sep">|</span><a href="{{ profile.social.linkedin }}">{{ profile.social.linkedin | display_url }}</a>{% endif %}
-      {%- if profile.social.github %}<span class="sep">|</span><a href="{{ profile.social.github }}">{{ profile.social.github | display_url }}</a>{% endif %}
       {%- if profile.social.scholar %}<span class="sep">|</span><a href="{{ profile.social.scholar }}">Google Scholar</a>{% endif %}
-      {%- if profile.social.orcid %}<span class="sep">|</span><a href="{{ profile.social.orcid }}">ORCID {{ profile.social.orcid | display_url | replace("orcid.org/", "") }}</a>{% endif %}
     </p>
   </header>
 

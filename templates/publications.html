@@ -19,6 +19,19 @@
   </ul>
 </section>
 {% endfor %}
+{% if patents %}
+<section class="pub-year-group">
+  <h2 class="year-heading">{{ "Patents" if patents | length > 1 else "Patent" }}</h2>
+  <ul class="pub-list full">
+    {% for pat in patents %}
+    <li>
+      <a href="{{ pat.link }}" target="_blank" rel="noopener">{{ pat.title }}</a>
+      <span class="pub-meta">{{ pat.authors }} &middot; U.S. Patent Application {{ pat.link | patent_number }}{% if pat.year %}, {{ pat.year }}{% endif %}</span>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
 {% else %}
 <p>No publications yet. Set a real <code>scholar_id</code> in <code>data/profile.yaml</code> and run the fetch script.</p>
 {% endif %}

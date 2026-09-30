@@ -47,7 +47,8 @@ def asset_version(rel_path):
         # The generated PDF's bytes aren't deterministic (WeasyPrint embeds
         # a creation timestamp), so hash the inputs that actually determine
         # its visible content instead of the output file.
-        sources = [DATA / "profile.yaml", DATA / "publications.json", TEMPLATES / "resume_pdf.html"]
+        sources = [DATA / "profile.yaml", DATA / "publications.json", TEMPLATES / "resume_pdf.html",
+                   ROOT / "scripts" / "build.py"]
     else:
         sources = [ROOT / rel_path]
     h = hashlib.md5()
@@ -126,11 +127,12 @@ def get_highlighted(publications, count=5):
 def render_site(env, profile, publications):
     OUTPUT.mkdir(exist_ok=True)
     initials = get_initials(profile.get("name"))
-    highlighted = get_highlighted(publications)
+    papers, patents = split_patents(publications)
+    highlighted = get_highlighted(papers)
     pages = ["index.html", "research.html", "projects.html", "publications.html", "resume.html"]
     for name in pages:
         template = env.get_template(name)
-        html = template.render(profile=profile, publications=publications,
+        html = template.render(profile=profile, publications=papers, patents=patents,
                                 highlighted=highlighted, initials=initials)
         (OUTPUT / name).write_text(html)
 
@@ -155,7 +157,7 @@ def patent_number(link):
 
 
 def split_patents(publications):
-    """Scholar lists patents alongside papers; the PDF shows them apart."""
+    """Scholar lists patents alongside papers; the site and PDF show them apart."""
     papers, patents = [], []
     for pub in publications:
         (patents if patent_number(pub.get("link")) else papers).append(pub)
