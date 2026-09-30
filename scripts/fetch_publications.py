@@ -35,13 +35,19 @@ RECENT_YEARS_WINDOW = 2
 # dropped regardless of recency - these are never going to become "real"
 # publications no matter how new they are.
 POSTER_VENUE_PATTERN = re.compile(r"abstracts?\b", re.IGNORECASE)
-POSTER_TITLE_PATTERN = re.compile(r":\s*\d{2,4}$")
+POSTER_TITLE_PATTERN = re.compile(r":\s*\d{2,4}$|^abstract\b", re.IGNORECASE)
+# AACR publishes its annual-meeting abstracts as "Supplement" issues of real
+# journals (Cancer Research, Clinical Cancer Research), so the venue alone
+# looks like a journal article - the link path is what gives them away.
+POSTER_LINK_PATTERN = re.compile(r"_Supplement/", re.IGNORECASE)
 
 
 def is_poster(pub):
     venue = pub.get("venue") or ""
     title = pub.get("title") or ""
-    return bool(POSTER_VENUE_PATTERN.search(venue) or POSTER_TITLE_PATTERN.search(title))
+    link = pub.get("link") or ""
+    return bool(POSTER_VENUE_PATTERN.search(venue) or POSTER_TITLE_PATTERN.search(title)
+                or POSTER_LINK_PATTERN.search(link))
 
 # Google Scholar's scrape sometimes drops the venue entirely. These are
 # known gaps, cross-checked against the owner's own CV, filled in by

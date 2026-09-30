@@ -168,30 +168,6 @@
     "link": "https://www.nature.com/articles/s43856-026-01400-4"
   },
   {
-    "title": "Associations between structural variant signatures and drug sensitivity in cell lines",
-    "authors": "Simona Dalin, Frank Dubois, Shu Zhang, Alexander Crane, Javad Noorbakhsh, et al.",
-    "venue": "Cancer Research",
-    "year": 2022,
-    "citations": 1,
-    "link": "https://aacrjournals.org/cancerres/article/82/12_Supplement/2710/703992"
-  },
-  {
-    "title": "Abstract PO-003: Deep learning identifies conserved pan-cancer tumor features",
-    "authors": "Javad Noorbakhsh, Saman Farahmand, Ali Foroughi pour, Sandeep Namburi, Dennis Caruana, et al.",
-    "venue": "Clinical Cancer Research",
-    "year": 2021,
-    "citations": 1,
-    "link": "https://aacrjournals.org/clincancerres/article/27/5_Supplement/PO-003/32749"
-  },
-  {
-    "title": "The PDX Data Commons and Coordinating Center (PDCCC) for PDXNet",
-    "authors": "Anurag Sethi, Anuj Srivastava, Xingyi Woo, Vishal Sarsani, Javad Noorbakhsh, et al.",
-    "venue": "Cancer Research",
-    "year": 2018,
-    "citations": 1,
-    "link": "https://aacrjournals.org/cancerres/article-abstract/78/13_Supplement/1029/625222"
-  },
-  {
     "title": "RANKL inhibition spatially rewires the microenvironment of luminal breast cancer",
     "authors": "Mario Rodriguez-del Collado, Andrea Vethencourt, Alexandra Barranco, Jaime Martinez de Villarreal, Javad Noorbakhsh, et al.",
     "venue": "medRxiv",
@@ -206,22 +182,6 @@
     "year": 2026,
     "citations": 0,
     "link": "https://www.biorxiv.org/content/10.64898/2026.04.28.721103.abstract"
-  },
-  {
-    "title": "Spatial multiomic characterization of spontaneous lung tumors in aged mice.",
-    "authors": "Adam Thiesen, Sema Akkurt, Javad Noorbakhsh, Te-Chia Wu, Andrew Salner, et al.",
-    "venue": "Cancer Research",
-    "year": 2026,
-    "citations": 0,
-    "link": "https://aacrjournals.org/cancerres/article/86/7_Supplement/1204/777053"
-  },
-  {
-    "title": "Phone-based portable slide digitization system for AI-enabled histopathology",
-    "authors": "Sergii Domanskyi and Todd Sheridan and Javad Noorbakhsh and Jeffrey H Chuang and Jill Carol Rubinstein",
-    "venue": "Cancer Research",
-    "year": 2026,
-    "citations": 0,
-    "link": "https://aacrjournals.org/cancerres/article/86/7_Supplement/4151/778947"
   },
   {
     "title": "Convolutional neural networks for classification of cancer histological images",
