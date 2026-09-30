@@ -3,59 +3,129 @@
 <head>
 <meta charset="UTF-8">
 <title>{{ profile.name }} — CV</title>
+<meta name="author" content="{{ profile.name }}">
 <style>
-  @page { size: A4; margin: 2cm; }
-  body { font-family: "Helvetica Neue", Arial, sans-serif; color: #1a1a1a; font-size: 11pt; line-height: 1.4; }
-  h1 { font-size: 20pt; margin-bottom: 0; }
-  .subtitle { color: #555; margin-top: 2px; }
-  .contact { font-size: 9.5pt; color: #555; margin-bottom: 1em; }
-  h2 { font-size: 13pt; border-bottom: 1px solid #ccc; padding-bottom: 2px; margin-top: 1.2em; }
-  ul { margin: 0.3em 0; padding-left: 1.2em; }
-  li { margin-bottom: 0.4em; }
-  .pub-meta { display: block; font-size: 9.5pt; color: #555; }
-  .exp-heading { margin: 0.8em 0 0.2em; }
-  .exp-heading .pub-meta { display: inline; }
-  .exp-bullets { margin-top: 0; }
+  @page {
+    size: Letter;
+    margin: 0.65in 0.7in 0.7in;
+    @bottom-left { content: "{{ profile.name }} — Curriculum Vitae"; font: 8pt "Helvetica Neue", Arial, sans-serif; color: #888; }
+    @bottom-right { content: counter(page) " / " counter(pages); font: 8pt "Helvetica Neue", Arial, sans-serif; color: #888; }
+  }
+  @page :first { @bottom-left { content: none; } }
+
+  body { font-family: "Helvetica Neue", Arial, sans-serif; color: #1f2328; font-size: 10pt; line-height: 1.38; margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  .accent { color: #1f4e79; }
+
+  header { border-bottom: 2px solid #1f4e79; padding-bottom: 8pt; margin-bottom: 4pt; }
+  h1 { font-size: 22pt; margin: 0; letter-spacing: 0.3pt; color: #1f4e79; }
+  .subtitle { font-size: 11.5pt; color: #444; margin: 1pt 0 5pt; }
+  .contact { font-size: 8.8pt; color: #444; margin: 0; }
+  .contact .sep { color: #aaa; padding: 0 3pt; }
+
+  h2 { font-size: 10.5pt; text-transform: uppercase; letter-spacing: 1.2pt; color: #1f4e79;
+       border-bottom: 0.75pt solid #c8d3de; padding-bottom: 2pt; margin: 13pt 0 6pt;
+       page-break-after: avoid; }
+
+  .summary { margin: 0; }
+
+  .row { display: flex; justify-content: space-between; align-items: baseline; }
+  .row .when { font-size: 9pt; color: #555; white-space: nowrap; padding-left: 10pt; }
+
+  .edu { margin-bottom: 3pt; }
+  .edu .where { color: #444; }
+
+  .job { margin-bottom: 8pt; }
+  .job .row, .job-org { page-break-after: avoid; }
+  .job li { page-break-inside: avoid; }
+  .job-title { font-weight: bold; }
+  .job-org { font-style: italic; color: #444; font-size: 9.5pt; }
+  .job ul { margin: 2pt 0 0; padding-left: 13pt; }
+  .job li { margin-bottom: 1.5pt; }
+
+  .skills { display: table; width: 100%; }
+  .skills p { display: table-row; }
+  .skills .cat, .skills .list { display: table-cell; padding-bottom: 3pt; }
+  .skills .cat { font-weight: bold; width: 1.45in; padding-right: 8pt; }
+
+  .pub-note { font-size: 8.8pt; color: #555; margin: -2pt 0 6pt; }
+  ol.pubs { margin: 0; padding-left: 20pt; font-size: 9.3pt; }
+  ol.pubs li { margin-bottom: 4pt; page-break-inside: avoid; padding-left: 2pt; }
+  ol.pubs li::marker { color: #777; }
+  .pub-title { font-weight: 600; }
+  .pub-authors { color: #333; }
+  .pub-authors strong { color: #1f2328; }
+  .pub-venue { font-style: italic; color: #444; }
 </style>
 </head>
 <body>
-  <h1>{{ profile.name }}</h1>
-  <p class="subtitle">{{ profile.title }}</p>
-  <p class="contact">
-    {{ profile.email }} &middot; {{ profile.location }}
-    {%- if profile.phone_note %} &middot; {{ profile.phone_note }}{% endif %}
-    {%- for platform, url in profile.social.items() if url %} &middot; {{ url }}{% endfor %}
-  </p>
+  <header>
+    <h1>{{ profile.name }}</h1>
+    <p class="subtitle">{{ profile.title }}</p>
+    <p class="contact">
+      <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+      {#- #}<span class="sep">|</span>{{ profile.location }}
+      {%- if profile.phone_note %}<span class="sep">|</span>{{ profile.phone_note }}{% endif %}
+      <br>
+      <a href="https://javadnoorb.github.io/">javadnoorb.github.io</a>
+      {%- if profile.social.linkedin %}<span class="sep">|</span><a href="{{ profile.social.linkedin }}">{{ profile.social.linkedin | display_url }}</a>{% endif %}
+      {%- if profile.social.github %}<span class="sep">|</span><a href="{{ profile.social.github }}">{{ profile.social.github | display_url }}</a>{% endif %}
+      {%- if profile.social.scholar %}<span class="sep">|</span><a href="{{ profile.social.scholar }}">Google Scholar</a>{% endif %}
+      {%- if profile.social.orcid %}<span class="sep">|</span><a href="{{ profile.social.orcid }}">ORCID {{ profile.social.orcid | display_url | replace("orcid.org/", "") }}</a>{% endif %}
+    </p>
+  </header>
 
-  <h2>Education</h2>
-  <ul>
-    {% for edu in profile.education %}
-    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} ({{ edu.period }})</li>
-    {% endfor %}
-  </ul>
+  {% if profile.bio %}
+  <h2>Summary</h2>
+  <p class="summary">{{ profile.bio }}</p>
+  {% endif %}
 
   <h2>Experience</h2>
   {% for exp in profile.experience %}
-  <p class="exp-heading"><strong>{{ exp.title }}</strong>, {{ exp.organization }} <span class="pub-meta">{{ exp.period }}</span></p>
-  <ul class="exp-bullets">
-    {% for bullet in exp.bullets %}
-    <li>{{ bullet }}</li>
-    {% endfor %}
-  </ul>
+  <div class="job">
+    <div class="row">
+      <span class="job-title">{{ exp.title }}</span>
+      <span class="when">{{ exp.period | short_period }}</span>
+    </div>
+    <div class="job-org">{{ exp.organization }}</div>
+    <ul>
+      {% for bullet in exp.bullets %}
+      <li>{{ bullet }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+
+  <h2>Education</h2>
+  {% for edu in profile.education %}
+  <div class="edu row">
+    <span><strong>{{ edu.degree }}</strong> <span class="where">— {{ edu.institution }}</span></span>
+    <span class="when">{{ edu.period | short_period }}</span>
+  </div>
   {% endfor %}
 
   <h2>Skills</h2>
-  {% for group in profile.skills %}
-  <p><strong>{{ group.category }}:</strong> {{ group.skills | join(", ") }}</p>
-  {% endfor %}
+  <div class="skills">
+    {% for group in profile.skills %}
+    <p><span class="cat">{{ group.category }}</span><span class="list">{{ group.skills | join(", ") }}</span></p>
+    {% endfor %}
+  </div>
 
   {% if publications %}
   <h2>Publications</h2>
-  <ul>
+  <p class="pub-note">Reverse chronological. Author lists abbreviated with “et al.”; full record on
+    {% if profile.social.scholar %}<a class="accent" href="{{ profile.social.scholar }}">Google Scholar</a>{% else %}Google Scholar{% endif %}.</p>
+  <ol class="pubs">
     {% for pub in publications %}
-    <li>{{ pub.title }}<span class="pub-meta">{{ pub.authors }} — {{ pub.venue }}{% if pub.year %}, {{ pub.year }}{% endif %}</span></li>
+    <li>
+      {% if pub.link %}<a class="pub-title" href="{{ pub.link }}">{{ pub.title | trim(".") }}</a>{% else %}<span class="pub-title">{{ pub.title | trim(".") }}</span>{% endif %}.
+      <span class="pub-authors">{{ pub.authors | format_authors(profile.name) }}</span>
+      {%- if not pub.authors or not pub.authors.endswith(".") %}.{% endif %}
+      {%- set venue = pub.venue | format_venue %}
+      {% if venue %}<span class="pub-venue">{{ venue }}</span>{% if pub.year %}, {% endif %}{% endif %}{% if pub.year %}{{ pub.year }}{% endif %}.
+    </li>
     {% endfor %}
-  </ul>
+  </ol>
   {% endif %}
 </body>
 </html>

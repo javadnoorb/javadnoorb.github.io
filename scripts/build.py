@@ -4,11 +4,13 @@ generates a PDF version of the resume with WeasyPrint.
 """
 import hashlib
 import json
+import re
 import shutil
 from pathlib import Path
 
 import yaml
 from jinja2 import Environment, FileSystemLoader
+from markupsafe import Markup, escape
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -55,6 +57,63 @@ def asset_version(rel_path):
     return h.hexdigest()[:8]
 
 
+MONTHS = {m: m[:3] for m in ["January", "February", "March", "April", "May", "June", "July",
+                             "August", "September", "October", "November", "December"]}
+DEGREE_PREFIX = re.compile(r"^(?:PhD|MD|MS|MSc|BS|BSc|MA|MPH|DVM)\s+")
+# Scholar's venue strings are inconsistently cased ("Nature communications",
+# "PLoS computational biology"). Title-case them for display, keeping short
+# connecting words lowercase and leaving mixed-case names (bioRxiv) alone.
+LOWERCASE_WORDS = {"of", "and", "in", "for", "the", "on", "to"}
+VENUE_SPELLINGS = {"biorxiv": "bioRxiv", "medrxiv": "medRxiv", "arxiv": "arXiv"}
+
+
+def short_period(period):
+    """'September 2009 - December 2014' -> 'Sep 2009 – Dec 2014'."""
+    text = period or ""
+    for full, abbr in MONTHS.items():
+        text = text.replace(full, abbr)
+    return text.replace(" - ", " – ")
+
+
+def format_authors(authors, owner_name):
+    """Normalize Scholar's two author-list shapes ('A and B and C' vs
+    'A, B, C, et al.') into one comma-separated form, strip stray degree
+    prefixes, and bold the site owner's name."""
+    if not authors:
+        return Markup("")
+    names = [n.strip() for n in re.split(r",\s*| and ", authors) if n.strip()]
+    out = []
+    for name in names:
+        name = DEGREE_PREFIX.sub("", name)
+        if owner_name and name == owner_name:
+            out.append(Markup("<strong>{}</strong>").format(name))
+        else:
+            out.append(escape(name))
+    return Markup(", ").join(out)
+
+
+def format_venue(venue):
+    if not venue or venue == "None":
+        return ""
+    if venue.lower() in VENUE_SPELLINGS:
+        return VENUE_SPELLINGS[venue.lower()]
+    words = venue.split()
+    fixed = []
+    for i, word in enumerate(words):
+        if word != word.lower():
+            fixed.append(word)
+        elif i > 0 and word in LOWERCASE_WORDS:
+            fixed.append(word)
+        else:
+            fixed.append(word[:1].upper() + word[1:])
+    return " ".join(fixed)
+
+
+def display_url(url):
+    """Strip scheme/www/trailing slash for a compact printed link."""
+    return re.sub(r"^https?://(www\.)?", "", url or "").rstrip("/")
+
+
 def get_highlighted(publications, count=5):
     """Favors impact over recency: most-cited papers, shown newest-first
     among themselves so the selection doesn't read as a fixed leaderboard."""
@@ -97,6 +156,10 @@ def render_pdf(env, profile, publications):
 def main():
     env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
     env.globals["asset_version"] = asset_version
+    env.filters["short_period"] = short_period
+    env.filters["format_authors"] = format_authors
+    env.filters["format_venue"] = format_venue
+    env.filters["display_url"] = display_url
     profile, publications = load_data()
     render_site(env, profile, publications)
     copy_static()
