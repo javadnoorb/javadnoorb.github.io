@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Resume — {{ profile.name }}{% endblock %}
+{% block description %}Resume of {{ profile.name }}, {{ profile.title }}: experience, education, skills, and selected publications.{% endblock %}
 {% block content %}
 <h1>Resume</h1>
 <p><a class="download-link" href="resume.pdf?v={{ asset_version('resume.pdf') }}">Download PDF version &darr;</a></p>

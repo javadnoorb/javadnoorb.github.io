@@ -1,6 +1,10 @@
-Jinja2>=3.1
-PyYAML>=6.0
-scholarly>=1.7
-bibtexparser<2
-weasyprint>=61
-google-search-results>=2.4.2
+# Pinned exactly so a new upstream release can't silently change the site
+# or the carefully tuned PDF layout. Bump deliberately and check the PDF.
+Jinja2==3.1.6
+PyYAML==6.0.3
+Pillow==12.3.0
+weasyprint==70.0
+scholarly==1.7.11
+# scholarly 1.7.x imports bibtexparser.bibdatabase, removed in 2.x.
+bibtexparser==1.4.4
+google-search-results==2.4.2

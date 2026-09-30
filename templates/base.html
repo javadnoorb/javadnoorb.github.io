@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% set canonical = site_url ~ ('' if page == 'index.html' else page) -%}
+{% if false %}{% block description %}{{ profile.name }} — {{ profile.title }}. {{ profile.bio }}{% endblock %}{% endif -%}
+{% set description = self.description() | striptags | truncate(300, killwords=False, end='…') -%}
 <title>{% block title %}{{ profile.name }}{% endblock %}</title>
+<meta name="description" content="{{ description | e }}">
+<meta name="author" content="{{ profile.name }}">
+{% if page != '404.html' %}<link rel="canonical" href="{{ canonical }}">{% endif %}
+<meta property="og:type" content="{{ 'profile' if page == 'index.html' else 'website' }}">
+<meta property="og:site_name" content="{{ profile.name }}">
+<meta property="og:title" content="{{ self.title() | trim | e }}">
+<meta property="og:description" content="{{ description | e }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="og:image" content="{{ site_url }}{{ og_image }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ self.title() | trim | e }}">
+<meta name="twitter:description" content="{{ description | e }}">
+<meta name="twitter:image" content="{{ site_url }}{{ og_image }}">
+{% if page == 'index.html' %}<script type="application/ld+json">{{ person_jsonld | tojson }}</script>{% endif %}
+{% block head_extra %}{% endblock %}
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f6f5c'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='26' fill='%23fdfcf9' text-anchor='middle'%3E{{ initials }}%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,20 +32,19 @@
 <!-- End Cloudflare Web Analytics -->
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="header-inner">
     <a class="site-title" href="index.html">{{ profile.name }}</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="research.html">Research</a>
-      <a href="projects.html">Projects</a>
-      <a href="publications.html">Publications</a>
-      <a href="resume.html">Resume</a>
+    <nav aria-label="Main">
+      {% for href, label in [("index.html", "Home"), ("research.html", "Research"), ("projects.html", "Projects"), ("publications.html", "Publications"), ("resume.html", "Resume")] %}
+      <a href="{{ href }}"{% if page == href %} aria-current="page"{% endif %}>{{ label }}</a>
+      {% endfor %}
       <a href="resume.pdf?v={{ asset_version('resume.pdf') }}" class="btn-nav">Download CV</a>
     </nav>
   </div>
 </header>
-<main>
+<main id="main" tabindex="-1">
 {% block content %}{% endblock %}
 </main>
 <footer class="site-footer">

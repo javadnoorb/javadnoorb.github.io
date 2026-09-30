@@ -1,28 +1,42 @@
 name: Build and Deploy Site
 
+# The built site is never committed: every run renders it fresh into _site/
+# and (outside pull requests) deploys that straight to GitHub Pages. The only
+# thing the workflow commits back is refreshed publication data under data/.
+# Requires Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+
 on:
   schedule:
     - cron: "0 6 * * 1" # every Monday 06:00 UTC
   push:
     branches: [master]
+  pull_request:
   workflow_dispatch: {}
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: build-deploy
-  cancel-in-progress: true
+  # Pull requests: a newer push supersedes the old check. Deploys: queue up
+  # instead of cancelling, so a run is never killed mid-commit or mid-deploy.
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || 'deploy' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so the data commit can rebase onto a moved master
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements*.txt
 
       - name: Install system dependencies for WeasyPrint
         run: |
@@ -30,9 +44,13 @@ jobs:
           sudo apt-get install -y libpango-1.0-0 libpangocairo-1.0-0 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info
 
       - name: Install Python dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-dev.txt
+
+      - name: Run tests
+        run: python -m pytest -q
 
       - name: Fetch publications
+        if: github.event_name != 'pull_request'
         timeout-minutes: 4
         continue-on-error: true
         env:
@@ -42,10 +60,42 @@ jobs:
       - name: Build site
         run: python scripts/build.py
 
-      - name: Commit updated data and site
+      - name: Commit refreshed publication data
+        if: github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/publications.json docs
-          git diff --staged --quiet || git commit -m "Auto-update publications and rebuild site [skip ci]"
-          git push
+          git add data/*.json
+          if git diff --staged --quiet; then
+            echo "Publication data unchanged."
+            exit 0
+          fi
+          git commit -m "Auto-update publication data [skip ci]"
+          # master may have moved while this job ran; replay on top of it.
+          for attempt in 1 2 3; do
+            git pull --rebase origin master && git push origin HEAD:master && exit 0
+            sleep $((attempt * 5))
+          done
+          echo "Could not push refreshed publication data" >&2
+          exit 1
+
+      - name: Upload site artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

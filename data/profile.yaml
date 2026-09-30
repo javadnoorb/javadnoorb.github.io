@@ -3,6 +3,9 @@ title: "Bioinformatics & Machine Learning Scientist"
 email: "javad.noorbakhsh@gmail.com"
 phone_note: "Phone number available upon request"
 location: "Boston, MA"
+# Public address of the site; used for canonical links, social previews
+# and sitemap.xml.
+site_url: "https://javadnoorb.github.io/"
 bio: >
   Computational biologist working on AI methods for cancer spatial omics
   and computational pathology, with a research background spanning cancer
@@ -13,7 +16,6 @@ bio: >
 # https://scholar.google.com/citations?user=THIS_PART
 scholar_id: "xfENK6oAAAAJ"
 
-# Shown on the new "Projects" page (projects.html) - side/personal
 # Shown on the "Projects" page (projects.html) - casual/personal side
 # projects, deliberately kept light in tone (not a second resume section).
 projects:
@@ -51,11 +53,10 @@ research_focus:
   - title: "Systems Biology & Biophysics"
     description: "Quantitative modeling of cellular signaling dynamics, gene-regulatory noise, and collective behavior in biological populations."
 
-# Shown on the new "Research Highlights" page (research.html) - a small
+# Shown on the "Research Highlights" page (research.html) - a small
 # gallery of flagship papers with a figure + plain-English summary each.
-# Entries below marked PLACEHOLDER still need a real figure/summary from
-# the actual paper; entries with a real figure path were read directly
-# from the source PDF (see ~/research-papers/) - not just titles/metadata.
+# Every figure and summary was taken from the source PDF itself (see
+# ~/research-papers/), not from titles/metadata.
 research_highlights:
   - title: "Emerging AI approaches for cancer spatial omics"
     venue: "GigaScience, 2025"

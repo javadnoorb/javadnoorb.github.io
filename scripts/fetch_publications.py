@@ -10,21 +10,39 @@ Two backends are supported:
      hit that, get a free SerpApi key instead.
 
 On any failure, the existing publications.json is left untouched so the
-site never regresses to empty data because of a transient block.
+site never regresses to empty data because of a transient block. The same
+goes for a fetch that comes back suspiciously short (see
+MIN_RETAINED_FRACTION) - set FORCE_PUBLICATIONS_UPDATE=1 to accept it anyway,
+e.g. after deliberately removing papers from the Scholar profile.
+
+Also writes data/scholar_stats.json (total citations, h-index, i10-index)
+and fills in DOIs, looked up on Crossref when the link doesn't contain one.
 """
 import datetime
 import json
 import os
 import re
 import sys
+import urllib.parse
+import urllib.request
 from pathlib import Path
 
 import yaml
 
+from build import doi_from_link, is_preprint
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
+PUBLICATIONS_PATH = DATA / "publications.json"
+STATS_PATH = DATA / "scholar_stats.json"
 
 MAX_AUTHORS = 5
+
+# A fetch that keeps fewer than this fraction of the papers already on the
+# site is treated as a partial/broken scrape, not a real change.
+MIN_RETAINED_FRACTION = 0.7
+
+SERPAPI_PAGE_SIZE = 100
 
 # A zero-citation entry is kept only if it's recent enough that it plausibly
 # just hasn't accrued citations yet, rather than being a long-settled poster
@@ -121,8 +139,10 @@ def _same_paper(title_a, title_b):
 
 def dedupe_publications(publications):
     """Merges different scraped versions of the same paper (e.g. a journal
-    article, its preprint, and a conference abstract of it) into one entry,
-    keeping the most-cited version."""
+    article, its preprint, and a conference abstract of it) into one entry.
+    The published version wins over a preprint even when Scholar credits
+    the preprint with more citations; among equals, the most-cited wins.
+    The kept entry carries the group's highest citation count."""
     groups = []
     for pub in publications:
         for group in groups:
@@ -131,7 +151,77 @@ def dedupe_publications(publications):
                 break
         else:
             groups.append([pub])
-    return [max(group, key=lambda p: p.get("citations") or 0) for group in groups]
+    merged = []
+    for group in groups:
+        best = dict(max(group, key=lambda p: (not is_preprint(p), p.get("citations") or 0)))
+        citations = [p.get("citations") for p in group if p.get("citations") is not None]
+        if citations:
+            best["citations"] = max(citations)
+        merged.append(best)
+    return merged
+
+
+def load_existing():
+    if not PUBLICATIONS_PATH.exists():
+        return []
+    try:
+        return json.loads(PUBLICATIONS_PATH.read_text())
+    except ValueError:
+        return []
+
+
+def looks_truncated(new_count, old_count):
+    """True when a fetch returned far fewer papers than are already on the
+    site - the signature of a partial scrape or a pagination bug."""
+    return old_count > 0 and new_count < old_count * MIN_RETAINED_FRACTION
+
+
+def crossref_doi(pub, timeout=10):
+    """Looks a paper up on Crossref by title (+ first author), returning its
+    DOI only when the matched record's title really is the same paper."""
+    title = pub.get("title")
+    if not title:
+        return ""
+    query = {"query.bibliographic": title, "rows": "3", "select": "DOI,title"}
+    first_author = (pub.get("authors") or "").replace(" and ", ", ").split(",")[0].strip()
+    if first_author:
+        query["query.author"] = first_author
+    url = "https://api.crossref.org/works?" + urllib.parse.urlencode(query)
+    req = urllib.request.Request(url, headers={
+        "User-Agent": "personal-site-publications/1.0 (+https://javadnoorb.github.io/)"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        items = json.load(resp).get("message", {}).get("items", [])
+    for item in items:
+        for candidate in item.get("title") or []:
+            if _same_paper(title, candidate):
+                return item.get("DOI", "").lower()
+    return ""
+
+
+def add_dois(publications, existing):
+    """DOI from the link when it contains one; otherwise reuse a DOI found
+    on an earlier run, and only then ask Crossref. Lookup failures are
+    non-fatal - the paper just goes without a DOI link this time."""
+    known = {p.get("title"): p.get("doi") for p in existing if p.get("doi")}
+    for pub in publications:
+        if "patents.google.com" in (pub.get("link") or ""):
+            continue
+        doi = doi_from_link(pub.get("link")) or known.get(pub.get("title"))
+        if not doi:
+            try:
+                doi = crossref_doi(pub)
+            except Exception as e:
+                print(f"Crossref lookup failed for {pub.get('title')!r}: {e}")
+        if doi:
+            pub["doi"] = doi
+    return publications
+
+
+def _int(value):
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
 
 
 def load_profile():
@@ -144,15 +234,30 @@ def load_profile():
 
 
 def fetch_via_serpapi(scholar_id, api_key, owner_name):
+    """Returns (publications, stats). The author endpoint pages its article
+    list (20 per page by default), so request the maximum page size and keep
+    paging until a short page comes back."""
     from serpapi import GoogleSearch
 
-    params = {
-        "engine": "google_scholar_author",
-        "author_id": scholar_id,
-        "api_key": api_key,
-    }
-    results = GoogleSearch(params).get_dict()
-    articles = results.get("articles", [])
+    articles, stats, start = [], {}, 0
+    while True:
+        params = {
+            "engine": "google_scholar_author",
+            "author_id": scholar_id,
+            "api_key": api_key,
+            "num": SERPAPI_PAGE_SIZE,
+            "start": start,
+        }
+        results = GoogleSearch(params).get_dict()
+        if results.get("error"):
+            raise RuntimeError(results["error"])
+        if start == 0:
+            stats = serpapi_stats(results)
+        page = results.get("articles", [])
+        articles.extend(page)
+        if len(page) < SERPAPI_PAGE_SIZE:
+            break
+        start += SERPAPI_PAGE_SIZE
     publications = []
     for a in articles:
         year = a.get("year")
@@ -164,14 +269,26 @@ def fetch_via_serpapi(scholar_id, api_key, owner_name):
             "citations": (a.get("cited_by") or {}).get("value"),
             "link": a.get("link"),
         })
-    return publications
+    return publications, stats
+
+
+def serpapi_stats(results):
+    """Flattens SerpApi's cited_by table ([{"citations": {"all": N}}, ...])."""
+    stats = {}
+    for row in (results.get("cited_by") or {}).get("table", []):
+        for key, values in row.items():
+            if isinstance(values, dict) and _int(values.get("all")) is not None:
+                stats[key] = _int(values["all"])
+    return stats
 
 
 def fetch_via_scholarly(scholar_id, owner_name):
     from scholarly import scholarly
 
     author = scholarly.search_author_id(scholar_id)
-    author = scholarly.fill(author, sections=["publications"])
+    author = scholarly.fill(author, sections=["basics", "indices", "publications"])
+    stats = {"citations": _int(author.get("citedby")), "h_index": _int(author.get("hindex")),
+             "i10_index": _int(author.get("i10index"))}
     publications = []
     for pub in author.get("publications", []):
         try:
@@ -188,7 +305,17 @@ def fetch_via_scholarly(scholar_id, owner_name):
             "citations": filled.get("num_citations"),
             "link": filled.get("pub_url"),
         })
-    return publications
+    return publications, stats
+
+
+def write_stats(stats):
+    stats = {k: v for k, v in (stats or {}).items() if v is not None}
+    if not stats.get("citations"):
+        print("No citation stats in this fetch; leaving scholar_stats.json untouched.")
+        return
+    stats["updated"] = datetime.date.today().isoformat()
+    STATS_PATH.write_text(json.dumps(stats, indent=2) + "\n")
+    print(f"Wrote Scholar stats to {STATS_PATH}")
 
 
 def main():
@@ -198,10 +325,10 @@ def main():
     try:
         if api_key:
             print("Fetching publications via SerpApi...")
-            publications = fetch_via_serpapi(scholar_id, api_key, owner_name)
+            publications, stats = fetch_via_serpapi(scholar_id, api_key, owner_name)
         else:
             print("Fetching publications via scholarly (may be blocked in CI)...")
-            publications = fetch_via_scholarly(scholar_id, owner_name)
+            publications, stats = fetch_via_scholarly(scholar_id, owner_name)
     except Exception as e:
         print(f"Failed to fetch publications: {e}")
         print("Leaving existing publications.json untouched.")
@@ -227,9 +354,17 @@ def main():
     print(f"Cleaned {before} raw entries down to {len(publications)} (dropped "
           f"garbled/duplicate/poster entries and stale zero-citation ones)")
 
-    out_path = DATA / "publications.json"
-    out_path.write_text(json.dumps(publications, indent=2))
-    print(f"Wrote {len(publications)} publications to {out_path}")
+    existing = load_existing()
+    if looks_truncated(len(publications), len(existing)) and not os.environ.get("FORCE_PUBLICATIONS_UPDATE"):
+        print(f"Fetch kept only {len(publications)} publications versus {len(existing)} "
+              f"currently on the site; treating it as a partial scrape and leaving "
+              f"publications.json untouched. Set FORCE_PUBLICATIONS_UPDATE=1 to accept it.")
+        sys.exit(0)
+
+    publications = add_dois(publications, existing)
+    PUBLICATIONS_PATH.write_text(json.dumps(publications, indent=2))
+    print(f"Wrote {len(publications)} publications to {PUBLICATIONS_PATH}")
+    write_stats(stats)
 
 
 if __name__ == "__main__":
