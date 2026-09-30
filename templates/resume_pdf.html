@@ -52,12 +52,11 @@
   ol.pubs { margin: 0; padding-left: 20pt; font-size: 9.3pt; }
   ol.pubs li { margin-bottom: 4pt; page-break-inside: avoid; padding-left: 2pt; }
   ol.pubs li::marker { color: #777; }
-  .pub-title { font-weight: 600; }
+  .pub-title { font-weight: normal; color: #1f4e79; }
   .pub-authors { color: #333; }
   .pub-authors strong { color: #1f2328; }
   .pub-venue { font-style: italic; color: #444; }
   ul.patents { list-style: none; margin: 0; padding-left: 0; font-size: 9.3pt; }
-  ul.patents .pub-title { font-weight: normal; }
 </style>
 </head>
 <body>
@@ -111,7 +110,7 @@
 
   {% if publications %}
   <h2>Publications</h2>
-  <p class="pub-note">Reverse chronological. Author lists abbreviated with “et al.”; full record on
+  <p class="pub-note">Full record on
     {% if profile.social.scholar %}<a class="accent" href="{{ profile.social.scholar }}">Google Scholar</a>{% else %}Google Scholar{% endif %}.</p>
   <ol class="pubs">
     {% for pub in publications %}
