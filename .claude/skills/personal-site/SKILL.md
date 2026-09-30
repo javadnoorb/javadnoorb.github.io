@@ -77,8 +77,13 @@ WeasyPrint needs system libs: `libpango-1.0-0 libpangocairo-1.0-0
 libgdk-pixbuf2.0-0 libffi-dev shared-mime-info` (apt) - already present on
 this dev machine's venv-independent system Python install.
 
-**User's review habit**: they preview over Tailscale from their phone before
-anything goes live. Don't assume a Tailscale IP - rediscover it with
+**User's review habit**: they preview before anything goes live - over
+Tailscale from their phone in local sessions, or (in Claude Code cloud
+sessions) from a rendered PDF/screenshot sent as a file, after which
+they say "merge it to master". Push work to the session's feature branch
+first and wait for that go-ahead; then fast-forward master to the branch
+(`git fetch origin master`, merge it in if CI added a data commit, then
+`git push origin HEAD:master`). Don't assume a Tailscale IP - rediscover it with
 `tailscale ip` if you need to give them a URL; it's this-machine-specific
 and may differ in a future session. Always rebuild, preview, and get an
 explicit go-ahead before pushing to the live repo - this user has
@@ -102,6 +107,12 @@ git push origin main:master
 Dependencies are pinned exactly in `requirements.txt` (the PDF layout was
 tuned against WeasyPrint 70.0). Bump deliberately and re-check the PDF.
 
+Cloud sessions' network policy blocks `javadnoorb.github.io` itself, so
+the live site can't be fetched to verify a deploy. Check the "Build and
+Deploy Site" Actions run for the pushed commit instead (build + deploy
+jobs), and if needed rebuild that exact commit locally and inspect
+`_site/`.
+
 ## Cache-busting on the live site
 
 GitHub Pages doesn't allow custom cache headers (fixed at `max-age=600`
@@ -118,7 +129,8 @@ caching entirely on a site meant to run long-term. Content hashing means
 an unchanged file keeps the same URL forever (stays cacheable) while a
 changed one always gets a fresh URL (no staleness possible, regardless of
 browser quirks). `resume.pdf` is a special case: it's hashed by its
-*source inputs* (`profile.yaml`, `publications.json`, `resume_pdf.html`),
+*source inputs* (`profile.yaml`, `publications.json`, `resume_pdf.html`,
+and `scripts/build.py`, whose display filters shape the PDF's text),
 not its own output bytes, because WeasyPrint embeds a creation timestamp
 that would otherwise change the hash on every build regardless of visible
 content. If you add a new static asset reference in a template, route it
@@ -146,7 +158,12 @@ through `asset_version()` too rather than a bare path.
   paper that got scraped multiple times as preprint+journal+abstract
   (keeps the published version over a preprint, carrying the group's
   highest citation count), dropping zero-citation entries
-  (usually stray conference posters), and a small `VENUE_OVERRIDES` list
+  (usually stray conference posters), dropping conference abstracts
+  (`is_poster`: venue says "abstract", title starts with "Abstract" or
+  ends in a poster number, or the link has `_Supplement/` - AACR prints
+  meeting abstracts as Supplement issues of *Cancer Research* /
+  *Clinical Cancer Research*, so the venue alone looks like a real
+  journal paper; five slipped through that way before), and a small `VENUE_OVERRIDES` list
   patching a handful of publications where Scholar's scrape drops the
   venue entirely (cross-checked against the user's resume PDF). Extend
   that list rather than hand-editing `publications.json` if you find more
@@ -159,7 +176,26 @@ through `asset_version()` too rather than a bare path.
 - Author-role badges ("First author" / "Senior author") are derived in
   `build.author_role` and deliberately only trust position 1 or the last
   slot of an *untruncated* list - the truncation step may swap the owner
-  into the last visible slot of a long list.
+  into the last visible slot of a long list. `build.author_position`
+  applies the same rule to any position (the last visible slot of a
+  truncated list returns None); the Resume tab's "Selected Publications"
+  uses it to show every paper where the user is **1st or 2nd author**
+  (the user's explicit choice - all of them, no count cap), with a link
+  to the full list.
+- **Patents are not papers.** Scholar mixes them in; `build.split_patents`
+  pulls out anything linking to Google Patents, and both the PDF and the
+  Publications page show them in a small, unnumbered "Patent(s)" section
+  after the papers (number derived from the link, e.g. "U.S. Patent
+  Application US 2025/0378559 A1"). The user asked for it to be separate
+  but low-key - there's only one, so don't give it prominence. Patents
+  are also excluded from highlights, the Resume tab and publications.bib.
+- **Scholar's raw strings are normalized only at display time**
+  (`format_authors`, `format_venue` filters in `build.py`), not in
+  `publications.json`: author lists come in two shapes ("A and B and C"
+  vs "A, B, et al.") and occasionally carry degree prefixes ("PhD
+  Javad..."); venues are inconsistently cased ("Nature communications",
+  "BioRxiv"). Use these filters in any new template that shows
+  publications, on both the site and the PDF.
 - `scripts/build.py`'s `get_highlighted()` picks the homepage's
   "Highlighted Publications" by citation count (impact), not recency -
   intentional, because a pure recency sort was burying the two flagship
@@ -171,6 +207,32 @@ through `asset_version()` too rather than a bare path.
   that centers it and tightens spacing. If you add another nav item, check
   phone width (~400px) again rather than assuming the existing wrap rules
   scale indefinitely.
+
+## PDF resume (resume_pdf.html)
+
+Styled deliberately; the user iterated on these points, so keep them
+unless asked:
+
+- US Letter, 3 pages. Section order: Summary (`profile.bio`),
+  Experience, Education, Skills, Publications, Patent. Dates are
+  right-aligned and abbreviated via the `short_period` filter
+  ("Jul 2024 – Present").
+- **Header is one line** under name + title: email | location | website |
+  LinkedIn | Google Scholar. The user found more than that cluttered -
+  the phone note, GitHub and ORCID were removed from the PDF on purpose
+  (they're still in `profile.yaml` and on the website).
+- **Publications: bold paper titles, plain author lists. Never bold the
+  user's own name** - they said it looked "all over the place" and
+  pretentious. (A navy-title/bold-name variant was tried and rejected
+  too.) Numbered, reverse-chronological, with a one-line "Full record
+  on Google Scholar." note and nothing more (an earlier note explaining
+  the ordering and "et al." was removed at the user's request).
+- Page breaks: bullets and publication entries never split across pages,
+  and a job heading stays with its first bullet. Vertical spacing
+  (page margins, h2 margins, gap between jobs) was tightened just enough
+  that page 1 ends on a complete job instead of leaving a gap. After any
+  content change, render the pages (e.g. `pypdfium2` to PNG) and check
+  the bottom of each page for large gaps before calling it done.
 
 ## Research Highlights page (research.html)
 
@@ -254,8 +316,9 @@ domains actually proxied through Cloudflare's DNS - not the case here).
 - **No grants/funding-won section, ever.** The user contributed to writing
   grant proposals but has never been PI/co-PI. A "grants" line would
   overstate their role. This was an explicit, firm instruction.
-- **Phone number is intentionally not published.** Use `profile.phone_note`
-  ("Phone number available upon request") instead of a real number.
+- **Phone number is intentionally not published.** Never add a real
+  number. `profile.phone_note` ("Phone number available upon request")
+  exists, but the PDF header deliberately omits even that.
 - Verified-correct identity links (don't re-search or second-guess without
   a reason): email `javad.noorbakhsh@gmail.com` (note: easy to typo as
   "noorbaksh", missing the h), LinkedIn `linkedin.com/in/javadnoorbakhsh`,
