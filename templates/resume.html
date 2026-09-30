@@ -44,17 +44,18 @@
   {% endfor %}
 </section>
 
-{% if publications %}
+{% if lead_author_papers %}
 <section>
   <h2>Selected Publications</h2>
   <ul class="pub-list">
-    {% for pub in publications[:10] %}
+    {% for pub in lead_author_papers %}
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">{{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
     </li>
     {% endfor %}
   </ul>
+  <a class="see-all" href="publications.html">See all publications &rarr;</a>
 </section>
 {% endif %}
 {% endblock %}

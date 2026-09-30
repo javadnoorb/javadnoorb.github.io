@@ -70,6 +70,19 @@ def test_author_role(authors, role):
     assert build.author_role(authors, OWNER) == role
 
 
+@pytest.mark.parametrize("authors, position", [
+    ("Javad Noorbakhsh and Jeffrey H Chuang", 1),
+    ("Lin Chen, Javad Noorbakhsh, Rhys M Adams, B Jones, C Wu, et al.", 2),
+    ("A Smith and B Jones and Javad Noorbakhsh", 3),
+    # Last visible slot of a truncated list may be the swapped-in owner.
+    ("A Smith, B Jones, C Wu, D Lee, Javad Noorbakhsh, et al.", None),
+    ("A Smith and B Jones", None),
+    (None, None),
+])
+def test_author_position(authors, position):
+    assert build.author_position(authors, OWNER) == position
+
+
 def test_group_by_year_puts_undated_last():
     pubs = [{"year": 2019}, {"year": None}, {"year": 2024}, {"year": 2019}]
     groups = build.group_by_year(pubs)

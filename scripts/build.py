@@ -138,6 +138,21 @@ def author_role(authors, owner):
     return None
 
 
+def author_position(authors, owner):
+    """The owner's 1-based position in the author list, or None when it
+    isn't trustworthy. In a truncated list the last visible slot may hold
+    the owner swapped in by the fetch step, so it's not a real position."""
+    names = author_names(authors)
+    truncated = is_truncated(names)
+    shown = names[:-1] if truncated else names
+    for i, name in enumerate(shown):
+        if _same_person(name, owner):
+            if truncated and i == len(shown) - 1:
+                return None
+            return i + 1
+    return None
+
+
 def format_venue(venue):
     if not venue or venue == "None":
         return ""
@@ -244,6 +259,7 @@ def enrich(publications, owner):
     for pub in publications:
         pub["doi"] = pub_doi(pub)
         pub["role"] = author_role(pub.get("authors"), owner)
+        pub["position"] = author_position(pub.get("authors"), owner)
         pub["bibtex_key"] = bibtex_key(pub, used)
         pub["bibtex"] = bibtex_entry(pub, pub["bibtex_key"])
     return publications
@@ -320,7 +336,9 @@ def render_site(env, profile, publications, stats):
     enrich(papers, profile.get("name"))
     context = dict(
         profile=profile, publications=papers, patents=patents, stats=stats,
-        highlighted=get_highlighted(papers), year_groups=group_by_year(papers),
+        highlighted=get_highlighted(papers),
+        lead_author_papers=[p for p in papers if p["position"] in (1, 2)],
+        year_groups=group_by_year(papers),
         initials=get_initials(profile.get("name")), site_url=site_url(profile),
         og_image=OG_IMAGE, person_jsonld=person_jsonld(profile),
     )
