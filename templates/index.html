@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import role_badge, citation_badge, scholar_stats %}
+{% from "_macros.html" import pub_meta, role_badge, citation_badge, scholar_stats %}
 {% block content %}
 <section class="hero">
   <img class="avatar" width="96" height="96" src="static/images/profile.webp?v={{ asset_version('static/images/profile.webp') }}" alt="{{ profile.name }}">
@@ -40,7 +40,7 @@
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
-        {{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}
+        {{ pub_meta(pub) }}
         {{- citation_badge(pub) }}{{ role_badge(pub) }}
       </span>
     </li>

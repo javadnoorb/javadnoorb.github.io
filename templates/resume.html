@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_macros.html" import pub_meta %}
 {% block title %}Resume — {{ profile.name }}{% endblock %}
 {% block description %}Resume of {{ profile.name }}, {{ profile.title }}: experience, education, skills, and selected publications.{% endblock %}
 {% block content %}
@@ -51,7 +52,7 @@
     {% for pub in lead_author_papers %}
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
-      <span class="pub-meta">{{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
+      <span class="pub-meta">{{ pub_meta(pub) }}</span>
     </li>
     {% endfor %}
   </ul>

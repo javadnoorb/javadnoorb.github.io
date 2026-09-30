@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import role_badge, citation_badge, scholar_stats %}
+{% from "_macros.html" import pub_meta, role_badge, citation_badge, scholar_stats %}
 {% block title %}Publications — {{ profile.name }}{% endblock %}
 {% block description %}Publications by {{ profile.name }} ({{ publications | length }} papers), kept in sync with Google Scholar, with DOIs and BibTeX.{% endblock %}
 {% block content %}
@@ -15,7 +15,7 @@
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
-        {{ pub.authors | format_authors }}{% set venue = pub.venue | format_venue %}{% if venue %} &middot; {{ venue }}{% endif %}
+        {{ pub_meta(pub, year=false) }}
         {{- citation_badge(pub) }}{{ role_badge(pub) }}
       </span>
       <span class="pub-actions">

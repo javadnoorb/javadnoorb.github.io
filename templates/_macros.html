@@ -3,8 +3,14 @@
 {%- elif pub.role == "senior" %}<span class="role-badge">Senior author</span>{% endif -%}
 {%- endmacro %}
 
+{# "Authors · Venue · Year", skipping any part Scholar left blank so a
+   missing venue never leaves a dangling separator. #}
+{% macro pub_meta(pub, year=true) -%}
+{{ [pub.authors | format_authors, pub.venue | format_venue, pub.year if year and pub.year else ""] | select | join(" &middot; ") }}
+{%- endmacro %}
+
 {% macro citation_badge(pub) -%}
-{%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif -%}
+{%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citation{{ "s" if pub.citations != 1 }}</span>{% endif -%}
 {%- endmacro %}
 
 {% macro scholar_stats(stats, profile) -%}

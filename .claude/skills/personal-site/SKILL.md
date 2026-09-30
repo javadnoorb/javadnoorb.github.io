@@ -195,7 +195,11 @@ through `asset_version()` too rather than a bare path.
   vs "A, B, et al.") and occasionally carry degree prefixes ("PhD
   Javad..."); venues are inconsistently cased ("Nature communications",
   "BioRxiv"). Use these filters in any new template that shows
-  publications, on both the site and the PDF.
+  publications, on both the site and the PDF. On the site, prefer the
+  `pub_meta` macro in `_macros.html` ("Authors · Venue · Year"), which
+  skips blank parts so a venue-less paper gets no dangling "·".
+  `tests/test_build.py` also builds the whole site and fails on any
+  relative link/asset that doesn't exist in `_site/`.
 - `scripts/build.py`'s `get_highlighted()` picks the homepage's
   "Highlighted Publications" by citation count (impact), not recency -
   intentional, because a pure recency sort was burying the two flagship
