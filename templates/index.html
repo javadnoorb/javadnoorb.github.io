@@ -1,7 +1,8 @@
 {% extends "base.html" %}
+{% from "_macros.html" import role_badge, citation_badge, scholar_stats %}
 {% block content %}
 <section class="hero">
-  <img class="avatar" src="static/images/profile.webp?v={{ asset_version('static/images/profile.webp') }}" alt="{{ profile.name }}">
+  <img class="avatar" width="96" height="96" src="static/images/profile.webp?v={{ asset_version('static/images/profile.webp') }}" alt="{{ profile.name }}">
   <p class="kicker">Hi, I'm</p>
   <h1>{{ profile.name }}</h1>
   <p class="subtitle">{{ profile.title }}</p>
@@ -13,6 +14,7 @@
     {% endfor %}
     <li><a href="mailto:{{ profile.email }}">Email</a></li>
   </ul>
+  {{ scholar_stats(stats, profile) }}
   {% if profile.phone_note %}<p class="phone-note">{{ profile.phone_note }}</p>{% endif %}
 </section>
 
@@ -39,7 +41,7 @@
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
         {{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}
-        {%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif %}
+        {{- citation_badge(pub) }}{{ role_badge(pub) }}
       </span>
     </li>
     {% endfor %}

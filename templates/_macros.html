@@ -1,0 +1,19 @@
+{% macro role_badge(pub) -%}
+{%- if pub.role == "first" %}<span class="role-badge">First author</span>
+{%- elif pub.role == "senior" %}<span class="role-badge">Senior author</span>{% endif -%}
+{%- endmacro %}
+
+{% macro citation_badge(pub) -%}
+{%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif -%}
+{%- endmacro %}
+
+{% macro scholar_stats(stats, profile) -%}
+{%- if stats.citations %}
+<p class="scholar-stats">
+  <span><strong>{{ "{:,}".format(stats.citations) }}</strong> citations</span>
+  {%- if stats.h_index %}<span><strong>{{ stats.h_index }}</strong> h-index</span>{% endif %}
+  {%- if stats.i10_index %}<span><strong>{{ stats.i10_index }}</strong> i10-index</span>{% endif %}
+  {%- if profile.social.scholar %}<a href="{{ profile.social.scholar }}" target="_blank" rel="noopener">Google Scholar &#8599;</a>{% endif %}
+</p>
+{%- endif %}
+{%- endmacro %}

@@ -1,9 +1,13 @@
 {% extends "base.html" %}
+{% from "_macros.html" import role_badge, citation_badge, scholar_stats %}
 {% block title %}Publications — {{ profile.name }}{% endblock %}
+{% block description %}Publications by {{ profile.name }} ({{ publications | length }} papers), kept in sync with Google Scholar, with DOIs and BibTeX.{% endblock %}
 {% block content %}
 <h1>Publications</h1>
 {% if publications %}
-{% for year, group in publications|groupby('year')|reverse %}
+{{ scholar_stats(stats, profile) }}
+<p class="pub-tools"><a href="publications.bib" download>Download all as BibTeX (.bib)</a></p>
+{% for year, group in year_groups %}
 <section class="pub-year-group">
   <h2 class="year-heading">{{ year }}</h2>
   <ul class="pub-list full">
@@ -11,8 +15,15 @@
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
-        {{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}
-        {%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif %}
+        {{ pub.authors | format_authors }}{% set venue = pub.venue | format_venue %}{% if venue %} &middot; {{ venue }}{% endif %}
+        {{- citation_badge(pub) }}{{ role_badge(pub) }}
+      </span>
+      <span class="pub-actions">
+        {%- if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI: {{ pub.doi }}</a>{% endif %}
+        <details class="bibtex">
+          <summary>BibTeX</summary>
+          <pre><code>{{ pub.bibtex | e }}</code></pre>
+        </details>
       </span>
     </li>
     {% endfor %}

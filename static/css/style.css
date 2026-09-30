@@ -112,6 +112,37 @@ main {
 
 .site-header nav a:hover { color: var(--accent); }
 
+.site-header nav a[aria-current="page"] {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 20;
+  padding: 0.5rem 0.9rem;
+  border-radius: 8px;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus { top: 0.75rem; }
+
+main:focus { outline: none; }
+
+a:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 .site-header nav a.btn-nav {
   color: var(--accent-contrast);
   background: var(--accent);
@@ -438,6 +469,74 @@ h2 {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
+}
+
+.role-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.scholar-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 1.1rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.scholar-stats strong { color: var(--text); font-weight: 600; }
+
+.scholar-stats a, .pub-tools a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.scholar-stats a:hover, .pub-tools a:hover { text-decoration: underline; }
+
+.pub-tools { margin: 0.75rem 0 0; font-size: 0.88rem; }
+
+.pub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 1rem;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+}
+
+.pub-list .pub-actions a {
+  color: var(--accent);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.bibtex[open] { flex-basis: 100%; }
+
+.bibtex summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.bibtex pre {
+  margin: 0.5rem 0 0;
+  padding: 0.7rem 0.8rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 .see-all {
