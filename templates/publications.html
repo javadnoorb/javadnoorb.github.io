@@ -11,7 +11,7 @@
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
-        {{ pub.authors | format_authors(profile.name) }} &middot; {{ pub.venue | format_venue }}
+        {{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}
         {%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citations</span>{% endif %}
       </span>
     </li>
@@ -26,7 +26,7 @@
     {% for pat in patents %}
     <li>
       <a href="{{ pat.link }}" target="_blank" rel="noopener">{{ pat.title }}</a>
-      <span class="pub-meta">{{ pat.authors | format_authors(profile.name) }} &middot; U.S. Patent Application {{ pat.link | patent_number }}{% if pat.year %}, {{ pat.year }}{% endif %}</span>
+      <span class="pub-meta">{{ pat.authors | format_authors }} &middot; U.S. Patent Application {{ pat.link | patent_number }}{% if pat.year %}, {{ pat.year }}{% endif %}</span>
     </li>
     {% endfor %}
   </ul>

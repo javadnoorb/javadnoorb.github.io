@@ -10,7 +10,6 @@ from pathlib import Path
 
 import yaml
 from jinja2 import Environment, FileSystemLoader
-from markupsafe import Markup, escape
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -76,21 +75,15 @@ def short_period(period):
     return text.replace(" - ", " – ")
 
 
-def format_authors(authors, owner_name):
+def format_authors(authors):
     """Normalize Scholar's two author-list shapes ('A and B and C' vs
-    'A, B, C, et al.') into one comma-separated form, strip stray degree
-    prefixes, and bold the site owner's name."""
+    'A, B, C, et al.') into one comma-separated form and strip stray degree
+    prefixes. The owner's name is deliberately not emphasized: bolding it
+    in every entry read as showy and competed with the paper titles."""
     if not authors:
-        return Markup("")
+        return ""
     names = [n.strip() for n in re.split(r",\s*| and ", authors) if n.strip()]
-    out = []
-    for name in names:
-        name = DEGREE_PREFIX.sub("", name)
-        if owner_name and name == owner_name:
-            out.append(Markup("<strong>{}</strong>").format(name))
-        else:
-            out.append(escape(name))
-    return Markup(", ").join(out)
+    return ", ".join(DEGREE_PREFIX.sub("", name) for name in names)
 
 
 def format_venue(venue):

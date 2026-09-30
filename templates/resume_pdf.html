@@ -52,9 +52,8 @@
   ol.pubs { margin: 0; padding-left: 20pt; font-size: 9.3pt; }
   ol.pubs li { margin-bottom: 4pt; page-break-inside: avoid; padding-left: 2pt; }
   ol.pubs li::marker { color: #777; }
-  .pub-title { font-weight: normal; color: #1f4e79; }
-  .pub-authors { color: #333; }
-  .pub-authors strong { color: #1f2328; }
+  .pub-title { font-weight: bold; color: #1f2328; }
+  .pub-authors { color: #555; }
   .pub-venue { font-style: italic; color: #444; }
   ul.patents { list-style: none; margin: 0; padding-left: 0; font-size: 9.3pt; }
 </style>
@@ -116,7 +115,7 @@
     {% for pub in publications %}
     <li>
       {% if pub.link %}<a class="pub-title" href="{{ pub.link }}">{{ pub.title | trim(".") }}</a>{% else %}<span class="pub-title">{{ pub.title | trim(".") }}</span>{% endif %}.
-      <span class="pub-authors">{{ pub.authors | format_authors(profile.name) }}</span>
+      <span class="pub-authors">{{ pub.authors | format_authors }}</span>
       {%- if not pub.authors or not pub.authors.endswith(".") %}.{% endif %}
       {%- set venue = pub.venue | format_venue %}
       {% if venue %}<span class="pub-venue">{{ venue }}</span>{% if pub.year %}, {% endif %}{% endif %}{% if pub.year %}{{ pub.year }}{% endif %}.
@@ -131,7 +130,7 @@
     {% for pat in patents %}
     <li>
       {% if pat.link %}<a class="pub-title" href="{{ pat.link }}">{{ pat.title | trim(".") }}</a>{% else %}<span class="pub-title">{{ pat.title | trim(".") }}</span>{% endif %}.
-      <span class="pub-authors">{{ pat.authors | format_authors(profile.name) }}</span>
+      <span class="pub-authors">{{ pat.authors | format_authors }}</span>
       {%- if not pat.authors or not pat.authors.endswith(".") %}.{% endif %}
       <span class="pub-venue">U.S. Patent Application {{ pat.link | patent_number }}</span>{% if pat.year %}, {{ pat.year }}{% endif %}.
     </li>

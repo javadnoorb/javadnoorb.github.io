@@ -50,7 +50,7 @@
     {% for pub in publications[:10] %}
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
-      <span class="pub-meta">{{ pub.authors | format_authors(profile.name) }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
+      <span class="pub-meta">{{ pub.authors | format_authors }} &middot; {{ pub.venue | format_venue }}{% if pub.year %} &middot; {{ pub.year }}{% endif %}</span>
     </li>
     {% endfor %}
   </ul>
