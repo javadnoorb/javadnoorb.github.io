@@ -161,9 +161,10 @@ experience:
     period: "April 2022 - February 2024"
     bullets:
       - "Led ML-driven multi-omics analysis and defined the scope and milestones of a pharma research collaboration that secured external funding."
-      - "Established high-throughput assay screening pipelines, identifying novel small-molecule hits for drug development."
-      - "Deployed graph neural networks (GNNs) for molecular design, accelerating target discovery and experimental drug candidate validation."
-      - "Architected attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
+      - "Prioritized novel compounds by integrating large public cell-based screening data with in-house assays and chemical screens, and fine-tuning a pretrained GNN to predict chemical properties."
+      - "Analyzed expression and cancer dependency data to identify genes and pathways of interest in compound-treated cell lines, and built ferroptosis-sensitivity models that transferred to cancer patient and kidney disease data."
+      - "Built attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
+      - "Analyzed MALDI and mass spectrometry data to identify metabolic changes caused by drug treatment and genetic variants in cell and mouse models."
   - title: "Lead Scientist"
     organization: "Broad Institute of MIT and Harvard, Cambridge, MA"
     period: "January 2020 - April 2022"
