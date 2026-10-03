@@ -7,9 +7,10 @@ location: "Boston, MA"
 # and sitemap.xml.
 site_url: "https://javadnoorb.github.io/"
 bio: >
-  Computational biologist working on AI/ML methods for cancer spatial omics analysis
-  and computational pathology, with a research background spanning cancer
-  genomics and systems biology. Leads technical teams and cross-functional
+  ML scientist with ~11 years of post-PhD experience building AI/ML methods for
+  cancer spatial omics, computational pathology, and multi-omics drug discovery,
+  across academia, a biotech startup, and the Broad Institute. Background in cancer
+  genomics and systems biology; has led small technical teams and cross-functional
   research collaborations.
 
 # Google Scholar user ID, found in the URL of your profile:
@@ -157,7 +158,7 @@ experience:
     organization: "Kojin Therapeutics, Boston, MA"
     period: "April 2022 - February 2024"
     bullets:
-      - "Lead ML-driven multi-omics analysis, directly enabling fundraising and a pharmaceutical partnership."
+      - "Led ML-driven multi-omics analysis, directly enabling fundraising and a pharmaceutical partnership."
       - "Established high-throughput assay screening pipelines, identifying novel small-molecule hits for drug development."
       - "Deployed graph neural networks (GNNs) for molecular design, accelerating target discovery and experimental drug candidate validation."
       - "Architected attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
@@ -165,7 +166,7 @@ experience:
     organization: "Broad Institute of MIT and Harvard, Cambridge, MA"
     period: "January 2020 - April 2022"
     bullets:
-      - "Orchestrated the Cancer Dependency Map omics team, managing end-to-end NGS pipelines to deliver quarterly releases across public, institutional, and commercial portals."
+      - "Led a team of 2-4 running the Cancer Dependency Map omics effort, managing end-to-end NGS pipelines that delivered quarterly releases covering 1,000+ cell lines across public, institutional, and commercial portals."
       - "Standardized and automated production pipelines across major projects, achieving reproducible, timely data distribution."
       - "Directed ML initiatives aligning patient tumor NGS data with cell lines, boosting alignment accuracy and tool reliability."
   - title: "Research Scientist"
