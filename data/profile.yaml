@@ -160,7 +160,7 @@ experience:
     organization: "Kojin Therapeutics, Boston, MA"
     period: "April 2022 - February 2024"
     bullets:
-      - "Led ML-driven multi-omics analysis, directly enabling fundraising and a pharmaceutical partnership."
+      - "Led ML-driven multi-omics analysis and defined the scope and milestones of a pharma-funded research collaboration."
       - "Established high-throughput assay screening pipelines, identifying novel small-molecule hits for drug development."
       - "Deployed graph neural networks (GNNs) for molecular design, accelerating target discovery and experimental drug candidate validation."
       - "Architected attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
