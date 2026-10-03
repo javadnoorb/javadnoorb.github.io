@@ -7,6 +7,7 @@ import hashlib
 import json
 import re
 import shutil
+from datetime import date
 from functools import lru_cache
 from pathlib import Path
 
@@ -25,6 +26,11 @@ OG_IMAGE = "static/images/og-profile.png"
 
 def load_data():
     profile = yaml.safe_load((DATA / "profile.yaml").read_text())
+    # "{years}" in the bio is the years since career_start_year, so the
+    # number never goes stale.
+    if profile.get("bio") and profile.get("career_start_year"):
+        years = date.today().year - int(profile["career_start_year"])
+        profile["bio"] = profile["bio"].replace("{years}", str(years))
     pubs_path = DATA / "publications.json"
     publications = json.loads(pubs_path.read_text()) if pubs_path.exists() else []
     publications.sort(key=lambda p: p.get("year") or 0, reverse=True)

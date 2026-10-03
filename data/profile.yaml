@@ -6,12 +6,14 @@ location: "Boston, MA"
 # Public address of the site; used for canonical links, social previews
 # and sitemap.xml.
 site_url: "https://javadnoorb.github.io/"
+# "{years}" is filled in at build time from career_start_year.
+career_start_year: 2015
 bio: >
-  ML scientist with 11 years of experience applying AI to cancer research, from
-  spatial omics and computational pathology to multi-omics drug discovery. Worked
-  across academia, a biotech startup, and the Broad Institute, with a foundation in
-  cancer genomics and systems biology. Led small technical teams and
-  cross-functional collaborations.
+  AI/ML scientist with {years} years of experience in cancer research, from
+  spatial omics and computational pathology to drug discovery. Worked at nonprofit
+  research institutes and a biotech startup, with a foundation in cancer genomics
+  and systems biology. Led small technical teams and cross-functional
+  collaborations.
 
 # Google Scholar user ID, found in the URL of your profile:
 # https://scholar.google.com/citations?user=THIS_PART
