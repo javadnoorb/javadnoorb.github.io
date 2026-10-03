@@ -7,7 +7,7 @@ location: "Boston, MA"
 # and sitemap.xml.
 site_url: "https://javadnoorb.github.io/"
 bio: >
-  Computational biologist working on AI methods for cancer spatial omics
+  Computational biologist working on AI/ML methods for cancer spatial omics analysis
   and computational pathology, with a research background spanning cancer
   genomics and systems biology. Leads technical teams and cross-functional
   research collaborations.
@@ -149,15 +149,15 @@ experience:
     bullets:
       - "Applied pathology foundation models to accurately identify and classify blood cell types within Giemsa-stained tissue slides."
       - "Engineered ML algorithms to cross-evaluate and compare spatial omics profiles between human and mouse models."
-      - "Benchmarked the impact of H&E staining variations to optimize foundation model diagnostic performance."
+      - "Benchmarked the impact of H&E staining variations to optimize foundation model performance."
       - "Evaluated spatial transcriptomics data from cancer patient cohorts to quantify therapeutic effects on microenvironment composition."
       - "Formulated mathematical models of tumor evolution and subclonal dynamics, enhancing precision in treatment strategy selection."
-      - "Co-authored peer-reviewed reviews and competitive grant proposals advancing AI applications in spatial omics."
+      - "Co-authored peer-reviewed articles and competitive grant proposals advancing AI/ML applications in spatial omics."
   - title: "Principal Scientist"
     organization: "Kojin Therapeutics, Boston, MA"
     period: "April 2022 - February 2024"
     bullets:
-      - "Spearheaded AI-driven multi-omics analysis, directly enabling fundraising and a pharmaceutical partnership."
+      - "Lead ML-driven multi-omics analysis, directly enabling fundraising and a pharmaceutical partnership."
       - "Established high-throughput assay screening pipelines, identifying novel small-molecule hits for drug development."
       - "Deployed graph neural networks (GNNs) for molecular design, accelerating target discovery and experimental drug candidate validation."
       - "Architected attention-based multi-instance learning pipelines on histology images, uncovering potential drug-sensitive cancer subtypes."
@@ -165,7 +165,7 @@ experience:
     organization: "Broad Institute of MIT and Harvard, Cambridge, MA"
     period: "January 2020 - April 2022"
     bullets:
-      - "Orchestrated the Cancer Dependency Map omics team, managing end-to-end RNAseq, WES, and WGS pipelines to deliver quarterly releases across public, institutional, and commercial portals."
+      - "Orchestrated the Cancer Dependency Map omics team, managing end-to-end NGS pipelines to deliver quarterly releases across public, institutional, and commercial portals."
       - "Standardized and automated production pipelines across major projects, achieving reproducible, timely data distribution."
       - "Directed ML initiatives aligning patient tumor NGS data with cell lines, boosting alignment accuracy and tool reliability."
   - title: "Research Scientist"
