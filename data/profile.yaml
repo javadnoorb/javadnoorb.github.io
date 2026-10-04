@@ -163,7 +163,7 @@ experience:
       - "Led ML-driven multi-omics analysis and defined the scope and milestones of a pharma research collaboration that secured external funding."
       - "Prioritized novel compounds by integrating large public cell-based screening data with in-house assays and chemical screens, and fine-tuning a pretrained GNN to predict chemical properties."
       - "Analyzed expression and cancer dependency data to identify genes and pathways in compound-treated cell lines; built ferroptosis-sensitivity models transferred to cancer patient and kidney disease data."
-      - "Built attention-based multi-instance learning on histology images, uncovering potential drug-sensitive cancer subtypes."
+      - "Built attention-based multi-instance learning on histology images, uncovering potential drug-sensitive subtypes."
       - "Analyzed MALDI and mass spectrometry data to identify metabolic changes caused by drug treatment and genetic variants in cell and mouse models."
   - title: "Lead Scientist"
     organization: "Broad Institute of MIT and Harvard, Cambridge, MA"
