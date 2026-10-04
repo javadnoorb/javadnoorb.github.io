@@ -224,7 +224,15 @@ through `asset_version()` too rather than a bare path.
   phone width (~400px) again rather than assuming the existing wrap rules
   scale indefinitely.
 
-## PDF resume (resume_pdf.html)
+## PDF CV (resume_pdf.html)
+
+The site produces one PDF. It is a CV (all publications, ~3 pages) and is
+labeled "CV" everywhere the user sees it: the nav button, the Resume tab's
+"Download full CV (PDF)" link and the PDF footer. The file is still named
+`resume.pdf` on purpose, so existing external links keep working; don't
+rename it unprompted. The Resume tab is a separate web page with selected
+(1st/2nd author) publications only. A shorter 2-page resume PDF for
+industry roles was discussed but not built; ask before adding one.
 
 Styled deliberately; the user iterated on these points, so keep them
 unless asked:
