@@ -169,7 +169,7 @@ experience:
     organization: "Broad Institute of MIT and Harvard, Cambridge, MA"
     period: "January 2020 - April 2022"
     bullets:
-      - "Managed a team of two and supervised others, running the Cancer Dependency Map omics effort and providing user support."
+      - "Managed a team of two and supervised others on the Cancer Dependency Map omics effort and user support."
       - "Delivered quarterly releases for ~2,000 cell lines under a one-year roadmap, supervised the addition of several new data types, and consolidated two release processes into one regression-tested pipeline in collaboration with the software engineering group, sharply reducing release delays."
       - "Maintained an ML method that aligns tumor and cell line expression profiles, supervising its Python rewrite and integrating it into the regular data release."
       - "Supervised collaborative analysis projects for Broad affiliate groups, including cancer dependency analyses, structural variant calling, and germline variant calling."
