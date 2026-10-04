@@ -187,9 +187,13 @@ experience:
       - "Developed mathematical models of clonal evolution, showing that measurement noise limits what tumor allele frequencies can reveal about selection, and tracking subclone dynamics under chemotherapy in breast cancer xenografts."
 
 skills:
-  - category: "Quantitative Analysis"
-    skills: ["Machine Learning", "Deep Learning", "Bioinformatics", "Statistics", "Image Processing", "Mathematical Modeling", "Cheminformatics"]
-  - category: "Programming"
-    skills: ["Python", "TensorFlow/PyTorch", "Scikit-learn", "R", "Bash", "HPC", "Cloud Computing", "Containerization", "Kubernetes", "Version Control", "C++", "MATLAB"]
+  - category: "AI/ML"
+    skills: ["Deep Learning", "Foundation Models", "Graph Neural Networks", "Multiple-Instance Learning", "Computer Vision"]
+  - category: "Omics & Imaging"
+    skills: ["Bioinformatics", "Spatial Transcriptomics", "Multiplex Imaging", "RNA-seq/NGS", "Variant Calling", "Mass Spectrometry (MALDI)", "Histopathology"]
+  - category: "Quantitative"
+    skills: ["Statistics", "Survival Analysis", "Mathematical Modeling", "Cheminformatics"]
+  - category: "Programming & Workflows"
+    skills: ["Python", "PyTorch/TensorFlow", "scikit-learn", "R", "Bash", "Nextflow", "Snakemake", "Containers (Docker, Singularity)", "Kubernetes", "HPC", "Cloud Computing"]
   - category: "Leadership"
-    skills: ["People Management", "Mentorship", "Team Collaboration"]
+    skills: ["Team Management & Hiring", "Mentorship", "Roadmap Planning", "Cross-functional Collaboration"]
