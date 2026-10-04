@@ -352,8 +352,12 @@ domains actually proxied through Cloudflare's DNS - not the case here).
   names, no "warhead", no funding amounts or how many people the money paid
   for. Describe the work generically.
 - **Verified facts usable in bullets** (given by the user, not invented):
-  Broad - led a team of 2-3, quarterly Cancer Dependency Map releases
-  covering 1,000+ cell lines. Kojin - scoped a pharma research
+  Broad - managed a team of two (hired a replacement when one left) and
+  supervised others informally; quarterly Cancer Dependency Map releases
+  covering ~2,000 cell lines; the Celligner method is not recognizable to
+  readers, so describe it ("an ML method that aligns tumor and cell line
+  expression profiles") rather than naming it, and don't spell out
+  internal project names like CCLF. Kojin - scoped a pharma research
   collaboration that brought in external funding (don't make it sound like
   it saved the company). JAX - the D-BIOMARK denosumab trial and the GAINS
   project (aged mice with spontaneous lung tumors) are public and fine to
