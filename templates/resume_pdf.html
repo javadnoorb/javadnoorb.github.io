@@ -34,6 +34,7 @@
 
   .edu { margin-bottom: 3pt; }
   .edu .where { color: #444; }
+  .edu-details { font-size: 9pt; color: #555; }
 
   .job { margin-bottom: 6pt; }
   .job .row, .job-org { page-break-after: avoid; }
@@ -94,9 +95,12 @@
 
   <h2>Education</h2>
   {% for edu in profile.education %}
-  <div class="edu row">
-    <span><strong>{{ edu.degree }}</strong> <span class="where">— {{ edu.institution }}</span></span>
-    <span class="when">{{ edu.period | short_period }}</span>
+  <div class="edu">
+    <div class="row">
+      <span><strong>{{ edu.degree }}</strong> <span class="where">— {{ edu.institution }}</span></span>
+      <span class="when">{{ edu.period | short_period }}</span>
+    </div>
+    {% if edu.details %}<div class="edu-details">{{ edu.details }}</div>{% endif %}
   </div>
   {% endfor %}
 

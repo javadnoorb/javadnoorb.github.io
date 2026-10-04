@@ -9,7 +9,7 @@
   <h2>Education</h2>
   <ul class="timeline">
     {% for edu in profile.education %}
-    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} <span class="pub-meta">{{ edu.period }}</span></li>
+    <li><strong>{{ edu.degree }}</strong> — {{ edu.institution }} <span class="pub-meta">{{ edu.period }}</span>{% if edu.details %}<br><span class="pub-meta">{{ edu.details }}</span>{% endif %}</li>
     {% endfor %}
   </ul>
 </section>
