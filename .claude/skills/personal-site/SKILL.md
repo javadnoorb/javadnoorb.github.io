@@ -368,10 +368,11 @@ domains actually proxied through Cloudflare's DNS - not the case here).
   expression profiles") rather than naming it, and don't spell out
   internal project names like CCLF. Kojin - scoped a pharma research
   collaboration that brought in external funding (don't make it sound like
-  it saved the company). JAX - the D-BIOMARK denosumab trial and the GAINS
-  project (aged mice with spontaneous lung tumors) are public and fine to
-  name; the user supervises a graduate student on H&E foundation-model
-  work for both.
+  it saved the company). JAX - a denosumab breast cancer clinical trial
+  (D-BIOMARK) and the GAINS project (aged mice with spontaneous lung
+  tumors) are public, but readers don't know the names, so the resume
+  describes them instead of naming them; the user supervises a graduate
+  student on H&E foundation-model work for both.
 - Verified-correct identity links (don't re-search or second-guess without
   a reason): email `javad.noorbakhsh@gmail.com` (note: easy to typo as
   "noorbaksh", missing the h), LinkedIn `linkedin.com/in/javadnoorbakhsh`,
