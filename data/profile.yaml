@@ -177,14 +177,14 @@ experience:
     organization: "Jackson Laboratory for Genomic Medicine, Farmington, CT"
     period: "October 2017 - December 2019"
     bullets:
-      - "Pioneered a cloud-based deep learning framework for tumor state classification across histopathology images, attaining AUCs > 0.9 across 19 cancer types."
-      - "Guided the development and deployment of an image processing framework for 3D organoid segmentation, producing an open-source software package."
+      - "Developed a cloud-based deep learning framework to classify tumor tissue in histopathology images, reaching AUC > 0.9 across 19 cancer types."
+      - "Led development of an open-source image analysis framework for 3D organoid segmentation."
   - title: "Postdoctoral Fellow"
     organization: "Jackson Laboratory for Genomic Medicine, Farmington, CT"
     period: "February 2015 - October 2017"
     bullets:
-      - "Investigated copy number variations and mutation calling dynamics in cancer, identifying key biomarker correlations with patient survival."
-      - "Constructed mathematical models of clonal evolution, improving quantitative assessment of genetic heterogeneity across diverse tumor types."
+      - "Showed that a widely used tumor heterogeneity score depends on the mutation caller and copy number changes and has limited power to predict survival."
+      - "Developed mathematical models of clonal evolution, showing that measurement noise limits what tumor allele frequencies can reveal about selection, and tracking subclone dynamics under chemotherapy in breast cancer xenografts."
 
 skills:
   - category: "Quantitative Analysis"
