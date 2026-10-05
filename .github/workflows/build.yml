@@ -10,6 +10,10 @@ on:
     - cron: "0 6 * * 1" # every Monday 06:00 UTC
   push:
     branches: [master]
+    # Notes and skill files don't affect the built site.
+    paths-ignore:
+      - ".claude/**"
+      - "README.md"
   pull_request:
   workflow_dispatch: {}
 
@@ -49,8 +53,11 @@ jobs:
       - name: Run tests
         run: python -m pytest -q
 
+      # Scholar fetches are slow and sometimes hang, so only the weekly run and
+      # manual runs do them; a normal push builds from the committed
+      # data/publications.json.
       - name: Fetch publications
-        if: github.event_name != 'pull_request'
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         timeout-minutes: 4
         continue-on-error: true
         env:

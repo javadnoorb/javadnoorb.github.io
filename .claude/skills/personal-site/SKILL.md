@@ -47,10 +47,15 @@ _site/                     - build OUTPUT, gitignored. Never committed;
                             (Pages source = "GitHub Actions").
 tests/                     - pytest suite (helpers + render smoke test).
                             Run `python -m pytest` before pushing.
-.github/workflows/build.yml - PRs: tests + full build. master pushes,
-                            weekly (Mon 06:00 UTC) and manual runs: also
-                            fetch publications, commit data/*.json back to
-                            master with "[skip ci]", and deploy _site/.
+.github/workflows/build.yml - PRs: tests + full build. master pushes: tests,
+                            build and deploy from the committed
+                            data/publications.json (no Scholar fetch, so
+                            ~2 min). Weekly (Mon 06:00 UTC) and manual
+                            "Run workflow" runs also fetch publications
+                            (slow, can time out at 4 min), commit
+                            data/*.json back to master with "[skip ci]",
+                            and deploy. Pushes touching only `.claude/**`
+                            or README.md don't trigger a run at all.
 ```
 
 ## Local workflow
