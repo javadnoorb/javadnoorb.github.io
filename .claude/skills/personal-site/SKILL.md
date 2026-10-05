@@ -246,8 +246,8 @@ unless asked:
   right-aligned and abbreviated via the `short_period` filter
   ("Jul 2024 – Present").
 - **Header is one line** under name + title: email | location | website |
-  LinkedIn | Google Scholar. The user found more than that cluttered -
-  the phone note, GitHub and ORCID were removed from the PDF on purpose
+  Google Scholar. The user found more than that cluttered - the phone
+  note, GitHub, ORCID and LinkedIn were removed from the PDF on purpose
   (they're still in `profile.yaml` and on the website).
 - **Publications: bold paper titles, plain author lists. Never bold the
   user's own name** - they said it looked "all over the place" and
