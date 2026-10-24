@@ -250,10 +250,19 @@ h2 {
 }
 
 .focus-card {
+  display: block;
   padding: 1rem 1.1rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.focus-card:hover {
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
 }
 
 .focus-card h3 {

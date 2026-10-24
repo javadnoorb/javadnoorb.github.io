@@ -10,7 +10,7 @@
   <p class="bio">{{ profile.bio }}</p>
   <ul class="social-links">
     {% for platform, url in profile.social.items() if url %}
-    <li><a href="{{ url }}" target="_blank" rel="noopener">{{ platform | capitalize }}</a></li>
+    <li><a href="{{ url }}" target="_blank" rel="noopener">{{ {"github": "GitHub", "linkedin": "LinkedIn", "scholar": "Scholar", "orcid": "ORCID", "twitter": "X"}.get(platform, platform | capitalize) }}</a></li>
     {% endfor %}
   </ul>
   {{ scholar_stats(stats, profile) }}
@@ -21,10 +21,10 @@
   <h2>Research Focus</h2>
   <div class="focus-grid">
     {% for area in profile.research_focus %}
-    <div class="focus-card">
+    <a class="focus-card" href="research.html">
       <h3>{{ area.title }}</h3>
       <p>{{ area.description }}</p>
-    </div>
+    </a>
     {% endfor %}
   </div>
 </section>
