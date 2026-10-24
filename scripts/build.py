@@ -28,9 +28,11 @@ def load_data():
     profile = yaml.safe_load((DATA / "profile.yaml").read_text())
     # "{years}" in the bio is the years since career_start_year, so the
     # number never goes stale.
-    if profile.get("bio") and profile.get("career_start_year"):
+    if profile.get("career_start_year"):
         years = date.today().year - int(profile["career_start_year"])
-        profile["bio"] = profile["bio"].replace("{years}", str(years))
+        for key in ("bio", "homepage_bio"):
+            if profile.get(key):
+                profile[key] = profile[key].replace("{years}", str(years))
     pubs_path = DATA / "publications.json"
     publications = json.loads(pubs_path.read_text()) if pubs_path.exists() else []
     publications.sort(key=lambda p: p.get("year") or 0, reverse=True)
@@ -287,9 +289,27 @@ def group_by_year(publications):
     return result
 
 
-def get_highlighted(publications, count=5):
-    """Favors impact over recency: most-cited papers, shown newest-first
-    among themselves so the selection doesn't read as a fixed leaderboard."""
+def _title_key(title):
+    return re.sub(r"[^a-z0-9]+", " ", (title or "").lower()).strip()
+
+
+def get_highlighted(publications, count=5, picks=None):
+    """The homepage's highlighted papers. When `picks` (title prefixes from
+    profile.yaml's `highlighted_publications`) is set, those papers in that
+    order; a pick that matches nothing is skipped. Otherwise falls back to
+    the most-cited papers, shown newest-first among themselves."""
+    if picks:
+        chosen = []
+        for pick in picks:
+            key = _title_key(pick)
+            match = next((p for p in publications if _title_key(p.get("title")).startswith(key)
+                          and p not in chosen), None)
+            if match:
+                chosen.append(match)
+            else:
+                print(f"Highlighted publication not found: {pick!r}")
+        if chosen:
+            return chosen
     ranked = sorted(publications, key=lambda p: p.get("citations") or 0, reverse=True)
     highlighted = ranked[:count]
     highlighted.sort(key=lambda p: p.get("year") or 0, reverse=True)
@@ -345,7 +365,7 @@ def render_site(env, profile, publications, stats):
     enrich(papers, profile.get("name"))
     context = dict(
         profile=profile, publications=papers, patents=patents, stats=stats,
-        highlighted=get_highlighted(papers),
+        highlighted=get_highlighted(papers, picks=profile.get("highlighted_publications")),
         lead_author_papers=[p for p in papers if p["position"] in (1, 2)],
         year_groups=group_by_year(papers),
         initials=get_initials(profile.get("name")), site_url=site_url(profile),

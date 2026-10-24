@@ -6,6 +6,15 @@ import pytest
 OWNER = "Javad Noorbakhsh"
 
 
+def test_get_highlighted_uses_picks_in_order():
+    pubs = [{"title": "Alpha study", "year": 2020, "citations": 5},
+            {"title": "Beta: a study", "year": 2024, "citations": 1},
+            {"title": "Gamma", "year": 2019, "citations": 900}]
+    assert [p["title"] for p in build.get_highlighted(pubs, picks=["beta a", "ALPHA", "missing"])] == \
+        ["Beta: a study", "Alpha study"]
+    assert build.get_highlighted(pubs, count=1)[0]["title"] == "Gamma"
+
+
 def test_format_authors_bolds_owner_only_when_asked():
     authors = "A Smith, J Noorbakhsh, et al."
     assert build.format_authors(authors) == "A Smith, J Noorbakhsh, et al."

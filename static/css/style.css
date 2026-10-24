@@ -168,15 +168,6 @@ a:focus-visible, summary:focus-visible {
   border: 3px solid var(--surface);
 }
 
-.kicker {
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--accent);
-  margin: 0 0 0.35rem;
-}
-
 .hero h1 {
   margin: 0 0 0.2rem;
   font-size: 2.5rem;
@@ -241,6 +232,12 @@ h2 {
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
+}
+
+.contact-note {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
 .focus-grid {

@@ -13,6 +13,22 @@ bio: >
   research institutes and a biotech startup, with a foundation in cancer genomics
   and systems biology. Led small technical teams and cross-functional
   collaborations.
+# Homepage-only bio, first person. `bio` above stays the PDF CV summary
+# and the search-engine description.
+homepage_bio: >
+  I build pathology foundation models and analyze spatial omics in cancer at
+  The Jackson Laboratory. Before that, I worked on the Cancer Dependency Map at
+  the Broad Institute and on ML-driven drug discovery at a biotech startup,
+  after a PhD in physics. {years} years in cancer research, including leading
+  small technical teams.
+# Shown on the homepage, in this order. Title prefixes, matched against
+# data/publications.json (case and punctuation ignored).
+highlighted_publications:
+  - "Prediction of outcome from spatial protein profiling"
+  - "Emerging AI approaches for cancer spatial omics"
+  - "Bridging the gap between cancer cell line models and tumours"
+  - "Deep learning-based cross-classifications"
+  - "Uncertainties in tumor allele frequencies"
 
 # Google Scholar user ID, found in the URL of your profile:
 # https://scholar.google.com/citations?user=THIS_PART

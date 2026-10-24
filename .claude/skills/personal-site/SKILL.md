@@ -224,10 +224,18 @@ through `asset_version()` too rather than a bare path.
   skips blank parts so a venue-less paper gets no dangling "·".
   `tests/test_build.py` also builds the whole site and fails on any
   relative link/asset that doesn't exist in `_site/`.
-- `scripts/build.py`'s `get_highlighted()` picks the homepage's
-  "Highlighted Publications" by citation count (impact), not recency -
-  intentional, because a pure recency sort was burying the two flagship
-  *Nature* papers behind low-citation recent preprints.
+- The homepage's "Highlighted Publications" are **hand-picked by the
+  user** in `profile.yaml`'s `highlighted_publications` (title prefixes,
+  shown in that order; currently the 2026 TNBC, 2025 GigaScience, 2021
+  BJC, 2020 Nature Comms and 2017 Nature Genetics papers). The old
+  most-cited rule surfaced mostly middle/consortium-author papers, so it's
+  now only a fallback in `get_highlighted()`. A pick that stops matching
+  prints a warning at build time. Change the list only with the user.
+- **Homepage bio is separate**: `homepage_bio` (first person, current
+  work at JAX) is shown on the homepage; `bio` remains the PDF CV summary
+  and the meta/JSON-LD description. Both take the `{years}` placeholder.
+  The "Hi, I'm" kicker was removed; a "Best way to reach me: LinkedIn"
+  line replaces the email as the contact route.
 - **The nav bar has no built-in margin for growth.** It already overflowed
   the viewport on phones once (6 items: Home, Research, Projects,
   Publications, Resume, Download CV), forcing horizontal scroll, before

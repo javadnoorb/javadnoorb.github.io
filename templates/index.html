@@ -3,16 +3,16 @@
 {% block content %}
 <section class="hero">
   <img class="avatar" width="96" height="96" src="static/images/profile.webp?v={{ asset_version('static/images/profile.webp') }}" alt="{{ profile.name }}">
-  <p class="kicker">Hi, I'm</p>
   <h1>{{ profile.name }}</h1>
   <p class="subtitle">{{ profile.title }}</p>
   <p class="location">{{ profile.location }}</p>
-  <p class="bio">{{ profile.bio }}</p>
+  <p class="bio">{{ profile.homepage_bio or profile.bio }}</p>
   <ul class="social-links">
     {% for platform, url in profile.social.items() if url %}
     <li><a href="{{ url }}" target="_blank" rel="noopener">{{ {"github": "GitHub", "linkedin": "LinkedIn", "scholar": "Scholar", "orcid": "ORCID", "twitter": "X"}.get(platform, platform | capitalize) }}</a></li>
     {% endfor %}
   </ul>
+  {% if profile.social.linkedin %}<p class="contact-note">Best way to reach me: <a href="{{ profile.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>.</p>{% endif %}
   {{ scholar_stats(stats, profile) }}
 </section>
 
