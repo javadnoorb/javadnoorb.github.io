@@ -79,6 +79,27 @@ VENUE_OVERRIDES = [
 ]
 
 
+# Scholar occasionally mangles a title (stray capitals, a dropped space).
+# Each pair is (distinctive lowercase substring of the scraped title, the
+# correct title), checked against the published paper.
+TITLE_OVERRIDES = [
+    ("prediction of outcome from spatial protein profiling of triple-negative breast cancers",
+     "Prediction of outcome from spatial protein profiling of triple-negative breast cancers"),
+    ("from intracellular signaling to population oscillations",
+     "From intracellular signaling to population oscillations: bridging size- and time-scales in collective behavior"),
+]
+
+
+def apply_title_overrides(publications):
+    for pub in publications:
+        title = (pub.get("title") or "").lower()
+        for needle, fixed in TITLE_OVERRIDES:
+            if needle in title:
+                pub["title"] = fixed
+                break
+    return publications
+
+
 def apply_venue_overrides(publications):
     for pub in publications:
         if pub.get("venue"):
@@ -342,6 +363,7 @@ def main():
     publications = [p for p in publications if not is_garbled_title(p.get("title"))]
     publications = dedupe_publications(publications)
     publications = apply_venue_overrides(publications)
+    publications = apply_title_overrides(publications)
     publications = [p for p in publications if not is_poster(p)]
 
     current_year = datetime.date.today().year

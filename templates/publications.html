@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import pub_meta, citation_badge, scholar_stats %}
+{% from "_macros.html" import pub_meta, citation_badge, preprint_badge, scholar_stats %}
 {% block title %}Publications — {{ profile.name }}{% endblock %}
 {% block description %}Publications by {{ profile.name }} ({{ publications | length }} papers), kept in sync with Google Scholar, with DOIs and BibTeX.{% endblock %}
 {% block content %}
@@ -16,7 +16,7 @@
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
       <span class="pub-meta">
         {{ pub_meta(pub, year=false, owner=profile.name) }}
-        {{- citation_badge(pub) }}
+        {{- preprint_badge(pub) }}{{ citation_badge(pub) }}
       </span>
       <span class="pub-actions">
         {%- if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI: {{ pub.doi }}</a>{% endif %}

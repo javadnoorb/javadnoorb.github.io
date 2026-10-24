@@ -2,7 +2,7 @@
 # or the carefully tuned PDF layout. Bump deliberately and check the PDF.
 Jinja2==3.1.6
 PyYAML==6.0.3
-Pillow==12.3.0
+Pillow==13.0.0
 weasyprint==70.0
 scholarly==1.7.11
 # scholarly 1.7.x imports bibtexparser.bibdatabase, removed in 2.x.

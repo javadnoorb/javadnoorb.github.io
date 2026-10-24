@@ -10,6 +10,10 @@
 {{ [pub.authors | format_authors(owner), pub.venue | format_venue, pub.year if year and pub.year else ""] | select | join(" &middot; ") }}
 {%- endmacro %}
 
+{% macro preprint_badge(pub) -%}
+{%- if pub.preprint %}{{ badge_sep() }}<span class="preprint-badge">Preprint</span>{% endif -%}
+{%- endmacro %}
+
 {% macro citation_badge(pub) -%}
 {%- if pub.citations %}{{ badge_sep() }}<span class="citation-badge">{{ pub.citations }} citation{{ "s" if pub.citations != 1 }}</span>{% endif -%}
 {%- endmacro %}

@@ -43,6 +43,14 @@ def test_apply_venue_overrides_only_fills_missing():
     assert pubs[1]["venue"] == "Elsewhere"
 
 
+def test_apply_title_overrides_fixes_scholar_casing():
+    pubs = [{"title": "Prediction of outcome from spatial Protein profiling of triple-negative breast cancers"},
+            {"title": "Some other paper"}]
+    fp.apply_title_overrides(pubs)
+    assert pubs[0]["title"] == "Prediction of outcome from spatial protein profiling of triple-negative breast cancers"
+    assert pubs[1]["title"] == "Some other paper"
+
+
 def test_looks_truncated():
     assert fp.looks_truncated(5, 24)
     assert not fp.looks_truncated(20, 24)

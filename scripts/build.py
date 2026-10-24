@@ -269,6 +269,7 @@ def enrich(publications, owner):
     used = set()
     for pub in publications:
         pub["doi"] = pub_doi(pub)
+        pub["preprint"] = is_preprint(pub)
         pub["role"] = author_role(pub.get("authors"), owner)
         pub["position"] = author_position(pub.get("authors"), owner)
         pub["bibtex_key"] = bibtex_key(pub, used)

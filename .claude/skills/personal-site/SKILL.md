@@ -187,12 +187,15 @@ through `asset_version()` too rather than a bare path.
   patching a handful of publications where Scholar's scrape drops the
   venue entirely (cross-checked against the user's resume PDF). Extend
   that list rather than hand-editing `publications.json` if you find more
-  missing venues.
+  missing venues. `TITLE_OVERRIDES` does the same for mangled titles
+  (stray capitals, dropped spaces).
 - The fetch refuses to overwrite `publications.json` when it keeps under
   70% of the papers already there (a partial scrape); override with
   `FORCE_PUBLICATIONS_UPDATE=1` only when papers were genuinely removed.
   DOIs come from the link when it contains one (`build.doi_from_link`),
   else from a previous run, else a best-effort Crossref title lookup.
+- Preprints (`build.is_preprint`: bioRxiv/medRxiv/arXiv venue or link)
+  get a muted "Preprint" pill on the Publications page.
 - **The website shows no author-role badges** ("First author" / "Senior
   author" were removed at the user's request) and **bolds the user's own
   name** in author lists, via `format_authors(owner)` / `pub_meta(...,
@@ -252,7 +255,8 @@ button (the only download link; the user rejected a duplicate on the
 Resume tab) and the PDF footer. The file is still named
 `resume.pdf` on purpose, so existing external links keep working; don't
 rename it unprompted. The Resume tab is a separate web page with selected
-(1st/2nd author) publications only. A shorter 2-page resume PDF for
+(1st/2nd author) publications only. Its section order matches the PDF
+(Experience before Education) and its dates use `short_period` too. A shorter 2-page resume PDF for
 industry roles was discussed but not built; ask before adding one.
 
 Styled deliberately; the user iterated on these points, so keep them

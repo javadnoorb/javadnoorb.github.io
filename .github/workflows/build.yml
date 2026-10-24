@@ -32,11 +32,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0 # full history so the data commit can rebase onto a moved master
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.11"
           cache: pip
@@ -88,9 +88,11 @@ jobs:
 
       - name: Upload site artifact
         if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site
+          # v4+ drops dotfiles by default; keep .nojekyll in the artifact.
+          include-hidden-files: true
 
   deploy:
     if: github.event_name != 'pull_request'
@@ -105,4 +107,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
