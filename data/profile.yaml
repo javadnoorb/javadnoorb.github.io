@@ -22,6 +22,12 @@ scholar_id: "xfENK6oAAAAJ"
 # Shown on the "Projects" page (projects.html) - casual/personal side
 # projects, deliberately kept light in tone (not a second resume section).
 projects:
+  - title: "Rent, Buy or Invest"
+    description: "A calculator for an old question: on the same monthly budget, does buying a home beat renting and investing the difference? It compares net worth after selling costs and taxes, with backtests on historical market data and Monte Carlo runs for the range of outcomes. Mostly vibe-coded."
+    tags: ["JavaScript", "Python", "Personal Finance", "Vibe-coded"]
+    link: "https://github.com/javadnoorb/rent-buy-invest"
+    demo_link: "https://javadnoorb.github.io/rent-buy-invest/"
+    image: ""
   - title: "Lean 4 Autoformalizer"
     description: "A weekend project, mostly vibe-coded: a web app that tries to translate plain-English math statements into Lean 4 and prove them automatically, leaning on an LLM plus Lean's own compiler feedback."
     tags: ["Lean 4", "LLMs", "Vibe-coded"]

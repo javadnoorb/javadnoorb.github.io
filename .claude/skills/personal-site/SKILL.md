@@ -298,7 +298,7 @@ crop box math.
 
 ## Projects page (projects.html)
 
-Personal/side projects (currently: Lean 4 Autoformalizer, Mandelbrot
+Personal/side projects (currently: Rent, Buy or Invest, Lean 4 Autoformalizer, Mandelbrot
 Audio, Distance City Finder, Iran Map), pulled from the user's real public
 GitHub repos - never invent a project. **Tone is deliberately lightweight
 and self-aware**, explicitly not a second resume section: the intro line

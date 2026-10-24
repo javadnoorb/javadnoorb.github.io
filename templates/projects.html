@@ -3,7 +3,7 @@
 {% block description %}Side projects by {{ profile.name }}, built for fun: {{ profile.projects | map(attribute="title") | join(", ") }}.{% endblock %}
 {% block content %}
 <h1>Projects</h1>
-<p class="page-intro">Random stuff I've built for fun, unrelated to work. A couple of the newer ones are mostly vibe-coded - built fast with a lot of AI help, not carefully engineered.</p>
+<p class="page-intro">Random stuff I've built for fun, unrelated to work. A few of the newer ones are mostly vibe-coded - built fast with a lot of AI help, not carefully engineered.</p>
 
 {% if profile.projects %}
 <div class="project-grid">
