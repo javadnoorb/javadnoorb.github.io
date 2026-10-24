@@ -193,8 +193,12 @@ through `asset_version()` too rather than a bare path.
   `FORCE_PUBLICATIONS_UPDATE=1` only when papers were genuinely removed.
   DOIs come from the link when it contains one (`build.doi_from_link`),
   else from a previous run, else a best-effort Crossref title lookup.
-- Author-role badges ("First author" / "Senior author") are derived in
-  `build.author_role` and deliberately only trust position 1 or the last
+- **The website shows no author-role badges** ("First author" / "Senior
+  author" were removed at the user's request) and **bolds the user's own
+  name** in author lists, via `format_authors(owner)` / `pub_meta(...,
+  owner=profile.name)`. The PDF CV stays plain (no `owner` passed).
+  `build.author_role` still exists (tested, unused in templates) and
+  deliberately only trusts position 1 or the last
   slot of an *untruncated* list - the truncation step may swap the owner
   into the last visible slot of a long list. `build.author_position`
   applies the same rule to any position (the last visible slot of a
@@ -255,7 +259,8 @@ unless asked:
   ORCID and LinkedIn were removed from the PDF on purpose (they're still
   in `profile.yaml` and on the website).
 - **Publications: bold paper titles, plain author lists. Never bold the
-  user's own name** - they said it looked "all over the place" and
+  user's own name in the PDF** (the website does bold it, at the user's
+  later request) - they said it looked "all over the place" and
   pretentious. (A navy-title/bold-name variant was tried and rejected
   too.) Numbered, reverse-chronological, with a one-line "Full record
   on Google Scholar." note and nothing more (an earlier note explaining

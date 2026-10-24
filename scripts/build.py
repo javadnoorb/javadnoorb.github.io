@@ -112,11 +112,14 @@ def author_names(authors):
     return [DEGREE_PREFIX.sub("", name) for name in names]
 
 
-def format_authors(authors):
-    """Normalize author lists into one comma-separated form. The owner's
-    name is deliberately not emphasized: bolding it in every entry read as
-    showy and competed with the paper titles."""
-    return ", ".join(author_names(authors))
+def format_authors(authors, owner=None):
+    """Normalize author lists into one comma-separated form. With `owner`,
+    the owner's own name is wrapped in <strong>: the website asks for that,
+    while the PDF CV calls this without `owner` and stays plain."""
+    names = author_names(authors)
+    if owner:
+        names = [f"<strong>{n}</strong>" if _same_person(n, owner) else n for n in names]
+    return ", ".join(names)
 
 
 def is_truncated(names):

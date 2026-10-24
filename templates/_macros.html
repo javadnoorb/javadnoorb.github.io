@@ -3,15 +3,11 @@
    text, where "2020" and "245 citations" would otherwise run together. #}
 {% macro badge_sep() -%}<span class="visually-hidden"> &middot; </span>{%- endmacro %}
 
-{% macro role_badge(pub) -%}
-{%- if pub.role == "first" %}{{ badge_sep() }}<span class="role-badge">First author</span>
-{%- elif pub.role == "senior" %}{{ badge_sep() }}<span class="role-badge">Senior author</span>{% endif -%}
-{%- endmacro %}
 
 {# "Authors · Venue · Year", skipping any part Scholar left blank so a
    missing venue never leaves a dangling separator. #}
-{% macro pub_meta(pub, year=true) -%}
-{{ [pub.authors | format_authors, pub.venue | format_venue, pub.year if year and pub.year else ""] | select | join(" &middot; ") }}
+{% macro pub_meta(pub, year=true, owner=none) -%}
+{{ [pub.authors | format_authors(owner), pub.venue | format_venue, pub.year if year and pub.year else ""] | select | join(" &middot; ") }}
 {%- endmacro %}
 
 {% macro citation_badge(pub) -%}

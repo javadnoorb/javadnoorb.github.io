@@ -6,6 +6,13 @@ import pytest
 OWNER = "Javad Noorbakhsh"
 
 
+def test_format_authors_bolds_owner_only_when_asked():
+    authors = "A Smith, J Noorbakhsh, et al."
+    assert build.format_authors(authors) == "A Smith, J Noorbakhsh, et al."
+    assert build.format_authors(authors, "Javad Noorbakhsh") == \
+        "A Smith, <strong>J Noorbakhsh</strong>, et al."
+
+
 def test_format_authors_normalizes_both_scholar_shapes():
     assert build.format_authors("A Smith and B Jones and C Wu") == "A Smith, B Jones, C Wu"
     assert build.format_authors("A Smith, B Jones, et al.") == "A Smith, B Jones, et al."

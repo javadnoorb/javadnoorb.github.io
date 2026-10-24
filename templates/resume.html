@@ -51,7 +51,7 @@
     {% for pub in lead_author_papers %}
     <li>
       <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
-      <span class="pub-meta">{{ pub_meta(pub) }}</span>
+      <span class="pub-meta">{{ pub_meta(pub, owner=profile.name) }}</span>
     </li>
     {% endfor %}
   </ul>
