@@ -354,6 +354,9 @@ domains actually proxied through Cloudflare's DNS - not the case here).
   the user's request, to keep it away from scrapers). Don't add a mailto
   link or the address back to any page. It still appears in the PDF CV
   header, where a contact address is expected.
+- **Only total citations are shown from Scholar stats.** The user had
+  the h-index and i10-index removed from the site; `scholar_stats.json`
+  still stores them, but don't display them again unless asked.
 - **Phone number is intentionally not published.** Never add a real
   number. `profile.phone_note` ("Phone number available upon request")
   exists, but the PDF header deliberately omits even that.

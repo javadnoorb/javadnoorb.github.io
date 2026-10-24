@@ -137,7 +137,9 @@ def test_scholar_stats_render_when_present(tmp_path, monkeypatch):
     build.render_site(build.make_env(), profile, publications,
                       {"citations": 1734, "h_index": 16, "i10_index": 20})
     html = (tmp_path / "index.html").read_text()
-    assert "<strong>1,734</strong> citations" in html and "<strong>16</strong> h-index" in html
+    assert "<strong>1,734</strong> citations" in html
+    # h-index and i10-index are fetched but deliberately not shown.
+    assert "h-index" not in html and "i10-index" not in html
 
 
 def test_pub_meta_skips_blank_parts():
