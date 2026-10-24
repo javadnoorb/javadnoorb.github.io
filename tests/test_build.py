@@ -146,7 +146,8 @@ def test_pub_meta_skips_blank_parts():
         "{{ pub_meta(pub) }}|{{ pub_meta(pub, year=false) }}|{{ citation_badge(pub) }}")
     pub = {"authors": "A Smith and B Jones", "venue": None, "year": 2020, "citations": 1}
     assert template.render(pub=pub) == \
-        'A Smith, B Jones &middot; 2020|A Smith, B Jones|<span class="citation-badge">1 citation</span>'
+        ('A Smith, B Jones &middot; 2020|A Smith, B Jones|'
+         '<span class="visually-hidden"> &middot; </span><span class="citation-badge">1 citation</span>')
     pub.update(venue="nature communications", year=None, citations=2)
     assert template.render(pub=pub).startswith(
         "A Smith, B Jones &middot; Nature Communications|A Smith, B Jones &middot; Nature Communications|")

@@ -1,6 +1,11 @@
+{# Badges carry a hidden " · " before them: the pills separate themselves
+   visually, but reader mode, screen readers and link previews see plain
+   text, where "2020" and "245 citations" would otherwise run together. #}
+{% macro badge_sep() -%}<span class="visually-hidden"> &middot; </span>{%- endmacro %}
+
 {% macro role_badge(pub) -%}
-{%- if pub.role == "first" %}<span class="role-badge">First author</span>
-{%- elif pub.role == "senior" %}<span class="role-badge">Senior author</span>{% endif -%}
+{%- if pub.role == "first" %}{{ badge_sep() }}<span class="role-badge">First author</span>
+{%- elif pub.role == "senior" %}{{ badge_sep() }}<span class="role-badge">Senior author</span>{% endif -%}
 {%- endmacro %}
 
 {# "Authors · Venue · Year", skipping any part Scholar left blank so a
@@ -10,7 +15,7 @@
 {%- endmacro %}
 
 {% macro citation_badge(pub) -%}
-{%- if pub.citations %}<span class="citation-badge">{{ pub.citations }} citation{{ "s" if pub.citations != 1 }}</span>{% endif -%}
+{%- if pub.citations %}{{ badge_sep() }}<span class="citation-badge">{{ pub.citations }} citation{{ "s" if pub.citations != 1 }}</span>{% endif -%}
 {%- endmacro %}
 
 {% macro scholar_stats(stats, profile) -%}

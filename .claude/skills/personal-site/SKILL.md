@@ -350,6 +350,10 @@ domains actually proxied through Cloudflare's DNS - not the case here).
 - **No grants/funding-won section, ever.** The user contributed to writing
   grant proposals but has never been PI/co-PI. A "grants" line would
   overstate their role. This was an explicit, firm instruction.
+- **Email is intentionally not on the website's HTML pages** (removed at
+  the user's request, to keep it away from scrapers). Don't add a mailto
+  link or the address back to any page. It still appears in the PDF CV
+  header, where a contact address is expected.
 - **Phone number is intentionally not published.** Never add a real
   number. `profile.phone_note` ("Phone number available upon request")
   exists, but the PDF header deliberately omits even that.

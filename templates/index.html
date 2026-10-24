@@ -12,7 +12,6 @@
     {% for platform, url in profile.social.items() if url %}
     <li><a href="{{ url }}" target="_blank" rel="noopener">{{ platform | capitalize }}</a></li>
     {% endfor %}
-    <li><a href="mailto:{{ profile.email }}">Email</a></li>
   </ul>
   {{ scholar_stats(stats, profile) }}
   {% if profile.phone_note %}<p class="phone-note">{{ profile.phone_note }}</p>{% endif %}

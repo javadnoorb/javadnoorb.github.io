@@ -460,6 +460,19 @@ h2 {
   margin-top: 0.3rem;
 }
 
+/* Present for screen readers and plain-text views, invisible on screen. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .citation-badge {
   display: inline-block;
   margin-left: 0.5rem;
