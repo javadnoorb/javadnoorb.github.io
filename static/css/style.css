@@ -232,12 +232,6 @@ a:focus-visible, summary:focus-visible {
   transform: translateY(-1px);
 }
 
-.phone-note {
-  margin: 0.75rem 0 0;
-  color: var(--muted);
-  font-size: 0.82rem;
-  font-style: italic;
-}
 
 /* Section headings */
 

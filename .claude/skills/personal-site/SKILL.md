@@ -251,9 +251,9 @@ unless asked:
   right-aligned and abbreviated via the `short_period` filter
   ("Jul 2024 – Present").
 - **Header is one line** under name + title: email | location | website |
-  Google Scholar. The user found more than that cluttered - the phone
-  note, GitHub, ORCID and LinkedIn were removed from the PDF on purpose
-  (they're still in `profile.yaml` and on the website).
+  Google Scholar. The user found more than that cluttered - GitHub,
+  ORCID and LinkedIn were removed from the PDF on purpose (they're still
+  in `profile.yaml` and on the website).
 - **Publications: bold paper titles, plain author lists. Never bold the
   user's own name** - they said it looked "all over the place" and
   pretentious. (A navy-title/bold-name variant was tried and rejected
@@ -358,8 +358,8 @@ domains actually proxied through Cloudflare's DNS - not the case here).
   the h-index and i10-index removed from the site; `scholar_stats.json`
   still stores them, but don't display them again unless asked.
 - **Phone number is intentionally not published.** Never add a real
-  number. `profile.phone_note` ("Phone number available upon request")
-  exists, but the PDF header deliberately omits even that.
+  number. The "Phone number available upon request" note was removed from
+  the site too, at the user's request; don't bring it back.
 - **Bullet style (resume experience).** Plain verbs - Led, Built,
   Developed, Analyzed - not Orchestrated/Pioneered/Architected. Present
   tense ("Analyzing") for ongoing work, past tense for finished work. Never
