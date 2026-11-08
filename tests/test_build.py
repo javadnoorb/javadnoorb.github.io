@@ -166,6 +166,19 @@ def test_scholar_stats_render_when_present(tmp_path, monkeypatch):
     assert "h-index" not in html and "i10-index" not in html
 
 
+def test_homepage_links_each_profile_once(tmp_path, monkeypatch):
+    """The icon buttons are the only homepage link to each profile; the
+    Publications page, which has no buttons, keeps its Scholar link."""
+    monkeypatch.setattr(build, "OUTPUT", tmp_path)
+    profile, publications, _ = build.load_data()
+    build.render_site(build.make_env(), profile, publications, {"citations": 1734})
+    home = (tmp_path / "index.html").read_text()
+    for url in filter(None, profile["social"].values()):
+        assert home.count(f'href="{url}"') == 1, url
+    if profile["social"].get("scholar"):
+        assert f'href="{profile["social"]["scholar"]}"' in (tmp_path / "publications.html").read_text()
+
+
 def test_pub_meta_skips_blank_parts():
     template = build.make_env().from_string(
         '{% from "_macros.html" import pub_meta, citation_badge %}'

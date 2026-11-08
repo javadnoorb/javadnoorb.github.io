@@ -13,8 +13,7 @@
     <li><a href="{{ url }}" target="_blank" rel="noopener">{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ {"github": "GitHub", "linkedin": "LinkedIn", "scholar": "Scholar", "orcid": "ORCID", "twitter": "X"}.get(platform, platform | capitalize) }}</a></li>
     {% endfor %}
   </ul>
-  {% if profile.social.linkedin %}<p class="contact-note">Best way to reach me: <a href="{{ profile.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>.</p>{% endif %}
-  {{ scholar_stats(stats, profile) }}
+    {{ scholar_stats(stats, profile, link=false) }}
 </section>
 
 {% if profile.research_focus %}

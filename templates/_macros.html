@@ -18,11 +18,11 @@
 {%- if pub.citations %}{{ badge_sep() }}<span class="citation-badge">{{ pub.citations }} citation{{ "s" if pub.citations != 1 }}</span>{% endif -%}
 {%- endmacro %}
 
-{% macro scholar_stats(stats, profile) -%}
+{% macro scholar_stats(stats, profile, link=true) -%}
 {%- if stats.citations %}
 <p class="scholar-stats">
   <span><strong>{{ "{:,}".format(stats.citations) }}</strong> citations</span>
-  {%- if profile.social.scholar %}<a href="{{ profile.social.scholar }}" target="_blank" rel="noopener">Google Scholar &#8599;</a>{% endif %}
+  {%- if link and profile.social.scholar %}<a href="{{ profile.social.scholar }}" target="_blank" rel="noopener">Google Scholar &#8599;</a>{% endif %}
 </p>
 {%- endif %}
 {%- endmacro %}

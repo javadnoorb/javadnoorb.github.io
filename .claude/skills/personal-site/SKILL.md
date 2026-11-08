@@ -241,8 +241,13 @@ through `asset_version()` too rather than a bare path.
 - **Homepage bio is separate**: `homepage_bio` (first person, current
   work at JAX) is shown on the homepage; `bio` remains the PDF CV summary
   and the meta/JSON-LD description. Both take the `{years}` placeholder.
-  The "Hi, I'm" kicker was removed; a "Best way to reach me: LinkedIn"
-  line replaces the email as the contact route.
+  The "Hi, I'm" kicker was removed. Each profile (GitHub, LinkedIn,
+  Scholar, ORCID) appears once on the homepage, as an icon button: the
+  user removed the extra "Best way to reach me: LinkedIn" line and the
+  "Google Scholar" link beside the citation count as duplicates. Don't add
+  text links to a profile the buttons already cover; the homepage calls
+  `scholar_stats(..., link=false)`, while the Publications page (no
+  buttons) keeps its Scholar link.
 - **The nav bar has no built-in margin for growth.** It already overflowed
   the viewport on phones once (6 items: Home, Research, Projects,
   Publications, Resume, Download CV), forcing horizontal scroll, before
