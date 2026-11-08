@@ -201,7 +201,7 @@ through `asset_version()` too rather than a bare path.
 - **The website shows no author-role badges** ("First author" / "Senior
   author" were removed at the user's request) and **bolds the user's own
   name** in author lists, via `format_authors(owner)` / `pub_meta(...,
-  owner=profile.name)`. The PDF CV passes `owner` too and styles the name as underlined, not bold.
+  owner=profile.name)`. The PDF CV stays plain (no `owner` passed).
   `build.author_role` still exists (tested, unused in templates) and
   deliberately only trusts position 1 or the last
   slot of an *untruncated* list - the truncation step may swap the owner
@@ -274,12 +274,11 @@ unless asked:
   Google Scholar. The user found more than that cluttered - GitHub,
   ORCID and LinkedIn were removed from the PDF on purpose (they're still
   in `profile.yaml` and on the website).
-- **Publications: bold paper titles; the user's own name is underlined,
-  not bold, in the PDF author lists** (picked by the user on 2026-11-08
-  over small caps and a bold-name/plain-title variant). Never bold it in
-  the PDF - they said a bold name looked "all over the place" and
-  pretentious, and a navy-title/bold-name variant was rejected too. The
-  website bolds it, at the user's request. Numbered, reverse-chronological, with a one-line "Full record
+- **Publications: bold paper titles, plain author lists. Never bold the
+  user's own name in the PDF** (the website does bold it, at the user's
+  later request) - they said it looked "all over the place" and
+  pretentious. (A navy-title/bold-name variant was tried and rejected
+  too.) Numbered, reverse-chronological, with a one-line "Full record
   on Google Scholar." note and nothing more (an earlier note explaining
   the ordering and "et al." was removed at the user's request).
 - Section headings keep letter-spacing small (0.3pt): at 1.2pt, text
