@@ -40,7 +40,7 @@
       {% for href, label in [("index.html", "Home"), ("research.html", "Research"), ("projects.html", "Projects"), ("publications.html", "Publications"), ("resume.html", "Resume")] %}
       <a href="{{ href }}"{% if page == href %} aria-current="page"{% endif %}>{{ label }}</a>
       {% endfor %}
-      <a href="resume.pdf?v={{ asset_version('resume.pdf') }}" class="btn-nav">Download CV</a>
+      <a href="resume.pdf?v={{ asset_version('resume.pdf') }}" class="btn-nav">{{ icon("file-down") }}Download CV</a>
     </nav>
   </div>
 </header>

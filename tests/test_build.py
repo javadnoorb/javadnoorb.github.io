@@ -194,3 +194,11 @@ def test_built_site_has_no_broken_local_links(tmp_path, monkeypatch):
             if not (tmp_path / url.split("?")[0].split("#")[0]).exists():
                 missing.append(f"{page.name} -> {url}")
     assert not missing
+
+
+def test_icon_inlines_decorative_svg():
+    line = str(build.icon("github"))
+    assert line.startswith("<svg ") and 'aria-hidden="true"' in line
+    assert 'stroke="currentColor"' in line and "@license" not in line
+    brand = str(build.icon("orcid"))
+    assert 'fill="currentColor"' in brand and "<title>" not in brand

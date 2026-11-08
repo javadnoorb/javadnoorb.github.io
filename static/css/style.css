@@ -674,3 +674,53 @@ h2 {
   font-size: 0.8rem;
   border-top: 1px solid var(--border);
 }
+
+
+/* Inline SVG icons (static/icons/, inlined by build.icon). They sit
+   beside a visible label, so they're decorative and hidden from screen
+   readers. */
+.icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  vertical-align: -0.2em;
+}
+
+.social-links a,
+.btn-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.pub-actions .icon,
+.bibtex summary .icon {
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3rem;
+  vertical-align: -0.15em;
+}
+
+.focus-head {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.45rem;
+}
+
+.focus-head h3 { margin: 0; }
+
+.focus-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.focus-icon .icon { width: 1.15rem; height: 1.15rem; vertical-align: 0; }

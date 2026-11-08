@@ -71,10 +71,13 @@ projects:
 # generic buzzwords - update this if your work shifts focus.
 research_focus:
   - title: "AI for Computational Pathology & Spatial Omics"
+    icon: "microscope"
     description: "Deep learning and foundation-model pipelines that extract diagnostic and biological signal from histopathology images and spatial transcriptomics/proteomics data."
   - title: "Cancer Genomics & Tumor Evolution"
+    icon: "dna"
     description: "Quantifying tumor heterogeneity, subclonal dynamics, and evolutionary pressure in cancer using large-scale genomic and multi-omics datasets."
   - title: "Systems Biology & Biophysics"
+    icon: "activity"
     description: "Quantitative modeling of cellular signaling dynamics, gene-regulatory noise, and collective behavior in biological populations."
 
 # Shown on the "Research Highlights" page (research.html) - a small
