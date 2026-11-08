@@ -116,8 +116,8 @@ def author_names(authors):
 
 def format_authors(authors, owner=None):
     """Normalize author lists into one comma-separated form. With `owner`,
-    the owner's own name is wrapped in <strong>: the website asks for that,
-    while the PDF CV calls this without `owner` and stays plain."""
+    the owner's own name is wrapped in <strong>: the website shows it bold,
+    and the PDF CV styles it as underlined."""
     names = author_names(authors)
     if owner:
         names = [f"<strong>{n}</strong>" if _same_person(n, owner) else n for n in names]
