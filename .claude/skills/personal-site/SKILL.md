@@ -85,8 +85,10 @@ still running and reachable - if you need to replace a running dev server,
 just start the new one on a different port rather than trying to kill the
 old one.
 
-WeasyPrint needs system libs: `libpango-1.0-0 libpangocairo-1.0-0
-libgdk-pixbuf2.0-0 libffi-dev shared-mime-info` (apt). They were present in
+WeasyPrint needs system libs: `libpango-1.0-0 libpangoft2-1.0-0
+libffi-dev shared-mime-info` (apt). It no longer uses
+GDK-PixBuf, and `libgdk-pixbuf2.0-0` doesn't exist on Ubuntu 26.04 runners,
+so don't add it back. They were present in
 the cloud sessions used so far; a fresh venv plus `requirements-dev.txt` was
 enough to build and run the tests there. If the PDF step fails to import
 WeasyPrint, install these first.
