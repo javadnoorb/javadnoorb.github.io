@@ -85,8 +85,10 @@ still running and reachable - if you need to replace a running dev server,
 just start the new one on a different port rather than trying to kill the
 old one.
 
-WeasyPrint needs system libs: `libpango-1.0-0 libpangocairo-1.0-0
-libgdk-pixbuf2.0-0 libffi-dev shared-mime-info` (apt). They were present in
+WeasyPrint needs system libs: `libpango-1.0-0 libpangoft2-1.0-0
+libffi-dev shared-mime-info` (apt). It no longer uses
+GDK-PixBuf, and `libgdk-pixbuf2.0-0` doesn't exist on Ubuntu 26.04 runners,
+so don't add it back. They were present in
 the cloud sessions used so far; a fresh venv plus `requirements-dev.txt` was
 enough to build and run the tests there. If the PDF step fails to import
 WeasyPrint, install these first.
@@ -199,7 +201,7 @@ through `asset_version()` too rather than a bare path.
 - **The website shows no author-role badges** ("First author" / "Senior
   author" were removed at the user's request) and **bolds the user's own
   name** in author lists, via `format_authors(owner)` / `pub_meta(...,
-  owner=profile.name)`. The PDF CV stays plain (no `owner` passed).
+  owner=profile.name)`. The PDF CV passes `owner` too and styles the name as underlined, not bold.
   `build.author_role` still exists (tested, unused in templates) and
   deliberately only trusts position 1 or the last
   slot of an *untruncated* list - the truncation step may swap the owner
@@ -212,8 +214,10 @@ through `asset_version()` too rather than a bare path.
 - **Patents are not papers.** Scholar mixes them in; `build.split_patents`
   pulls out anything linking to Google Patents, and both the PDF and the
   Publications page show them in a small, unnumbered "Patent(s)" section
-  after the papers (number derived from the link, e.g. "U.S. Patent
-  Application US 2025/0378559 A1"). The user asked for it to be separate
+  after the papers (label and number derived from the link by `patent_citation`:
+  kind code A is a published application, "U.S. Patent Application
+  US 2025/0378559 A1"; kind code B is granted, "U.S. Patent
+  12,380,555 B2"). The user asked for it to be separate
   but low-key - there's only one, so don't give it prominence. Patents
   are also excluded from highlights, the Resume tab and publications.bib.
 - **Scholar's raw strings are normalized only at display time**
@@ -270,13 +274,17 @@ unless asked:
   Google Scholar. The user found more than that cluttered - GitHub,
   ORCID and LinkedIn were removed from the PDF on purpose (they're still
   in `profile.yaml` and on the website).
-- **Publications: bold paper titles, plain author lists. Never bold the
-  user's own name in the PDF** (the website does bold it, at the user's
-  later request) - they said it looked "all over the place" and
-  pretentious. (A navy-title/bold-name variant was tried and rejected
-  too.) Numbered, reverse-chronological, with a one-line "Full record
+- **Publications: bold paper titles; the user's own name is underlined,
+  not bold, in the PDF author lists** (picked by the user on 2026-11-08
+  over small caps and a bold-name/plain-title variant). Never bold it in
+  the PDF - they said a bold name looked "all over the place" and
+  pretentious, and a navy-title/bold-name variant was rejected too. The
+  website bolds it, at the user's request. Numbered, reverse-chronological, with a one-line "Full record
   on Google Scholar." note and nothing more (an earlier note explaining
   the ordering and "et al." was removed at the user's request).
+- Section headings keep letter-spacing small (0.3pt): at 1.2pt, text
+  extraction read them as "E D U C AT I O N", which can trip resume
+  parsers. Check with `pdftotext` after styling changes.
 - Page breaks: bullets and publication entries never split across pages,
   and a job heading stays with its first bullet. Vertical spacing
   (page margins, h2 margins, gap between jobs) was tightened just enough

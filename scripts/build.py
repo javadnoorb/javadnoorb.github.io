@@ -116,8 +116,8 @@ def author_names(authors):
 
 def format_authors(authors, owner=None):
     """Normalize author lists into one comma-separated form. With `owner`,
-    the owner's own name is wrapped in <strong>: the website asks for that,
-    while the PDF CV calls this without `owner` and stays plain."""
+    the owner's own name is wrapped in <strong>: the website shows it bold,
+    and the PDF CV styles it as underlined."""
     names = author_names(authors)
     if owner:
         names = [f"<strong>{n}</strong>" if _same_person(n, owner) else n for n in names]
@@ -317,16 +317,36 @@ def get_highlighted(publications, count=5, picks=None):
     return highlighted
 
 
-PATENT_LINK = re.compile(r"patents\.google\.com/patent/([A-Z]{2})(\d{4})(\d+)([A-Z]\d)?")
+PATENT_LINK = re.compile(r"patents\.google\.com/patent/([A-Z]{2})(\d+)([A-Z]\d)?")
 
 
 def patent_number(link):
-    """'.../patent/US20250378559A1/en' -> 'US 2025/0378559 A1'."""
+    """Google Patents link -> printed patent number.
+    Application publications carry the year: '.../US20250378559A1/en' ->
+    'US 2025/0378559 A1'. Granted patents don't: '.../US12380555B2/en' ->
+    'US 12,380,555 B2'."""
     m = PATENT_LINK.search(link or "")
     if not m:
         return ""
-    country, year, serial, kind = m.groups()
-    return f"{country} {year}/{serial}" + (f" {kind}" if kind else "")
+    country, digits, kind = m.groups()
+    if len(digits) == 11 and (kind or "A").startswith("A"):
+        number = f"{digits[:4]}/{digits[4:]}"
+    else:
+        number = f"{int(digits):,}"
+    return f"{country} {number}" + (f" {kind}" if kind else "")
+
+
+def patent_citation(link):
+    """'U.S. Patent 12,380,555 B2' for a granted US patent (kind code B),
+    'U.S. Patent Application US 2025/0378559 A1' for a published application."""
+    number = patent_number(link)
+    if not number:
+        return ""
+    country, rest = number.split(" ", 1)
+    granted = rest.split()[-1].startswith("B")
+    if country == "US":
+        return f"U.S. Patent {rest}" if granted else f"U.S. Patent Application {number}"
+    return f"Patent {number}" if granted else f"Patent Application {number}"
 
 
 def split_patents(publications):
@@ -426,6 +446,7 @@ def make_env():
     env.filters["format_venue"] = format_venue
     env.filters["display_url"] = display_url
     env.filters["patent_number"] = patent_number
+    env.filters["patent_citation"] = patent_citation
     return env
 
 
