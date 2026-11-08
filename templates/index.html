@@ -9,7 +9,8 @@
   <p class="bio">{{ profile.homepage_bio or profile.bio }}</p>
   <ul class="social-links">
     {% for platform, url in profile.social.items() if url %}
-    <li><a href="{{ url }}" target="_blank" rel="noopener">{{ {"github": "GitHub", "linkedin": "LinkedIn", "scholar": "Scholar", "orcid": "ORCID", "twitter": "X"}.get(platform, platform | capitalize) }}</a></li>
+    {% set icon_name = {"github": "github", "linkedin": "linkedin", "scholar": "graduation-cap", "orcid": "orcid"}.get(platform) %}
+    <li><a href="{{ url }}" target="_blank" rel="noopener">{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ {"github": "GitHub", "linkedin": "LinkedIn", "scholar": "Scholar", "orcid": "ORCID", "twitter": "X"}.get(platform, platform | capitalize) }}</a></li>
     {% endfor %}
   </ul>
   {% if profile.social.linkedin %}<p class="contact-note">Best way to reach me: <a href="{{ profile.social.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>.</p>{% endif %}
@@ -22,7 +23,10 @@
   <div class="focus-grid">
     {% for area in profile.research_focus %}
     <a class="focus-card" href="research.html">
-      <h3>{{ area.title }}</h3>
+      <div class="focus-head">
+        {% if area.icon %}<span class="focus-icon">{{ icon(area.icon) }}</span>{% endif %}
+        <h3>{{ area.title }}</h3>
+      </div>
       <p>{{ area.description }}</p>
     </a>
     {% endfor %}

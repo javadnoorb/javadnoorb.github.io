@@ -13,6 +13,7 @@ from pathlib import Path
 
 import yaml
 from jinja2 import Environment, FileSystemLoader
+from markupsafe import Markup
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -437,10 +438,32 @@ def render_pdf(env, profile, publications):
     HTML(string=html_str, base_url=str(ROOT)).write_pdf(OUTPUT / "resume.pdf")
 
 
+ICONS = ROOT / "static" / "icons"
+_SVG_OPEN = re.compile(r"<svg\b[^>]*>", re.S)
+
+
+def icon(name):
+    """Inline an SVG from static/icons/ (Lucide line icons, or a filled
+    Simple Icons brand mark) sized to the text and hidden from screen
+    readers, since every icon sits next to a visible label."""
+    svg = (ICONS / f"{name}.svg").read_text()
+    svg = svg[svg.index("<svg"):]
+    filled = 'stroke="currentColor"' not in svg
+    view_box = re.search(r'viewBox="([^"]+)"', svg).group(1)
+    attrs = (f'class="icon icon-{name}" viewBox="{view_box}" width="1em" height="1em" '
+             'aria-hidden="true" focusable="false" '
+             + ('fill="currentColor"' if filled else
+                'fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"'))
+    svg = _SVG_OPEN.sub(f"<svg {attrs}>", svg, count=1)
+    svg = re.sub(r"<title>.*?</title>", "", svg, flags=re.S)
+    return Markup(" ".join(svg.split()))
+
+
 def make_env():
     env = Environment(loader=FileSystemLoader(str(TEMPLATES)))
     env.globals["asset_version"] = asset_version
     env.globals["image_size"] = image_size
+    env.globals["icon"] = icon
     env.filters["short_period"] = short_period
     env.filters["format_authors"] = format_authors
     env.filters["format_venue"] = format_venue

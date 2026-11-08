@@ -292,6 +292,19 @@ unless asked:
   content change, render the pages (e.g. `pypdfium2` to PNG) and check
   the bottom of each page for large gaps before calling it done.
 
+## Icons
+
+Small inline SVG icons sit next to visible labels (social pills, the
+Download CV button, DOI/BibTeX links) and in tinted squares on the
+Research Focus cards (`research_focus[].icon` in profile.yaml). The SVGs
+live in `static/icons/` (Lucide line icons, ISC; ORCID from Simple Icons,
+CC0; see `static/icons/LICENSE.md`) and `build.icon(name)` inlines them,
+sized to the text, coloured with `currentColor` and `aria-hidden`. Add a
+new icon by copying its SVG into `static/icons/` from the same sets, so
+the style stays one family. Website only: the PDF CV has no icons.
+The user picked this style (Option 2) on 2026-11-08, inspired by a
+colleague's site; don't copy that site's code or assets.
+
 ## Research Highlights page (research.html)
 
 A gallery of ~13 flagship papers, each with a figure actually extracted

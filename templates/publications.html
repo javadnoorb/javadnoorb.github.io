@@ -19,9 +19,9 @@
         {{- preprint_badge(pub) }}{{ citation_badge(pub) }}
       </span>
       <span class="pub-actions">
-        {%- if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">DOI: {{ pub.doi }}</a>{% endif %}
+        {%- if pub.doi %}<a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">{{ icon("link") }}DOI: {{ pub.doi }}</a>{% endif %}
         <details class="bibtex">
-          <summary>BibTeX</summary>
+          <summary>{{ icon("braces") }}BibTeX</summary>
           <pre><code>{{ pub.bibtex | e }}</code></pre>
         </details>
       </span>
