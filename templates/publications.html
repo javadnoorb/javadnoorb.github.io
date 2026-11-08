@@ -37,7 +37,7 @@
     {% for pat in patents %}
     <li>
       <a href="{{ pat.link }}" target="_blank" rel="noopener">{{ pat.title }}</a>
-      <span class="pub-meta">{{ pat.authors | format_authors(profile.name) }} &middot; U.S. Patent Application {{ pat.link | patent_number }}{% if pat.year %}, {{ pat.year }}{% endif %}</span>
+      <span class="pub-meta">{{ pat.authors | format_authors(profile.name) }} &middot; {{ pat.link | patent_citation }}{% if pat.year %}, {{ pat.year }}{% endif %}</span>
     </li>
     {% endfor %}
   </ul>

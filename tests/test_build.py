@@ -46,7 +46,15 @@ def test_format_venue(raw, expected):
 
 def test_patent_number():
     assert build.patent_number("https://patents.google.com/patent/US20250378559A1/en") == "US 2025/0378559 A1"
+    assert build.patent_number("https://patents.google.com/patent/US12380555B2/en") == "US 12,380,555 B2"
     assert build.patent_number("https://www.nature.com/articles/ng.3876") == ""
+
+
+def test_patent_citation():
+    assert (build.patent_citation("https://patents.google.com/patent/US20250378559A1/en")
+            == "U.S. Patent Application US 2025/0378559 A1")
+    assert build.patent_citation("https://patents.google.com/patent/US12380555B2/en") == "U.S. Patent 12,380,555 B2"
+    assert build.patent_citation("https://www.nature.com/articles/ng.3876") == ""
 
 
 def test_split_patents():

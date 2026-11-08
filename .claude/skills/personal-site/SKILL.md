@@ -212,8 +212,10 @@ through `asset_version()` too rather than a bare path.
 - **Patents are not papers.** Scholar mixes them in; `build.split_patents`
   pulls out anything linking to Google Patents, and both the PDF and the
   Publications page show them in a small, unnumbered "Patent(s)" section
-  after the papers (number derived from the link, e.g. "U.S. Patent
-  Application US 2025/0378559 A1"). The user asked for it to be separate
+  after the papers (label and number derived from the link by `patent_citation`:
+  kind code A is a published application, "U.S. Patent Application
+  US 2025/0378559 A1"; kind code B is granted, "U.S. Patent
+  12,380,555 B2"). The user asked for it to be separate
   but low-key - there's only one, so don't give it prominence. Patents
   are also excluded from highlights, the Resume tab and publications.bib.
 - **Scholar's raw strings are normalized only at display time**
@@ -277,6 +279,9 @@ unless asked:
   too.) Numbered, reverse-chronological, with a one-line "Full record
   on Google Scholar." note and nothing more (an earlier note explaining
   the ordering and "et al." was removed at the user's request).
+- Section headings keep letter-spacing small (0.3pt): at 1.2pt, text
+  extraction read them as "E D U C AT I O N", which can trip resume
+  parsers. Check with `pdftotext` after styling changes.
 - Page breaks: bullets and publication entries never split across pages,
   and a job heading stays with its first bullet. Vertical spacing
   (page margins, h2 margins, gap between jobs) was tightened just enough
