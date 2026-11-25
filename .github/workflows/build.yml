@@ -50,9 +50,6 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements-dev.txt
 
-      - name: Run tests
-        run: python -m pytest -q
-
       # Scholar fetches are slow and sometimes hang, so only the weekly run and
       # manual runs do them; a normal push builds from the committed
       # data/publications.json.
@@ -63,6 +60,11 @@ jobs:
         env:
           SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
         run: python scripts/fetch_publications.py
+
+      # Tests run after the fetch so they also check the freshly fetched data:
+      # a degraded scrape fails here, before it is committed or deployed.
+      - name: Run tests
+        run: python -m pytest -q
 
       - name: Build site
         run: python scripts/build.py

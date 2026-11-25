@@ -50,7 +50,7 @@
   <ul class="pub-list">
     {% for pub in lead_author_papers %}
     <li>
-      <a href="{{ pub.link }}" target="_blank" rel="noopener">{{ pub.title }}</a>
+      {% set url = pub | pub_url %}{% if url %}<a href="{{ url }}" target="_blank" rel="noopener">{{ pub.title }}</a>{% else %}<span class="pub-title">{{ pub.title }}</span>{% endif %}
       <span class="pub-meta">{{ pub_meta(pub, owner=profile.name) }}</span>
     </li>
     {% endfor %}

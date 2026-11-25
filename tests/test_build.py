@@ -215,3 +215,65 @@ def test_icon_inlines_decorative_svg():
     assert 'stroke="currentColor"' in line and "@license" not in line
     brand = str(build.icon("orcid"))
     assert 'fill="currentColor"' in brand and "<title>" not in brand
+
+
+# --- Link integrity -------------------------------------------------------
+# A Scholar scrape once came back with link=None for every paper, and the
+# templates rendered it as href="None" - 28 dead title links went live.
+
+def test_pub_url_falls_back_to_doi_then_empty():
+    assert build.pub_url({"link": "https://x.org/a", "doi": "10.1/b"}) == "https://x.org/a"
+    assert build.pub_url({"link": None, "doi": "10.1/b"}) == "https://doi.org/10.1/b"
+    assert build.pub_url({"link": None}) == ""
+    assert build.pub_url({}) == ""
+
+
+HREF = re.compile(r'\b(?:href|src)="([^"]*)"')
+
+
+def _render(tmp_path, monkeypatch, publications):
+    monkeypatch.setattr(build, "OUTPUT", tmp_path)
+    profile, _, stats = build.load_data()
+    build.render_site(build.make_env(), profile, publications, stats)
+    return {p.name: p.read_text() for p in tmp_path.glob("*.html")}
+
+
+def _assert_links_ok(pages):
+    built = {"publications.bib", "resume.pdf", "sitemap.xml"}
+    for name, html in pages.items():
+        for url in HREF.findall(html):
+            assert url.strip(), f"{name}: empty href/src"
+            assert url not in ("None", "none", "null", "undefined"), f"{name}: href={url!r}"
+            assert "None" not in url.split("/")[-1:], f"{name}: href={url!r}"
+            if re.match(r"^(https?:|mailto:|data:|#|//)", url):
+                continue
+            path = url.split("#")[0].split("?")[0]
+            if not path or path.endswith("/"):  # sibling GitHub Pages project sites
+                continue
+            assert (path in built or (build.OUTPUT / path).exists()
+                    or (build.ROOT / path).exists()), f"{name}: broken internal link {url!r}"
+
+
+def test_built_pages_have_no_broken_links(tmp_path, monkeypatch):
+    _, publications, _ = build.load_data()
+    _assert_links_ok(_render(tmp_path, monkeypatch, publications))
+
+
+def test_bare_publications_render_without_none_links(tmp_path, monkeypatch):
+    bare = [{"title": "Doi only paper", "year": 2024, "citations": 3, "doi": "10.1234/abc"},
+            {"title": "Nothing known paper", "year": 2023, "citations": 1}]
+    pages = _render(tmp_path, monkeypatch, bare)
+    _assert_links_ok(pages)
+    assert 'href="https://doi.org/10.1234/abc"' in pages["publications.html"]
+    assert "Nothing known paper" in pages["publications.html"]
+
+
+def test_committed_publication_data_is_complete():
+    """Guards data/publications.json itself, so a degraded scrape fails CI
+    before it is deployed or committed."""
+    _, publications, _ = build.load_data()
+    assert publications
+    for pub in publications:
+        assert pub.get("title"), pub
+        assert build.pub_url(pub), f"no link or DOI: {pub['title']!r}"
+        assert pub.get("authors"), f"no authors: {pub['title']!r}"

@@ -225,6 +225,16 @@ def pub_doi(pub):
     return pub.get("doi") or doi_from_link(pub.get("link"))
 
 
+def pub_url(pub):
+    """Where a paper's title should link: the scraped link, else its DOI,
+    else '' (rendered as plain text). Never None - Jinja would print that
+    as the literal href "None"."""
+    if pub.get("link"):
+        return pub["link"]
+    doi = pub_doi(pub)
+    return f"https://doi.org/{doi}" if doi else ""
+
+
 BIBTEX_SPECIAL = str.maketrans({"&": r"\&", "%": r"\%", "#": r"\#", "_": r"\_"})
 
 
@@ -468,6 +478,7 @@ def make_env():
     env.filters["format_authors"] = format_authors
     env.filters["format_venue"] = format_venue
     env.filters["display_url"] = display_url
+    env.filters["pub_url"] = pub_url
     env.filters["patent_number"] = patent_number
     env.filters["patent_citation"] = patent_citation
     return env

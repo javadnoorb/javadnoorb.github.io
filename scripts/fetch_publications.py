@@ -58,14 +58,18 @@ POSTER_TITLE_PATTERN = re.compile(r":\s*\d{2,4}$|^abstract\b", re.IGNORECASE)
 # journals (Cancer Research, Clinical Cancer Research), so the venue alone
 # looks like a journal article - the link path is what gives them away.
 POSTER_LINK_PATTERN = re.compile(r"_Supplement/", re.IGNORECASE)
+# ...and gives them DOIs like 10.1158/1538-7445.AM2026-1204, which catch
+# them even when the scrape came back without a link.
+POSTER_DOI_PATTERN = re.compile(r"^10\.1158/\d{4}-\d{4}\.am\d{4}", re.IGNORECASE)
 
 
 def is_poster(pub):
     venue = pub.get("venue") or ""
     title = pub.get("title") or ""
     link = pub.get("link") or ""
+    doi = pub.get("doi") or ""
     return bool(POSTER_VENUE_PATTERN.search(venue) or POSTER_TITLE_PATTERN.search(title)
-                or POSTER_LINK_PATTERN.search(link))
+                or POSTER_LINK_PATTERN.search(link) or POSTER_DOI_PATTERN.search(doi))
 
 # Google Scholar's scrape sometimes drops the venue entirely. These are
 # known gaps, cross-checked against the owner's own CV, filled in by
@@ -180,6 +184,24 @@ def dedupe_publications(publications):
             best["citations"] = max(citations)
         merged.append(best)
     return merged
+
+
+FILLABLE_FIELDS = ("authors", "venue", "link", "doi")
+
+
+def fill_from_existing(publications, existing):
+    """Scholar sometimes returns bare records (title, year and citations,
+    but no authors, venue or link). Keep what an earlier run already knew
+    about the same paper instead of wiping it."""
+    for pub in publications:
+        match = next((old for old in existing
+                      if _same_paper(pub.get("title"), old.get("title"))), None)
+        if not match:
+            continue
+        for field in FILLABLE_FIELDS:
+            if not pub.get(field) and match.get(field):
+                pub[field] = match[field]
+    return publications
 
 
 def load_existing():
@@ -383,7 +405,10 @@ def main():
               f"publications.json untouched. Set FORCE_PUBLICATIONS_UPDATE=1 to accept it.")
         sys.exit(0)
 
+    publications = fill_from_existing(publications, existing)
     publications = add_dois(publications, existing)
+    # Abstracts whose only tell is their DOI are only caught once DOIs are in.
+    publications = [p for p in publications if not is_poster(p)]
     PUBLICATIONS_PATH.write_text(json.dumps(publications, indent=2))
     print(f"Wrote {len(publications)} publications to {PUBLICATIONS_PATH}")
     write_stats(stats)

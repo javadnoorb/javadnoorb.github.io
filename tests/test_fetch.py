@@ -79,3 +79,22 @@ def test_add_dois_prefers_link_then_cache_and_never_raises(monkeypatch):
     assert pubs[0]["doi"] == "10.1038/ng.3876"
     assert pubs[1]["doi"] == "10.1016/b"
     assert "doi" not in pubs[2] and "doi" not in pubs[3]
+
+
+def test_is_poster_catches_aacr_abstract_by_doi():
+    assert fp.is_poster({"title": "A real-sounding title", "doi": "10.1158/1538-7445.am2026-1204"})
+    assert fp.is_poster({"doi": "10.1158/1538-7445.AM2022-2710"})
+    assert not fp.is_poster({"doi": "10.1158/1541-7786.mcr-19-0123"})
+
+
+def test_fill_from_existing_restores_fields_dropped_by_a_bare_scrape():
+    existing = [{"title": "Emerging AI approaches for cancer spatial omics", "authors": "J Noorbakhsh",
+                 "venue": "GigaScience", "link": "https://x.org/a", "doi": "10.1093/g/1", "citations": 10}]
+    fetched = [{"title": "Emerging AI approaches for cancer spatial omics", "authors": None,
+                "venue": None, "link": None, "citations": 21},
+               {"title": "A brand new paper", "link": None}]
+    out = fp.fill_from_existing(fetched, existing)
+    assert out[0] == {"title": "Emerging AI approaches for cancer spatial omics", "authors": "J Noorbakhsh",
+                      "venue": "GigaScience", "link": "https://x.org/a", "doi": "10.1093/g/1",
+                      "citations": 21}  # fresh citation count wins
+    assert out[1]["link"] is None

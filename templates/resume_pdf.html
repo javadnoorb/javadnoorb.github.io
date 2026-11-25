@@ -118,7 +118,7 @@
   <ol class="pubs">
     {% for pub in publications %}
     <li>
-      {% if pub.link %}<a class="pub-title" href="{{ pub.link }}">{{ pub.title | trim(".") }}</a>{% else %}<span class="pub-title">{{ pub.title | trim(".") }}</span>{% endif %}.
+      {% set url = pub | pub_url %}{% if url %}<a class="pub-title" href="{{ url }}">{{ pub.title | trim(".") }}</a>{% else %}<span class="pub-title">{{ pub.title | trim(".") }}</span>{% endif %}.
       <span class="pub-authors">{{ pub.authors | format_authors(profile.name) }}</span>
       {%- if not pub.authors or not pub.authors.endswith(".") %}.{% endif %}
       {%- set venue = pub.venue | format_venue %}

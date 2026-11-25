@@ -502,15 +502,13 @@ h2 {
 
 .scholar-stats strong { color: var(--text); font-weight: 600; }
 
-.scholar-stats a, .pub-tools a {
+.scholar-stats a {
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
 }
 
-.scholar-stats a:hover, .pub-tools a:hover { text-decoration: underline; }
-
-.pub-tools { margin: 0.75rem 0 0; font-size: 0.88rem; }
+.scholar-stats a:hover { text-decoration: underline; }
 
 .pub-actions {
   display: flex;
@@ -524,26 +522,6 @@ h2 {
 .pub-list .pub-actions a {
   color: var(--accent);
   font-weight: 500;
-  overflow-wrap: anywhere;
-}
-
-.bibtex[open] { flex-basis: 100%; }
-
-.bibtex summary {
-  cursor: pointer;
-  color: var(--accent);
-  font-weight: 500;
-}
-
-.bibtex pre {
-  margin: 0.5rem 0 0;
-  padding: 0.7rem 0.8rem;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-size: 0.75rem;
-  line-height: 1.5;
-  white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
@@ -688,8 +666,7 @@ h2 {
   white-space: nowrap;
 }
 
-.pub-actions .icon,
-.bibtex summary .icon {
+.pub-actions .icon {
   width: 1em;
   height: 1em;
   margin-right: 0.3rem;
