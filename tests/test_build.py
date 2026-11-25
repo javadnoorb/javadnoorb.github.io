@@ -277,3 +277,18 @@ def test_committed_publication_data_is_complete():
         assert pub.get("title"), pub
         assert build.pub_url(pub), f"no link or DOI: {pub['title']!r}"
         assert pub.get("authors"), f"no authors: {pub['title']!r}"
+
+
+def test_committed_scholar_stats_are_sane():
+    """Guards data/scholar_stats.json, which the weekly job also rewrites."""
+    import datetime
+    _, publications, stats = build.load_data()
+    assert isinstance(stats.get("citations"), int) and stats["citations"] > 0
+    for key in ("h_index", "i10_index"):
+        if key in stats:
+            assert isinstance(stats[key], int) and 0 < stats[key] <= len(publications) + 50, key
+    if "h_index" in stats and "i10_index" in stats:
+        assert stats["i10_index"] >= stats["h_index"] or stats["h_index"] < 10
+    # The total can't be below any single paper's count.
+    assert stats["citations"] >= max((p.get("citations") or 0) for p in publications)
+    datetime.date.fromisoformat(stats["updated"])

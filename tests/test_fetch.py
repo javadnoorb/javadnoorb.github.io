@@ -98,3 +98,22 @@ def test_fill_from_existing_restores_fields_dropped_by_a_bare_scrape():
                       "venue": "GigaScience", "link": "https://x.org/a", "doi": "10.1093/g/1",
                       "citations": 21}  # fresh citation count wins
     assert out[1]["link"] is None
+
+
+def test_stats_look_degraded():
+    assert fp.stats_look_degraded({"citations": 100}, {"citations": 1829})
+    assert not fp.stats_look_degraded({"citations": 1850}, {"citations": 1829})
+    assert not fp.stats_look_degraded({"citations": 1800}, {"citations": 1829})  # small Scholar correction
+    assert not fp.stats_look_degraded({"citations": 50}, {})  # first run
+
+
+def test_write_stats_keeps_good_file_on_bad_scrape(tmp_path, monkeypatch):
+    path = tmp_path / "scholar_stats.json"
+    path.write_text('{"citations": 1829, "h_index": 16, "updated": "2026-11-09"}')
+    monkeypatch.setattr(fp, "STATS_PATH", path)
+    fp.write_stats({"citations": 12, "h_index": 1})
+    assert '"citations": 1829' in path.read_text()
+    fp.write_stats({"citations": None})
+    assert '"citations": 1829' in path.read_text()
+    fp.write_stats({"citations": 1850, "h_index": 17})
+    assert '"citations": 1850' in path.read_text()

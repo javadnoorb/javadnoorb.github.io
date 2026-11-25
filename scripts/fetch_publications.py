@@ -351,10 +351,31 @@ def fetch_via_scholarly(scholar_id, owner_name):
     return publications, stats
 
 
+def load_existing_stats():
+    try:
+        return json.loads(STATS_PATH.read_text())
+    except (OSError, ValueError):
+        return {}
+
+
+def stats_look_degraded(stats, previous):
+    """Scholar citation totals only grow (barring small corrections), so a
+    big drop means a partial or broken scrape, not real data."""
+    old = _int((previous or {}).get("citations"))
+    new = _int((stats or {}).get("citations"))
+    return bool(old and new is not None and new < old * MIN_RETAINED_FRACTION)
+
+
 def write_stats(stats):
     stats = {k: v for k, v in (stats or {}).items() if v is not None}
     if not stats.get("citations"):
         print("No citation stats in this fetch; leaving scholar_stats.json untouched.")
+        return
+    previous = load_existing_stats()
+    if stats_look_degraded(stats, previous):
+        print(f"Fetched citation count {stats['citations']} is far below the current "
+              f"{previous['citations']}; treating it as a bad scrape and leaving "
+              f"scholar_stats.json untouched.")
         return
     stats["updated"] = datetime.date.today().isoformat()
     STATS_PATH.write_text(json.dumps(stats, indent=2) + "\n")
