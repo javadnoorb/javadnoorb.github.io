@@ -292,3 +292,14 @@ def test_committed_scholar_stats_are_sane():
     # The total can't be below any single paper's count.
     assert stats["citations"] >= max((p.get("citations") or 0) for p in publications)
     datetime.date.fromisoformat(stats["updated"])
+
+
+def test_research_highlight_titles_match_publication_list():
+    """Highlights are hand-written in profile.yaml; keep their titles in the
+    same (sentence) case as the Publications page instead of drifting."""
+    profile, publications, _ = build.load_data()
+    by_key = {p["title"].rstrip(".").lower(): p["title"].rstrip(".") for p in publications}
+    for item in profile.get("research_highlights", []):
+        title = item["title"].rstrip(".")
+        if title.lower() in by_key:
+            assert title == by_key[title.lower()], f"{title!r} vs {by_key[title.lower()]!r}"
