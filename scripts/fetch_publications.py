@@ -79,7 +79,7 @@ VENUE_OVERRIDES = [
     ("machine learning in biology and medicine", "Advances in Molecular Pathology"),
     ("emerging ai approaches for cancer spatial omics", "GigaScience"),
     ("treating cancer as an invasive species", "Molecular Cancer Research"),
-    ("integrative deep learning for pancancer molecular subtype classification", "ACM-BCB 2020"),
+    ("integrative deep learning for pancancer molecular subtype classification", "ACM-BCB"),
 ]
 
 
@@ -89,6 +89,8 @@ VENUE_OVERRIDES = [
 TITLE_OVERRIDES = [
     ("prediction of outcome from spatial protein profiling of triple-negative breast cancers",
      "Prediction of outcome from spatial protein profiling of triple-negative breast cancers"),
+    ("dianne: segmentation-free localization of histology differential attributes",
+     "DIANNE: Segmentation-free localization of histology differential attributes"),
     ("from intracellular signaling to population oscillations",
      "From intracellular signaling to population oscillations: bridging size- and time-scales in collective behavior"),
 ]

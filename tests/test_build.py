@@ -303,3 +303,12 @@ def test_research_highlight_titles_match_publication_list():
         title = item["title"].rstrip(".")
         if title.lower() in by_key:
             assert title == by_key[title.lower()], f"{title!r} vs {by_key[title.lower()]!r}"
+
+
+def test_venues_do_not_repeat_the_year():
+    """The year is printed after the venue, so "ACM-BCB 2020, 2020" doubles it."""
+    _, publications, _ = build.load_data()
+    for pub in publications:
+        venue = build.format_venue(pub.get("venue"))
+        if pub.get("year"):
+            assert not venue.endswith(str(pub["year"])), f"{venue!r} for {pub['title']!r}"

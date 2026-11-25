@@ -117,3 +117,12 @@ def test_write_stats_keeps_good_file_on_bad_scrape(tmp_path, monkeypatch):
     assert '"citations": 1829' in path.read_text()
     fp.write_stats({"citations": 1850, "h_index": 17})
     assert '"citations": 1850' in path.read_text()
+
+
+def test_title_overrides_produce_sentence_case():
+    """Every corrected title is in sentence case: after the first word (and
+    after a colon), only acronyms and proper nouns keep capitals."""
+    for _, fixed in fp.TITLE_OVERRIDES:
+        for part in fixed.split(": "):
+            for word in part.split()[1:]:
+                assert word == word.lower() or not word[1:].islower(), f"{word!r} in {fixed!r}"

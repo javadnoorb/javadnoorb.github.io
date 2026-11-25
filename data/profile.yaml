@@ -176,7 +176,7 @@ experience:
     period: "July 2024 - Present"
     bullets:
       - "Analyzing paired pre- and post-treatment samples (RNA-seq, multiplex IF, Visium HD) from a denosumab breast cancer clinical trial to characterize drug effects on immune–tumor interactions; supervising a student on H&E-based prediction of immune response."
-      - "Analyzing spatial and multi-omic data (Xenium, Ampliseq, Codex) from aged mice with spontaneous lung tumors to identify regions linked to tumor progression, and mutations shared with human cancers; supervising a student on H&E-based prediction of these regions."
+      - "Analyzing spatial and multi-omic data (Xenium, AmpliSeq, CODEX) from aged mice with spontaneous lung tumors to identify regions linked to tumor progression, and mutations shared with human cancers; supervising a student on H&E-based prediction of these regions."
       - "Applying pathology foundation models in two independent projects: blood cell classification in Giemsa-stained slides, and mitigating H&E staining variation with a custom loss function."
       - "Co-designing an ML framework to compare spatial omics profiles between human and mouse models."
       - "Developed a PDE model of tumor evolution and subclonal dynamics, fit to cell line experiments and used to predict dynamics in cell lines and PDX models."
