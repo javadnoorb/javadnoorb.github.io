@@ -155,15 +155,17 @@ def test_site_renders(tmp_path, monkeypatch):
     assert "<loc>https://javadnoorb.github.io/</loc>" in (tmp_path / "sitemap.xml").read_text()
 
 
-def test_scholar_stats_render_when_present(tmp_path, monkeypatch):
+def test_citation_counts_are_not_shown(tmp_path, monkeypatch):
+    """Citation counts are still fetched (they rank the highlighted papers)
+    but deliberately not displayed anywhere on the site."""
     monkeypatch.setattr(build, "OUTPUT", tmp_path)
     profile, publications, _ = build.load_data()
     build.render_site(build.make_env(), profile, publications,
                       {"citations": 1734, "h_index": 16, "i10_index": 20})
-    html = (tmp_path / "index.html").read_text()
-    assert "<strong>1,734</strong> citations" in html
-    # h-index and i10-index are fetched but deliberately not shown.
-    assert "h-index" not in html and "i10-index" not in html
+    for page in tmp_path.glob("*.html"):
+        html = page.read_text()
+        assert not re.search(r"\d[\d,]*(</strong>)?\s*citations?\b", html), page.name
+        assert "1,734" not in html and "h-index" not in html, page.name
 
 
 def test_homepage_links_each_profile_once(tmp_path, monkeypatch):
@@ -181,16 +183,14 @@ def test_homepage_links_each_profile_once(tmp_path, monkeypatch):
 
 def test_pub_meta_skips_blank_parts():
     template = build.make_env().from_string(
-        '{% from "_macros.html" import pub_meta, citation_badge %}'
-        "{{ pub_meta(pub) }}|{{ pub_meta(pub, year=false) }}|{{ citation_badge(pub) }}")
+        '{% from "_macros.html" import pub_meta %}'
+        "{{ pub_meta(pub) }}|{{ pub_meta(pub, year=false) }}")
     pub = {"authors": "A Smith and B Jones", "venue": None, "year": 2020, "citations": 1}
     assert template.render(pub=pub) == \
-        ('A Smith, B Jones &middot; 2020|A Smith, B Jones|'
-         '<span class="visually-hidden"> &middot; </span><span class="citation-badge">1 citation</span>')
+        'A Smith, B Jones &middot; 2020|A Smith, B Jones'
     pub.update(venue="nature communications", year=None, citations=2)
-    assert template.render(pub=pub).startswith(
-        "A Smith, B Jones &middot; Nature Communications|A Smith, B Jones &middot; Nature Communications|")
-    assert "2 citations" in template.render(pub=pub)
+    assert template.render(pub=pub) == \
+        "A Smith, B Jones &middot; Nature Communications|A Smith, B Jones &middot; Nature Communications"
 
 
 def test_built_site_has_no_broken_local_links(tmp_path, monkeypatch):

@@ -14,15 +14,8 @@
 {%- if pub.preprint %}{{ badge_sep() }}<span class="preprint-badge">Preprint</span>{% endif -%}
 {%- endmacro %}
 
-{% macro citation_badge(pub) -%}
-{%- if pub.citations %}{{ badge_sep() }}<span class="citation-badge">{{ pub.citations }} citation{{ "s" if pub.citations != 1 }}</span>{% endif -%}
-{%- endmacro %}
-
-{% macro scholar_stats(stats, profile, link=true) -%}
-{%- if stats.citations %}
-<p class="scholar-stats">
-  <span><strong>{{ "{:,}".format(stats.citations) }}</strong> citations</span>
-  {%- if link and profile.social.scholar %}<a href="{{ profile.social.scholar }}" target="_blank" rel="noopener">Google Scholar &#8599;</a>{% endif %}
-</p>
+{% macro scholar_link(profile) -%}
+{%- if profile.social.scholar %}
+<p class="scholar-stats"><a href="{{ profile.social.scholar }}" target="_blank" rel="noopener">Full record on Google Scholar &#8599;</a></p>
 {%- endif %}
 {%- endmacro %}

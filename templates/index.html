@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% from "_macros.html" import pub_meta, citation_badge, scholar_stats %}
+{% from "_macros.html" import pub_meta %}
 {% block content %}
 <section class="hero">
   <img class="avatar" width="96" height="96" src="static/images/profile.webp?v={{ asset_version('static/images/profile.webp') }}" alt="{{ profile.name }}">
@@ -13,7 +13,6 @@
     <li><a href="{{ url }}" target="_blank" rel="noopener">{% if icon_name %}{{ icon(icon_name) }}{% endif %}{{ {"github": "GitHub", "linkedin": "LinkedIn", "scholar": "Scholar", "orcid": "ORCID", "twitter": "X"}.get(platform, platform | capitalize) }}</a></li>
     {% endfor %}
   </ul>
-    {{ scholar_stats(stats, profile, link=false) }}
 </section>
 
 {% if profile.research_focus %}
@@ -42,7 +41,6 @@
       {% set url = pub | pub_url %}{% if url %}<a href="{{ url }}" target="_blank" rel="noopener">{{ pub.title }}</a>{% else %}<span class="pub-title">{{ pub.title }}</span>{% endif %}
       <span class="pub-meta">
         {{ pub_meta(pub, owner=profile.name) }}
-        {{- citation_badge(pub) }}
       </span>
     </li>
     {% endfor %}

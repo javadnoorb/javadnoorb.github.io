@@ -7,7 +7,7 @@
   --accent: #1f6f5c;
   --accent-soft: #e3efea;
   --accent-contrast: #fdfcf9;
-  --max-width: 720px;
+  --max-width: 960px;
   --shadow: 0 1px 2px rgba(23, 24, 28, 0.04), 0 8px 24px rgba(23, 24, 28, 0.05);
 }
 
@@ -478,18 +478,6 @@ h2 {
   font-weight: 600;
 }
 
-.citation-badge {
-  display: inline-block;
-  margin-left: 0.5rem;
-  padding: 0.05rem 0.5rem;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-}
-
-
 .scholar-stats {
   display: flex;
   flex-wrap: wrap;
@@ -499,8 +487,6 @@ h2 {
   color: var(--muted);
   font-size: 0.88rem;
 }
-
-.scholar-stats strong { color: var(--text); font-weight: 600; }
 
 .scholar-stats a {
   color: var(--accent);
@@ -695,3 +681,7 @@ h2 {
 }
 
 .focus-icon .icon { width: 1.15rem; height: 1.15rem; vertical-align: 0; }
+
+/* Wider desktop layout: keep long-form text at a comfortable line length. */
+.bullets li,
+.highlight-summary { max-width: 75ch; }

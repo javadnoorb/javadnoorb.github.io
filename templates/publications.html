@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% from "_macros.html" import pub_meta, citation_badge, preprint_badge, scholar_stats %}
+{% from "_macros.html" import pub_meta, preprint_badge, scholar_link %}
 {% block title %}Publications — {{ profile.name }}{% endblock %}
 {% block description %}Publications by {{ profile.name }} ({{ publications | length }} papers), kept in sync with Google Scholar, with DOIs.{% endblock %}
 {% block content %}
 <h1>Publications</h1>
 {% if publications %}
-{{ scholar_stats(stats, profile) }}
+{{ scholar_link(profile) }}
 {% for year, group in year_groups %}
 <section class="pub-year-group">
   <h2 class="year-heading">{{ year }}</h2>
@@ -15,7 +15,7 @@
       {% set url = pub | pub_url %}{% if url %}<a href="{{ url }}" target="_blank" rel="noopener">{{ pub.title }}</a>{% else %}<span class="pub-title">{{ pub.title }}</span>{% endif %}
       <span class="pub-meta">
         {{ pub_meta(pub, year=false, owner=profile.name) }}
-        {{- preprint_badge(pub) }}{{ citation_badge(pub) }}
+        {{- preprint_badge(pub) }}
       </span>
       {%- if pub.doi %}
       <span class="pub-actions"><a href="https://doi.org/{{ pub.doi }}" target="_blank" rel="noopener">{{ icon("link") }}DOI: {{ pub.doi }}</a></span>
